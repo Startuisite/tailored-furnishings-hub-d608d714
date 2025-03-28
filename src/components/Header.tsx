@@ -26,7 +26,7 @@ const Header = () => {
     <header className={`navbar ${scrolled ? 'bg-black' : 'bg-transparent'}`}>
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
         <Link to="/" className="z-10 flex items-center gap-2 text-white">
-          <Sofa size={28} strokeWidth={1.5} className="text-white" />
+          <Sofa size={42} strokeWidth={1.5} className="text-white" />
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-wider">НПМ</span>
             <span className="text-xs tracking-wide">не просто мебель</span>
