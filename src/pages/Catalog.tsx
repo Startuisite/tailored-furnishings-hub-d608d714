@@ -28,7 +28,13 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
             <h3 className="text-lg font-medium">{title}</h3>
             <span className="text-sm text-gray-500">• {subtitle}</span>
           </div>
-          <ArrowRight className="text-black transition-transform duration-300 group-hover:translate-x-1" size={20} />
+          <div className="bg-[rgb(252,247,241)] p-2 rounded-full shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-md">
+            <ArrowRight 
+              className="text-[#8B5CF6] transition-all duration-300 group-hover:translate-x-1" 
+              size={22} 
+              strokeWidth={2.5} 
+            />
+          </div>
         </CardContent>
       </Card>
     </Link>
