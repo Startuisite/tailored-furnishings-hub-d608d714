@@ -65,7 +65,7 @@ const Information = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background/30 to-secondary/30">
+    <div className="min-h-screen bg-gradient-to-b from-[#e6edf3] to-[#fcf7f1]">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
@@ -92,9 +92,9 @@ const Information = () => {
           <section className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {infoCards.map((card, index) => (
-                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-card hover:shadow-md transition-all duration-300">
+                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-primary/20 p-3 rounded-full w-16 h-16 mx-auto">
+                    <div className="mb-4 flex justify-center bg-[#fcf7f1] p-3 rounded-full w-16 h-16 mx-auto">
                       {card.icon}
                     </div>
                     <h3 className="text-xl font-medium mb-3 text-center">{card.title}</h3>
@@ -106,17 +106,17 @@ const Information = () => {
           </section>
 
           {/* Testimonials Section */}
-          <section className="mb-16 bg-secondary/50 p-8 rounded-xl shadow-md">
+          <section className="mb-16 bg-[#fcf7f1] p-8 rounded-xl shadow-md">
             <h2 className="section-title text-center mb-8">Отзывы наших клиентов</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-card hover:shadow-md transition-all duration-300">
+                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex mb-4 justify-center">
                       {[...Array(5)].map((_, i) => (
                         <Star 
                           key={i} 
-                          className={`h-5 w-5 ${i < testimonial.rating ? 'text-primary fill-primary' : 'text-muted-foreground'}`}
+                          className={`h-5 w-5 ${i < testimonial.rating ? 'text-[#FFD700] fill-[#FFD700]' : 'text-muted-foreground'}`}
                         />
                       ))}
                     </div>
@@ -132,13 +132,13 @@ const Information = () => {
           </section>
 
           {/* Certificates Section */}
-          <section className="mb-16 bg-white/80 p-8 rounded-xl shadow-md">
+          <section className="mb-16 bg-[#e6edf3] p-8 rounded-xl shadow-md">
             <h2 className="section-title text-center mb-8">Наши сертификаты</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {certificates.map((certificate, index) => (
-                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-card hover:shadow-md transition-all duration-300">
+                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-primary/20 p-3 rounded-full w-16 h-16 mx-auto">
+                    <div className="mb-4 flex justify-center bg-[#fcf7f1] p-3 rounded-full w-16 h-16 mx-auto">
                       <BadgeCheck className="h-10 w-10 text-primary" />
                     </div>
                     <h3 className="text-xl font-medium mb-3 text-center">{certificate.title}</h3>
@@ -152,7 +152,7 @@ const Information = () => {
           {/* Contacts and Map Section */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contacts */}
-            <Card className="border border-border/40 shadow-sm overflow-hidden bg-card">
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-medium mb-6">Контакты</h3>
                 <div className="space-y-4">
@@ -194,7 +194,7 @@ const Information = () => {
             </Card>
             
             {/* Map */}
-            <Card className="border border-border/40 shadow-sm overflow-hidden bg-card">
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-medium mb-6">Карта</h3>
                 <div className="h-[300px]">
