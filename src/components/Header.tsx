@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Sofa } from "lucide-react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -24,12 +25,12 @@ const Header = () => {
   return (
     <header className={`navbar ${scrolled ? 'bg-black' : 'bg-transparent'}`}>
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
-        <Link to="/" className="z-10">
-          <img 
-            src="/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png" 
-            alt="NPM Мебель" 
-            className="h-10 md:h-12"
-          />
+        <Link to="/" className="z-10 flex items-center gap-2 text-white">
+          <Sofa size={28} strokeWidth={1.5} className="text-white" />
+          <div className="flex flex-col">
+            <span className="text-xl font-bold tracking-wider">НПМ</span>
+            <span className="text-xs tracking-wide">не просто мебель</span>
+          </div>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-1">
