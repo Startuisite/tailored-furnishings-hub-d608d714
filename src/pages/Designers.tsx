@@ -103,11 +103,11 @@ const Designers = () => {
                 </div>
               </div>
             </div>
-            <div className="p-6 bg-white rounded-xl shadow-md min-h-[300px] flex items-center justify-center">
+            <div className="p-0 bg-white rounded-xl shadow-md min-h-[300px] flex items-center justify-center overflow-hidden">
               <img 
                 src="/lovable-uploads/56b0e29d-bfe5-4160-9b67-42170d60054e.png" 
                 alt="Дизайнер за работой" 
-                className="w-full h-auto object-cover rounded-lg"
+                className="w-full h-auto object-cover"
               />
             </div>
           </section>
