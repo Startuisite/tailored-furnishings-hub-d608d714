@@ -105,9 +105,9 @@ const Designers = () => {
             </div>
             <div className="p-6 bg-white rounded-xl shadow-md min-h-[300px] flex items-center justify-center">
               <img 
-                src="/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png" 
-                alt="Дизайнер" 
-                className="max-h-[250px] object-contain"
+                src="/lovable-uploads/56b0e29d-bfe5-4160-9b67-42170d60054e.png" 
+                alt="Дизайнер за работой" 
+                className="w-full h-auto object-cover rounded-lg"
               />
             </div>
           </section>
@@ -117,10 +117,10 @@ const Designers = () => {
             <h2 className="section-title text-center mb-4">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               {benefits.map((benefit, index) => (
-                <Card key={index} className="border-0 shadow-md overflow-hidden">
-                  <div className="p-6 bg-[rgb(242,237,231)]">
+                <Card key={index} className="border-0 shadow-md overflow-hidden h-full flex flex-col">
+                  <div className="p-6 bg-[rgb(242,237,231)] flex-1 flex flex-col">
                     <h3 className="text-xl font-medium mb-4">{benefit.title}</h3>
-                    <p className="text-gray-700">{benefit.description}</p>
+                    <p className="text-gray-700 flex-grow">{benefit.description}</p>
                   </div>
                 </Card>
               ))}
