@@ -9,6 +9,7 @@ import Catalog from "./pages/Catalog";
 import CategoryDetail from "./pages/CategoryDetail";
 import Designers from "./pages/Designers";
 import Customers from "./pages/Customers";
+import Information from "./pages/Information";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/catalog/:category" element={<CategoryDetail />} />
           <Route path="/designers" element={<Designers />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/information" element={<Information />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
