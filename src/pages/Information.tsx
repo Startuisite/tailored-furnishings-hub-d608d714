@@ -1,5 +1,5 @@
 
-import { MapPin, Phone, Mail, FileText, Award, Clock, Info } from "lucide-react";
+import { MapPin, Phone, Mail, FileText, Award, Clock, Info, Star, CertificateCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,17 +9,17 @@ const Information = () => {
   // Information cards data
   const infoCards = [
     {
-      icon: <Award className="h-10 w-10 text-black" />,
+      icon: <Award className="h-10 w-10 text-amber-600" />,
       title: "Гарантия качества",
       description: "Мы предоставляем гарантию на всю нашу мебель в течение 2 лет с момента покупки. Используем только проверенные и качественные материалы."
     },
     {
-      icon: <Clock className="h-10 w-10 text-black" />,
+      icon: <Clock className="h-10 w-10 text-amber-600" />,
       title: "Сроки изготовления",
       description: "Стандартный срок изготовления мебели составляет от 2 до 4 недель. Точные сроки определяются после согласования всех деталей заказа."
     },
     {
-      icon: <FileText className="h-10 w-10 text-black" />,
+      icon: <FileText className="h-10 w-10 text-amber-600" />,
       title: "Документация",
       description: "Вся наша мебель сертифицирована и соответствует российским и международным стандартам качества и безопасности."
     }
@@ -35,24 +35,62 @@ const Information = () => {
     { title: "Публичная оферта", link: "#offer" }
   ];
 
+  // Testimonials data
+  const testimonials = [
+    {
+      name: "Анна Петрова",
+      position: "Дизайнер интерьера",
+      text: "Уже более 5 лет сотрудничаю с НПМ и могу с уверенностью сказать, что это одни из лучших производителей мебели. Высокое качество, точность исполнения и внимание к деталям отличает их от многих других.",
+      rating: 5
+    },
+    {
+      name: "Сергей Иванов",
+      position: "Клиент",
+      text: "Заказывали кухню и гардеробную. Результат превзошел все ожидания! Отличное качество материалов, идеальная сборка и монтаж. Рекомендую всем, кто ценит функциональность и эстетику.",
+      rating: 5
+    },
+    {
+      name: "Марина Сидорова",
+      position: "Архитектор",
+      text: "Компания НПМ - это надежный партнер для реализации сложных и нестандартных решений. Всегда предлагают оптимальные варианты по соотношению цена-качество. Наше сотрудничество всегда приносит отличные результаты.",
+      rating: 4
+    }
+  ];
+
+  // Certificates data
+  const certificates = [
+    {
+      title: "ISO 9001:2015",
+      description: "Сертификат системы менеджмента качества"
+    },
+    {
+      title: "ГОСТ Р 56599-2015",
+      description: "Соответствие стандартам безопасности мебельной продукции"
+    },
+    {
+      title: "Экологический сертификат",
+      description: "Подтверждение экологичности используемых материалов"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-[rgb(252,247,241)]/30">
+    <div className="min-h-screen bg-gradient-to-b from-[rgb(252,247,241)]/30 to-[rgb(230,237,243)]/30">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
           {/* About Us Section */}
-          <section className="mb-16">
-            <h2 className="section-title text-center mb-8">О нас</h2>
+          <section className="mb-16 bg-white/80 p-8 rounded-xl shadow-md">
+            <h2 className="section-title text-center mb-8 text-amber-800">О нас</h2>
             <div className="text-lg max-w-4xl mx-auto text-center">
-              <p className="mb-4">
+              <p className="mb-4 text-gray-700">
                 Компания НПМ ("Не Просто Мебель") – это команда профессионалов с многолетним опытом, 
                 создающая качественную и функциональную мебель на заказ.
               </p>
-              <p className="mb-4">
+              <p className="mb-4 text-gray-700">
                 Мы специализируемся на изготовлении индивидуальной мебели для дома и офиса: 
                 кухни, гардеробные, шкафы-купе, спальни, детские, гостиные и другие предметы интерьера.
               </p>
-              <p>
+              <p className="text-gray-700">
                 Наша миссия – создавать не просто мебель, а функциональное и эстетичное пространство, 
                 идеально соответствующее вашим потребностям и стилю жизни.
               </p>
@@ -63,13 +101,57 @@ const Information = () => {
           <section className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {infoCards.map((card, index) => (
-                <Card key={index} className="border-0 shadow-md overflow-hidden bg-white">
+                <Card key={index} className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)] hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center">
+                    <div className="mb-4 flex justify-center bg-amber-50 p-3 rounded-full w-16 h-16 mx-auto">
                       {card.icon}
                     </div>
-                    <h3 className="text-xl font-medium mb-3 text-center">{card.title}</h3>
-                    <p className="text-center">{card.description}</p>
+                    <h3 className="text-xl font-medium mb-3 text-center text-amber-800">{card.title}</h3>
+                    <p className="text-center text-gray-600">{card.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Testimonials Section */}
+          <section className="mb-16 bg-[rgb(230,237,243)]/50 p-8 rounded-xl shadow-md">
+            <h2 className="section-title text-center mb-8 text-amber-800">Отзывы наших клиентов</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <Card key={index} className="border-0 shadow-md overflow-hidden bg-white hover:shadow-lg transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex mb-4 justify-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className={`h-5 w-5 ${i < testimonial.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-300'}`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-gray-600 italic mb-4 text-center">"{testimonial.text}"</p>
+                    <div className="text-center">
+                      <p className="font-medium text-amber-800">{testimonial.name}</p>
+                      <p className="text-sm text-gray-500">{testimonial.position}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Certificates Section */}
+          <section className="mb-16 bg-white/80 p-8 rounded-xl shadow-md">
+            <h2 className="section-title text-center mb-8 text-amber-800">Наши сертификаты</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {certificates.map((certificate, index) => (
+                <Card key={index} className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)] hover:shadow-lg transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="mb-4 flex justify-center bg-amber-50 p-3 rounded-full w-16 h-16 mx-auto">
+                      <CertificateCheck className="h-10 w-10 text-amber-600" />
+                    </div>
+                    <h3 className="text-xl font-medium mb-3 text-center text-amber-800">{certificate.title}</h3>
+                    <p className="text-center text-gray-600">{certificate.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -79,12 +161,12 @@ const Information = () => {
           {/* Contacts and Menu Section */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contacts */}
-            <Card className="border-0 shadow-md overflow-hidden bg-white">
+            <Card className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)]">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6">Контакты</h3>
+                <h3 className="text-2xl font-medium mb-6 text-amber-800">Контакты</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 flex-shrink-0 mt-1" />
+                    <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-amber-600" />
                     <div>
                       <p className="font-medium">Адрес</p>
                       <p>г. Москва, ул. Примерная, д. 123</p>
@@ -93,7 +175,7 @@ const Information = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 flex-shrink-0 mt-1" />
+                    <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-amber-600" />
                     <div>
                       <p className="font-medium">Телефон</p>
                       <p>+7 (999) 123-45-67</p>
@@ -102,7 +184,7 @@ const Information = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 flex-shrink-0 mt-1" />
+                    <Mail className="h-6 w-6 flex-shrink-0 mt-1 text-amber-600" />
                     <div>
                       <p className="font-medium">Email</p>
                       <p>info@npm-mebel.ru</p>
@@ -112,7 +194,7 @@ const Information = () => {
                 </div>
                 
                 <Button 
-                  className="w-full mt-6 flex items-center justify-center gap-2 bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80"
+                  className="w-full mt-6 flex items-center justify-center gap-2 bg-amber-600 text-white hover:bg-amber-700 transition-colors"
                   onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
                 >
                   Написать нам
@@ -121,15 +203,15 @@ const Information = () => {
             </Card>
             
             {/* Quick Menu */}
-            <Card className="border-0 shadow-md overflow-hidden bg-white">
+            <Card className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)]">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6">Меню</h3>
+                <h3 className="text-2xl font-medium mb-6 text-amber-800">Меню</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {menuLinks.map((link, index) => (
                     <a 
                       key={index} 
                       href={link.link} 
-                      className="flex items-center gap-2 hover:text-gray-600 transition-colors"
+                      className="flex items-center gap-2 text-gray-700 hover:text-amber-600 transition-colors"
                     >
                       <Info className="h-4 w-4" />
                       <span>{link.title}</span>
