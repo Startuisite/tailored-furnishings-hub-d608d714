@@ -1,5 +1,4 @@
-
-import { MapPin, Phone, Mail, FileText, Award, Clock, Info, Star, CertificateCheck } from "lucide-react";
+import { MapPin, Phone, Mail, FileText, Award, Clock, Info, Star, BadgeCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -148,7 +147,7 @@ const Information = () => {
                 <Card key={index} className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)] hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="mb-4 flex justify-center bg-amber-50 p-3 rounded-full w-16 h-16 mx-auto">
-                      <CertificateCheck className="h-10 w-10 text-amber-600" />
+                      <BadgeCheck className="h-10 w-10 text-amber-600" />
                     </div>
                     <h3 className="text-xl font-medium mb-3 text-center text-amber-800">{certificate.title}</h3>
                     <p className="text-center text-gray-600">{certificate.description}</p>
