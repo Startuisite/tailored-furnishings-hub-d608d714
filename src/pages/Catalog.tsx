@@ -23,7 +23,7 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
-        <CardContent className="flex items-center justify-between p-4 bg-[rgb(252,247,241)]">
+        <CardContent className="flex items-center justify-between p-4 bg-[rgb(242,237,231)]">
           <div>
             <h3 className="text-lg font-medium">{title}</h3>
             <p className="text-sm text-gray-500">{subtitle}</p>
