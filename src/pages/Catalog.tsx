@@ -23,7 +23,7 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
-        <CardContent className="flex items-center justify-between p-4 bg-white">
+        <CardContent className="flex items-center justify-between p-4 bg-[rgb(252,247,241)]">
           <div>
             <h3 className="text-lg font-medium">{title}</h3>
             <p className="text-sm text-gray-500">{subtitle}</p>
@@ -59,7 +59,7 @@ const Catalog = () => {
     },
     {
       title: "Прихожая",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", // Fixed image URL
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
       subtitle: "под заказ"
     },
     {
@@ -79,7 +79,7 @@ const Catalog = () => {
     },
     {
       title: "Мягкая мебель",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", // Fixed image URL
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
       subtitle: "под заказ"
     },
     {
@@ -89,7 +89,7 @@ const Catalog = () => {
     },
     {
       title: "Отели",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", // Fixed image URL
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
       subtitle: "под заказ"
     },
     {
@@ -100,7 +100,7 @@ const Catalog = () => {
   ]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[rgb(252,247,241)]/30">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">

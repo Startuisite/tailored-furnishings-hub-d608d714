@@ -24,11 +24,11 @@ const Header = () => {
 
   return (
     <header 
-      className={`navbar ${scrolled ? 'bg-[#9b87f5]/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
+      className={`navbar ${scrolled ? 'bg-[rgb(230,237,243)]/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
     >
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
-        <Link to="/" className="z-10 flex items-center gap-2 text-white">
-          <Sofa size={42} strokeWidth={1.5} className="text-white" />
+        <Link to="/" className="z-10 flex items-center gap-2 text-black">
+          <Sofa size={42} strokeWidth={1.5} className="text-black" />
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-wider">НПМ</span>
             <span className="text-xs tracking-wide">не просто мебель</span>
@@ -38,31 +38,31 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-1">
           <Link 
             to="/catalog" 
-            className={`nav-link relative px-4 py-2 text-white hover:text-white/90 transition-colors ${location.pathname === '/catalog' ? 'after:w-2/3' : ''}`}
+            className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/catalog' ? 'after:w-2/3' : ''}`}
           >
             Каталог
           </Link>
           <Link 
             to="/customers" 
-            className={`nav-link relative px-4 py-2 text-white hover:text-white/90 transition-colors ${location.pathname === '/customers' ? 'after:w-2/3' : ''}`}
+            className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/customers' ? 'after:w-2/3' : ''}`}
           >
             Покупателям
           </Link>
           <Link 
             to="/designers" 
-            className={`nav-link relative px-4 py-2 text-white hover:text-white/90 transition-colors ${location.pathname === '/designers' ? 'after:w-2/3' : ''}`}
+            className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/designers' ? 'after:w-2/3' : ''}`}
           >
             Дизайнерам
           </Link>
           <Link 
             to="/information" 
-            className={`nav-link relative px-4 py-2 text-white hover:text-white/90 transition-colors ${location.pathname === '/information' ? 'after:w-2/3' : ''}`}
+            className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/information' ? 'after:w-2/3' : ''}`}
           >
             Информация
           </Link>
         </nav>
         
-        <button className="md:hidden text-white">
+        <button className="md:hidden text-black">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
