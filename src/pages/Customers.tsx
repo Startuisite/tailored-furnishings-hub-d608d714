@@ -1,9 +1,11 @@
 
-import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle } from "lucide-react";
+import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Customers = () => {
   // Order steps data
@@ -40,6 +42,62 @@ const Customers = () => {
     }
   ];
 
+  // State for the active step in the order schema
+  const [activeStep, setActiveStep] = useState(1);
+
+  // Detailed information for each step
+  const stepDetails = {
+    1: {
+      title: "Знакомство",
+      description: "На этом шаге мы изучаем ваши задачи и пожелания, понимаем параметры помещения, количество и возраст детей. Продумываем зонирование, расположение мебели в комнате и предлагаем концепт решения.",
+      image: "/lovable-uploads/a8917722-8be4-4512-8013-e270d2be3c6c.png"
+    },
+    2: {
+      title: "Предварительный расчет",
+      description: "Делаем предварительную оценку стоимости проекта, учитывая выбранные материалы, фурнитуру и особенности конструкции. Обсуждаем возможные варианты оптимизации бюджета.",
+      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+    },
+    3: {
+      title: "Обмерный план",
+      description: "Специалист выезжает к вам для проведения точных замеров помещения. Учитываются все нюансы: розетки, вентиляция, радиаторы и другие особенности, которые могут влиять на проект.",
+      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+    },
+    4: {
+      title: "Дизайн проект",
+      description: "Создаем 3D-визуализацию вашей будущей мебели, согласовываем все детали, цвета, материалы и фурнитуру. Вы получаете полное представление о конечном результате.",
+      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+    },
+    5: {
+      title: "Изготовление мебели",
+      description: "Производим мебель на собственном производстве, используя современное оборудование и качественные материалы. Контролируем каждый этап производства для гарантии качества.",
+      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+    },
+    6: {
+      title: "Монтаж под ключ",
+      description: "Осуществляем доставку и профессиональную сборку мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
+      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+    },
+  };
+
+  // Handle next step
+  const handleNextStep = () => {
+    if (activeStep < 6) {
+      setActiveStep(prev => prev + 1);
+    }
+  };
+
+  // Handle previous step
+  const handlePrevStep = () => {
+    if (activeStep > 1) {
+      setActiveStep(prev => prev - 1);
+    }
+  };
+
+  // Handle step selection
+  const handleStepSelect = (step: number) => {
+    setActiveStep(step);
+  };
+
   return (
     <div className="min-h-screen bg-[rgb(252,247,241)]/30">
       <Header />
@@ -66,26 +124,6 @@ const Customers = () => {
                 <MessageCircle className="h-5 w-5" />
                 Написать нам в телеграмм
               </Button>
-            </div>
-          </section>
-
-          {/* Hero Section with Warranty and Image */}
-          <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-[rgb(230,237,243)] p-8 rounded-xl flex flex-col">
-              <h1 className="section-title mb-6">Гарантия</h1>
-              <p className="text-lg mb-6">
-                Полностью берем весь цикл работ на себя и реализуем ваши идеи точно в срок.
-              </p>
-              <div className="bg-white p-4 rounded-lg">
-                <p className="font-medium">Гарантийное обслуживание на всю продукцию</p>
-              </div>
-            </div>
-            <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">
-              <img 
-                src="/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png" 
-                alt="Изображение мебели" 
-                className="w-full h-full object-cover"
-              />
             </div>
           </section>
 
@@ -163,21 +201,93 @@ const Customers = () => {
             </div>
           </section>
 
-          {/* Order Schema Section */}
+          {/* New Interactive Order Schema Section */}
           <section className="mb-16">
-            <h2 className="section-title text-center mb-12">Удобная схема заказа</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {orderSteps.map((step, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
+            <h2 className="section-title text-center mb-8">Удобная схема заказа</h2>
+            <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
+              Процесс выстроен так, чтобы вы были услышаны, а мы преобразовали ваши идеи в конечный проект.
+            </p>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Left side - Steps list */}
+              <div className="flex flex-col space-y-3">
+                {orderSteps.map((step) => (
+                  <div 
+                    key={step.number}
+                    onClick={() => handleStepSelect(step.number)}
+                    className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all ${
+                      activeStep === step.number 
+                        ? "bg-white shadow-md" 
+                        : "bg-[rgb(245,245,245)] hover:bg-[rgb(240,240,240)]"
+                    }`}
+                  >
                     <div className="w-10 h-10 rounded-full bg-[rgb(230,237,243)] flex items-center justify-center flex-shrink-0">
                       <span className="font-bold">{step.number}</span>
                     </div>
-                    <h3 className="text-xl font-medium">{step.title}</h3>
+                    <div className="flex-grow">
+                      <h3 className="font-medium">{step.title}</h3>
+                    </div>
+                    <ChevronRight className={`h-5 w-5 transition-colors ${
+                      activeStep === step.number ? "text-[rgb(0,0,0)]" : "text-[rgb(180,180,180)]"
+                    }`} />
                   </div>
-                  <p className="text-gray-700">{step.description}</p>
+                ))}
+              </div>
+              
+              {/* Right side - Step details */}
+              <div className="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  {/* Step detail information */}
+                  <div className="p-6 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-medium mb-4">
+                        {activeStep}. {stepDetails[activeStep as keyof typeof stepDetails]?.title}
+                      </h3>
+                      <p className="text-gray-700 mb-8">
+                        {stepDetails[activeStep as keyof typeof stepDetails]?.description}
+                      </p>
+                    </div>
+                    
+                    <div className="mt-auto flex justify-between items-center">
+                      <Button
+                        variant="outline"
+                        onClick={handlePrevStep}
+                        disabled={activeStep === 1}
+                        className={activeStep === 1 ? "opacity-50 cursor-not-allowed" : ""}
+                      >
+                        Предыдущий шаг
+                      </Button>
+                      
+                      {activeStep < 6 && (
+                        <Button 
+                          className="flex items-center gap-2 bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80"
+                          onClick={handleNextStep}
+                        >
+                          Следующий шаг <ArrowRight className="h-4 w-4" />
+                        </Button>
+                      )}
+                      
+                      {activeStep === 6 && (
+                        <Button 
+                          className="flex items-center gap-2 bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80"
+                          onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
+                        >
+                          Связаться с нами <MessageCircle className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Step image */}
+                  <div className="h-full">
+                    <img 
+                      src={stepDetails[activeStep as keyof typeof stepDetails]?.image} 
+                      alt={`Шаг ${activeStep}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </section>
         </div>
