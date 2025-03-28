@@ -80,13 +80,15 @@ const Designers = () => {
       <main className="pt-24 pb-16">
         <div className="container-custom">
           {/* Hero Section */}
-          <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div className="bg-[rgb(230,237,243)] p-8 rounded-xl">
-              <h1 className="section-title mb-6">Вы дизайнер</h1>
-              <p className="text-lg">
-                Приглашаем к сотрудничеству дизайнеров интерьеров. Мы предлагаем выгодные условия 
-                партнерства, профессиональную поддержку и качественное исполнение ваших проектов.
-              </p>
+          <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+            <div className="bg-[rgb(230,237,243)] p-8 rounded-xl flex flex-col justify-between">
+              <div>
+                <h1 className="section-title mb-6">Вы дизайнер</h1>
+                <p className="text-lg">
+                  Приглашаем к сотрудничеству дизайнеров интерьеров. Мы предлагаем выгодные условия 
+                  партнерства, профессиональную поддержку и качественное исполнение ваших проектов.
+                </p>
+              </div>
               <div className="mt-8">
                 <p className="font-medium mb-2">У вас есть?</p>
                 <div className="flex items-center gap-3 mb-1">
@@ -103,11 +105,11 @@ const Designers = () => {
                 </div>
               </div>
             </div>
-            <div className="p-0 bg-white rounded-xl shadow-md min-h-[300px] flex items-center justify-center overflow-hidden">
+            <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">
               <img 
                 src="/lovable-uploads/56b0e29d-bfe5-4160-9b67-42170d60054e.png" 
                 alt="Дизайнер за работой" 
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           </section>
