@@ -1,8 +1,9 @@
 
-import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const Customers = () => {
   // Order steps data
@@ -44,6 +45,30 @@ const Customers = () => {
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
+          {/* Hero Section with Image and CTA */}
+          <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
+            <div className="h-full">
+              <img 
+                src="/lovable-uploads/55faea24-7c9e-4657-8a85-4d7c0e54bf48.png" 
+                alt="Комфортный интерьер" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-8 flex flex-col justify-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                ПОЛНОСТЬЮ берем весь процесс разработки и реализации проекта на себя
+              </h2>
+              <Button 
+                className="flex items-center gap-2 text-base bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80 rounded-lg self-start"
+                size="lg"
+                onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
+              >
+                <MessageCircle className="h-5 w-5" />
+                Написать нам в телеграмм
+              </Button>
+            </div>
+          </section>
+
           {/* Hero Section with Warranty and Image */}
           <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             <div className="bg-[rgb(230,237,243)] p-8 rounded-xl flex flex-col">
