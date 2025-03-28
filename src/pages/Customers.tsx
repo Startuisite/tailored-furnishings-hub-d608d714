@@ -8,36 +8,36 @@ import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Customers = () => {
-  // Order steps data
+  // Order steps data with updated titles to match step details
   const orderSteps = [
     {
       number: 1,
-      title: "Консультация",
+      title: "Знакомство",
       description: "Обсуждение ваших пожеланий и требований к мебели"
     },
     {
       number: 2,
-      title: "Замер",
+      title: "Предварительный расчет",
       description: "Выезд специалиста для точных замеров помещения"
     },
     {
       number: 3,
-      title: "Проектирование",
+      title: "Обмерный план",
       description: "Создание 3D-макета и согласование всех деталей"
     },
     {
       number: 4,
-      title: "Договор",
+      title: "Дизайн проект",
       description: "Подписание договора и внесение предоплаты"
     },
     {
       number: 5,
-      title: "Производство",
+      title: "Изготовление мебели",
       description: "Изготовление мебели на нашем производстве"
     },
     {
       number: 6,
-      title: "Доставка и сборка",
+      title: "Монтаж под ключ",
       description: "Доставка и профессиональная сборка мебели у вас дома"
     }
   ];
@@ -45,37 +45,37 @@ const Customers = () => {
   // State for the active step in the order schema
   const [activeStep, setActiveStep] = useState(1);
 
-  // Detailed information for each step
+  // Detailed information for each step with updated images
   const stepDetails = {
     1: {
       title: "Знакомство",
       description: "На этом шаге мы изучаем ваши задачи и пожелания, понимаем параметры помещения, количество и возраст детей. Продумываем зонирование, расположение мебели в комнате и предлагаем концепт решения.",
-      image: "/lovable-uploads/a8917722-8be4-4512-8013-e270d2be3c6c.png"
+      image: "/lovable-uploads/e0177671-9ff7-4a70-ab7e-f3fef986148a.png"
     },
     2: {
       title: "Предварительный расчет",
       description: "Делаем предварительную оценку стоимости проекта, учитывая выбранные материалы, фурнитуру и особенности конструкции. Обсуждаем возможные варианты оптимизации бюджета.",
-      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+      image: "/lovable-uploads/de646832-bfa5-4fd9-8ad2-61ce418ea0ef.png"
     },
     3: {
       title: "Обмерный план",
       description: "Специалист выезжает к вам для проведения точных замеров помещения. Учитываются все нюансы: розетки, вентиляция, радиаторы и другие особенности, которые могут влиять на проект.",
-      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+      image: "/lovable-uploads/c1f7eb82-b777-4097-94e4-727fd136286a.png"
     },
     4: {
       title: "Дизайн проект",
       description: "Создаем 3D-визуализацию вашей будущей мебели, согласовываем все детали, цвета, материалы и фурнитуру. Вы получаете полное представление о конечном результате.",
-      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+      image: "/lovable-uploads/b1395111-88e3-4e79-9f7c-5de9323a0d02.png"
     },
     5: {
       title: "Изготовление мебели",
       description: "Производим мебель на собственном производстве, используя современное оборудование и качественные материалы. Контролируем каждый этап производства для гарантии качества.",
-      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+      image: "/lovable-uploads/f886d12c-466b-43bf-80a0-0fc6b512d5f9.png"
     },
     6: {
       title: "Монтаж под ключ",
       description: "Осуществляем доставку и профессиональную сборку мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
-      image: "/lovable-uploads/a0cbbe3e-8fcc-4edb-8a5f-976e93fd21e6.png"
+      image: "/lovable-uploads/6be290da-fdcf-4e5b-a684-89489fa8b203.png"
     },
   };
 
@@ -201,7 +201,7 @@ const Customers = () => {
             </div>
           </section>
 
-          {/* New Interactive Order Schema Section */}
+          {/* Interactive Order Schema Section */}
           <section className="mb-16">
             <h2 className="section-title text-center mb-8">Удобная схема заказа</h2>
             <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
