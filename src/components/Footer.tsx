@@ -1,5 +1,7 @@
 
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -65,6 +67,18 @@ const Footer = () => {
                   <circle cx="4" cy="4" r="2"></circle>
                 </svg>
               </a>
+            </div>
+            
+            {/* Write to Director Button */}
+            <div className="mt-6">
+              <Button 
+                variant="outline" 
+                className="w-full bg-[rgb(252,247,241)] hover:bg-gray-200 text-black border-gray-300 flex items-center justify-center gap-2"
+                onClick={() => window.location.href = "mailto:director@npm-mebel.ru"}
+              >
+                <Mail className="h-4 w-4" />
+                Написать директору
+              </Button>
             </div>
           </div>
         </div>
