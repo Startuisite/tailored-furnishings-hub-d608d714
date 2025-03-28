@@ -38,8 +38,28 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
 const Catalog = () => {
   const [categories] = useState<CategoryProps[]>([
     {
+      title: "Прихожая",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
+      subtitle: "под заказ"
+    },
+    {
+      title: "Гостиная",
+      image: "/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png",
+      subtitle: "под заказ"
+    },
+    {
       title: "Кухня",
       image: "/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png",
+      subtitle: "под заказ"
+    },
+    {
+      title: "Детская",
+      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png",
+      subtitle: "под заказ"
+    },
+    {
+      title: "Спальня",
+      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png", 
       subtitle: "под заказ"
     },
     {
@@ -53,28 +73,8 @@ const Catalog = () => {
       subtitle: "под заказ"
     },
     {
-      title: "Спальня",
-      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png", 
-      subtitle: "под заказ"
-    },
-    {
-      title: "Прихожая",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
-      subtitle: "под заказ"
-    },
-    {
       title: "Ванна", 
       image: "/lovable-uploads/99ae9dcd-dc47-4f26-b39c-0590b4e44498.png",
-      subtitle: "под заказ"
-    },
-    {
-      title: "Детская",
-      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png",
-      subtitle: "под заказ"
-    },
-    {
-      title: "Гостиная",
-      image: "/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png",
       subtitle: "под заказ"
     },
     {
@@ -83,14 +83,14 @@ const Catalog = () => {
       subtitle: "под заказ"
     },
     {
-      title: "Перегородки из мебели", 
-      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
-      subtitle: "под заказ" 
-    },
-    {
       title: "Отели",
       image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
       subtitle: "под заказ"
+    },
+    {
+      title: "Перегородки из мебели", 
+      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
+      subtitle: "под заказ" 
     },
     {
       title: "Комплексная меблировка",
