@@ -28,6 +28,19 @@ const Hero = ({ images }: HeroProps) => {
       }, 100);
     }, 900);
   };
+
+  const goToSlide = (index: number) => {
+    if (index !== currentImageIndex) {
+      setPrevImageIndex(currentImageIndex);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex(index);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 100);
+      }, 900);
+    }
+  };
   
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -38,6 +51,8 @@ const Hero = ({ images }: HeroProps) => {
         }`}
         style={{
           backgroundImage: `url(${images[currentImageIndex]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       
@@ -48,6 +63,8 @@ const Hero = ({ images }: HeroProps) => {
         }`}
         style={{
           backgroundImage: `url(${images[prevImageIndex]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       
@@ -65,12 +82,13 @@ const Hero = ({ images }: HeroProps) => {
       </div>
       
       {/* Indicators */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-3">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full ${
-              currentImageIndex === index ? "bg-white" : "bg-white/50"
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              currentImageIndex === index ? "bg-white w-6" : "bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
