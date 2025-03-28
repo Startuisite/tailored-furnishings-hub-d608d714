@@ -59,7 +59,7 @@ const Catalog = () => {
     },
     {
       title: "Прихожая",
-      image: "/photo-1721322800607-8c38375eef04", // Updated to the attached image
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", // Fixed image URL
       subtitle: "под заказ"
     },
     {
@@ -79,17 +79,17 @@ const Catalog = () => {
     },
     {
       title: "Мягкая мебель",
-      image: "/photo-1721322800607-8c38375eef04", // Updated to the attached image
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", // Fixed image URL
       subtitle: "под заказ"
     },
     {
-      title: "Перегородки из мебели", // Changed title from "Перегородки" to "Перегородки из мебели"
+      title: "Перегородки из мебели", 
       image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
-      subtitle: "под заказ" // Changed subtitle back to "под заказ"
+      subtitle: "под заказ" 
     },
     {
       title: "Отели",
-      image: "/photo-1721322800607-8c38375eef04", // Updated to the attached image
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", // Fixed image URL
       subtitle: "под заказ"
     },
     {
