@@ -1,4 +1,3 @@
-
 import { MapPin, Phone, Mail, FileText, Award, Clock, Info, Star, BadgeCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -150,7 +149,7 @@ const Information = () => {
             </div>
           </section>
 
-          {/* Contact Form and Map Section */}
+          {/* Contact Form and Map/Contacts Section */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* Contact Form */}
             <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
@@ -160,22 +159,17 @@ const Information = () => {
               </CardContent>
             </Card>
             
-            {/* Map */}
+            {/* Map and Contacts combined in one card */}
             <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6">Карта</h3>
-                <div className="h-[300px]">
+              <CardContent className="p-6 flex flex-col h-full">
+                <h3 className="text-2xl font-medium mb-6">Наши контакты</h3>
+                
+                {/* Map */}
+                <div className="h-[250px] mb-6 rounded-lg overflow-hidden">
                   <YandexMap />
                 </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Contacts Section */}
-          <section>
-            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6">Контакты</h3>
+                
+                {/* Contacts */}
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
