@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import ContactFormDialog from "./ContactFormDialog";
 
 interface HeroProps {
   images: string[];
@@ -76,9 +78,13 @@ const Hero = ({ images }: HeroProps) => {
         <h2 className="text-4xl md:text-6xl font-playfair mb-8 text-center px-4">
           Твоя мебель – твои правила
         </h2>
-        <button className="btn-primary">
-          Заказать консультацию
-        </button>
+        <ContactFormDialog
+          trigger={
+            <Button className="btn-primary">
+              Заказать консультацию
+            </Button>
+          }
+        />
       </div>
       
       {/* Indicators */}

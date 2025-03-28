@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import YandexMap from "../components/YandexMap";
+import ContactForm from "../components/ContactForm";
 
 const Information = () => {
   // Information cards data
@@ -149,9 +150,29 @@ const Information = () => {
             </div>
           </section>
 
-          {/* Contacts and Map Section */}
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contacts */}
+          {/* Contact Form and Map Section */}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Contact Form */}
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-medium mb-6">Заполните заявку</h3>
+                <ContactForm />
+              </CardContent>
+            </Card>
+            
+            {/* Map */}
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-medium mb-6">Карта</h3>
+                <div className="h-[300px]">
+                  <YandexMap />
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Contacts Section */}
+          <section>
             <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-medium mb-6">Контакты</h3>
@@ -190,16 +211,6 @@ const Information = () => {
                 >
                   Написать нам
                 </Button>
-              </CardContent>
-            </Card>
-            
-            {/* Map */}
-            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6">Карта</h3>
-                <div className="h-[300px]">
-                  <YandexMap />
-                </div>
               </CardContent>
             </Card>
           </section>
