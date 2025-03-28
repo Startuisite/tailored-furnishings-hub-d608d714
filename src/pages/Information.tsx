@@ -152,15 +152,17 @@ const Information = () => {
           {/* Contact Form and Map/Contacts Section */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* Contact Form */}
-            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
-              <CardContent className="p-6">
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white flex flex-col h-full">
+              <CardContent className="p-6 flex flex-col h-full">
                 <h3 className="text-2xl font-medium mb-6">Заполните заявку</h3>
-                <ContactForm />
+                <div className="flex-grow">
+                  <ContactForm customButtonClass="mt-auto" />
+                </div>
               </CardContent>
             </Card>
             
             {/* Map and Contacts combined in one card */}
-            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white">
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-white flex flex-col h-full">
               <CardContent className="p-6 flex flex-col h-full">
                 <h3 className="text-2xl font-medium mb-6">Наши контакты</h3>
                 
@@ -170,7 +172,7 @@ const Information = () => {
                 </div>
                 
                 {/* Contacts */}
-                <div className="space-y-4">
+                <div className="space-y-4 flex-grow">
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
                     <div>
@@ -200,7 +202,7 @@ const Information = () => {
                 </div>
                 
                 <Button 
-                  className="w-full mt-6 flex items-center justify-center gap-2"
+                  className="w-full mt-6 flex items-center justify-center gap-2" 
                   onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
                 >
                   Написать нам

@@ -35,9 +35,10 @@ type FormValues = z.infer<typeof formSchema>;
 
 interface ContactFormProps {
   onSuccess?: () => void;
+  customButtonClass?: string;
 }
 
-const ContactForm = ({ onSuccess }: ContactFormProps) => {
+const ContactForm = ({ onSuccess, customButtonClass }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormValues>({
@@ -75,68 +76,74 @@ const ContactForm = ({ onSuccess }: ContactFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Имя</FormLabel>
-              <FormControl>
-                <Input placeholder="Ваше имя" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
+        <div className="space-y-6 flex-grow">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Имя</FormLabel>
+                <FormControl>
+                  <Input placeholder="Ваше имя" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Телефон</FormLabel>
+                <FormControl>
+                  <Input placeholder="+7 (___) ___-__-__" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="your@email.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Сообщение</FormLabel>
+                <FormControl>
+                  <Textarea 
+                    placeholder="Опишите ваш запрос" 
+                    className="resize-none" 
+                    {...field} 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         
-        <FormField
-          control={form.control}
-          name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Телефон</FormLabel>
-              <FormControl>
-                <Input placeholder="+7 (___) ___-__-__" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="your@email.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Сообщение</FormLabel>
-              <FormControl>
-                <Textarea 
-                  placeholder="Опишите ваш запрос" 
-                  className="resize-none" 
-                  {...field} 
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button 
+          type="submit" 
+          className={`w-full ${customButtonClass || ''}`} 
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Отправка..." : "Отправить заявку"}
         </Button>
       </form>
