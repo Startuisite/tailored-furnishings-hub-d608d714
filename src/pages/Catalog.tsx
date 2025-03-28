@@ -59,11 +59,11 @@ const Catalog = () => {
     },
     {
       title: "Прихожая",
-      image: "/lovable-uploads/51bf7ff2-a365-48ea-9dc0-bc1fa0e1e19c.png", // Changed to hallway image
+      image: "/photo-1721322800607-8c38375eef04", // Updated to the attached image
       subtitle: "под заказ"
     },
     {
-      title: "Ванна", // Changed from "Ванная" to "Ванна"
+      title: "Ванна", 
       image: "/lovable-uploads/99ae9dcd-dc47-4f26-b39c-0590b4e44498.png",
       subtitle: "под заказ"
     },
@@ -79,22 +79,22 @@ const Catalog = () => {
     },
     {
       title: "Мягкая мебель",
-      image: "/lovable-uploads/155d9448-a703-4d5e-82d0-ae434e864314.png", // Using more suitable image for soft furniture
+      image: "/photo-1721322800607-8c38375eef04", // Updated to the attached image
       subtitle: "под заказ"
     },
     {
-      title: "Перегородки",
-      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png", // Changed to more suitable image
-      subtitle: "перегородки из мебели" // Changed subtitle
+      title: "Перегородки из мебели", // Changed title from "Перегородки" to "Перегородки из мебели"
+      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
+      subtitle: "под заказ" // Changed subtitle back to "под заказ"
     },
     {
-      title: "Отели", // Changed from "Офисы" to "Отели"
-      image: "/lovable-uploads/155d9448-a703-4d5e-82d0-ae434e864314.png", // Changed to a suitable image
+      title: "Отели",
+      image: "/photo-1721322800607-8c38375eef04", // Updated to the attached image
       subtitle: "под заказ"
     },
     {
       title: "Комплексная меблировка",
-      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png", // Changed to more suitable image
+      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
       subtitle: "под заказ"
     },
   ]);

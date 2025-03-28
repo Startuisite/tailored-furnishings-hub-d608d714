@@ -70,7 +70,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">© 2024 NPM. Все права защищены</p>
+          <p className="text-gray-400 text-sm">© 2025 NPM. Все права защищены</p>
           <div className="mt-4 md:mt-0">
             <Link to="/information" className="text-gray-400 hover:text-white text-sm mr-4 transition-colors">Политика конфиденциальности</Link>
             <Link to="/information" className="text-gray-400 hover:text-white text-sm transition-colors">Публичная оферта</Link>
