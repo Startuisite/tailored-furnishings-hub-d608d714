@@ -1,37 +1,29 @@
+
 import { MapPin, Phone, Mail, FileText, Award, Clock, Info, Star, BadgeCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import YandexMap from "../components/YandexMap";
 
 const Information = () => {
   // Information cards data
   const infoCards = [
     {
-      icon: <Award className="h-10 w-10 text-amber-600" />,
+      icon: <Award className="h-10 w-10 text-primary" />,
       title: "Гарантия качества",
       description: "Мы предоставляем гарантию на всю нашу мебель в течение 2 лет с момента покупки. Используем только проверенные и качественные материалы."
     },
     {
-      icon: <Clock className="h-10 w-10 text-amber-600" />,
+      icon: <Clock className="h-10 w-10 text-primary" />,
       title: "Сроки изготовления",
       description: "Стандартный срок изготовления мебели составляет от 2 до 4 недель. Точные сроки определяются после согласования всех деталей заказа."
     },
     {
-      icon: <FileText className="h-10 w-10 text-amber-600" />,
+      icon: <FileText className="h-10 w-10 text-primary" />,
       title: "Документация",
       description: "Вся наша мебель сертифицирована и соответствует российским и международным стандартам качества и безопасности."
     }
-  ];
-
-  // Menu links for quick navigation
-  const menuLinks = [
-    { title: "Главная страница", link: "/" },
-    { title: "Каталог продукции", link: "/catalog" },
-    { title: "Для дизайнеров", link: "/designers" },
-    { title: "Для покупателей", link: "/customers" },
-    { title: "Политика конфиденциальности", link: "#privacy" },
-    { title: "Публичная оферта", link: "#offer" }
   ];
 
   // Testimonials data
@@ -73,23 +65,23 @@ const Information = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[rgb(252,247,241)]/30 to-[rgb(230,237,243)]/30">
+    <div className="min-h-screen bg-gradient-to-b from-background/30 to-secondary/30">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
           {/* About Us Section */}
           <section className="mb-16 bg-white/80 p-8 rounded-xl shadow-md">
-            <h2 className="section-title text-center mb-8 text-amber-800">О нас</h2>
+            <h2 className="section-title text-center mb-8">О нас</h2>
             <div className="text-lg max-w-4xl mx-auto text-center">
-              <p className="mb-4 text-gray-700">
+              <p className="mb-4 text-foreground">
                 Компания НПМ ("Не Просто Мебель") – это команда профессионалов с многолетним опытом, 
                 создающая качественную и функциональную мебель на заказ.
               </p>
-              <p className="mb-4 text-gray-700">
+              <p className="mb-4 text-foreground">
                 Мы специализируемся на изготовлении индивидуальной мебели для дома и офиса: 
                 кухни, гардеробные, шкафы-купе, спальни, детские, гостиные и другие предметы интерьера.
               </p>
-              <p className="text-gray-700">
+              <p className="text-foreground">
                 Наша миссия – создавать не просто мебель, а функциональное и эстетичное пространство, 
                 идеально соответствующее вашим потребностям и стилю жизни.
               </p>
@@ -100,13 +92,13 @@ const Information = () => {
           <section className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {infoCards.map((card, index) => (
-                <Card key={index} className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)] hover:shadow-lg transition-all duration-300">
+                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-card hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-amber-50 p-3 rounded-full w-16 h-16 mx-auto">
+                    <div className="mb-4 flex justify-center bg-primary/20 p-3 rounded-full w-16 h-16 mx-auto">
                       {card.icon}
                     </div>
-                    <h3 className="text-xl font-medium mb-3 text-center text-amber-800">{card.title}</h3>
-                    <p className="text-center text-gray-600">{card.description}</p>
+                    <h3 className="text-xl font-medium mb-3 text-center">{card.title}</h3>
+                    <p className="text-center text-foreground">{card.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -114,24 +106,24 @@ const Information = () => {
           </section>
 
           {/* Testimonials Section */}
-          <section className="mb-16 bg-[rgb(230,237,243)]/50 p-8 rounded-xl shadow-md">
-            <h2 className="section-title text-center mb-8 text-amber-800">Отзывы наших клиентов</h2>
+          <section className="mb-16 bg-secondary/50 p-8 rounded-xl shadow-md">
+            <h2 className="section-title text-center mb-8">Отзывы наших клиентов</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="border-0 shadow-md overflow-hidden bg-white hover:shadow-lg transition-all duration-300">
+                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-card hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex mb-4 justify-center">
                       {[...Array(5)].map((_, i) => (
                         <Star 
                           key={i} 
-                          className={`h-5 w-5 ${i < testimonial.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-300'}`}
+                          className={`h-5 w-5 ${i < testimonial.rating ? 'text-primary fill-primary' : 'text-muted-foreground'}`}
                         />
                       ))}
                     </div>
-                    <p className="text-gray-600 italic mb-4 text-center">"{testimonial.text}"</p>
+                    <p className="text-foreground italic mb-4 text-center">"{testimonial.text}"</p>
                     <div className="text-center">
-                      <p className="font-medium text-amber-800">{testimonial.name}</p>
-                      <p className="text-sm text-gray-500">{testimonial.position}</p>
+                      <p className="font-medium">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.position}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -141,59 +133,59 @@ const Information = () => {
 
           {/* Certificates Section */}
           <section className="mb-16 bg-white/80 p-8 rounded-xl shadow-md">
-            <h2 className="section-title text-center mb-8 text-amber-800">Наши сертификаты</h2>
+            <h2 className="section-title text-center mb-8">Наши сертификаты</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {certificates.map((certificate, index) => (
-                <Card key={index} className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)] hover:shadow-lg transition-all duration-300">
+                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-card hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-amber-50 p-3 rounded-full w-16 h-16 mx-auto">
-                      <BadgeCheck className="h-10 w-10 text-amber-600" />
+                    <div className="mb-4 flex justify-center bg-primary/20 p-3 rounded-full w-16 h-16 mx-auto">
+                      <BadgeCheck className="h-10 w-10 text-primary" />
                     </div>
-                    <h3 className="text-xl font-medium mb-3 text-center text-amber-800">{certificate.title}</h3>
-                    <p className="text-center text-gray-600">{certificate.description}</p>
+                    <h3 className="text-xl font-medium mb-3 text-center">{certificate.title}</h3>
+                    <p className="text-center text-foreground">{certificate.description}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </section>
 
-          {/* Contacts and Menu Section */}
+          {/* Contacts and Map Section */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contacts */}
-            <Card className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)]">
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-card">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6 text-amber-800">Контакты</h3>
+                <h3 className="text-2xl font-medium mb-6">Контакты</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-amber-600" />
+                    <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
                     <div>
                       <p className="font-medium">Адрес</p>
                       <p>г. Москва, ул. Примерная, д. 123</p>
-                      <p className="text-sm text-gray-500 mt-1">Пн-Пт: 9:00-18:00, Сб: 10:00-16:00</p>
+                      <p className="text-sm text-muted-foreground mt-1">Пн-Пт: 9:00-18:00, Сб: 10:00-16:00</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-amber-600" />
+                    <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
                     <div>
                       <p className="font-medium">Телефон</p>
                       <p>+7 (999) 123-45-67</p>
-                      <p className="text-sm text-gray-500 mt-1">Ежедневно с 9:00 до 20:00</p>
+                      <p className="text-sm text-muted-foreground mt-1">Ежедневно с 9:00 до 20:00</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 flex-shrink-0 mt-1 text-amber-600" />
+                    <Mail className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
                     <div>
                       <p className="font-medium">Email</p>
                       <p>info@npm-mebel.ru</p>
-                      <p className="text-sm text-gray-500 mt-1">Мы отвечаем в течение 24 часов</p>
+                      <p className="text-sm text-muted-foreground mt-1">Мы отвечаем в течение 24 часов</p>
                     </div>
                   </div>
                 </div>
                 
                 <Button 
-                  className="w-full mt-6 flex items-center justify-center gap-2 bg-amber-600 text-white hover:bg-amber-700 transition-colors"
+                  className="w-full mt-6 flex items-center justify-center gap-2"
                   onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
                 >
                   Написать нам
@@ -201,21 +193,12 @@ const Information = () => {
               </CardContent>
             </Card>
             
-            {/* Quick Menu */}
-            <Card className="border-0 shadow-md overflow-hidden bg-gradient-to-b from-white to-[rgb(252,247,241)]">
+            {/* Map */}
+            <Card className="border border-border/40 shadow-sm overflow-hidden bg-card">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-medium mb-6 text-amber-800">Меню</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {menuLinks.map((link, index) => (
-                    <a 
-                      key={index} 
-                      href={link.link} 
-                      className="flex items-center gap-2 text-gray-700 hover:text-amber-600 transition-colors"
-                    >
-                      <Info className="h-4 w-4" />
-                      <span>{link.title}</span>
-                    </a>
-                  ))}
+                <h3 className="text-2xl font-medium mb-6">Карта</h3>
+                <div className="h-[300px]">
+                  <YandexMap />
                 </div>
               </CardContent>
             </Card>
