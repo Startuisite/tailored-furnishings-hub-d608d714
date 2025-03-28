@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import ContactFormDialog from "./ContactFormDialog";
+import { ArrowRight } from "lucide-react";
 
 interface HeroProps {
   images: string[];
@@ -75,13 +76,14 @@ const Hero = ({ images }: HeroProps) => {
       
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-32 text-white">
-        <h2 className="text-4xl md:text-6xl font-playfair mb-8 text-center px-4">
+        <h2 className="text-4xl md:text-6xl font-playfair mb-12 text-center px-4">
           Твоя мебель – твои правила
         </h2>
         <ContactFormDialog
           trigger={
-            <Button className="btn-primary">
+            <Button className="btn-primary text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 border-2 flex items-center gap-4 transform hover:scale-105 transition-all duration-300 shadow-lg">
               Заказать консультацию
+              <ArrowRight className="h-6 w-6 md:h-8 md:w-8" />
             </Button>
           }
         />
