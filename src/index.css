@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -53,11 +53,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-montserrat;
+    @apply bg-background text-foreground font-nunito;
     min-height: 100vh;
   }
   h1, h2, h3, h4 {
-    @apply font-playfair;
+    @apply font-lora;
   }
 }
 
@@ -75,7 +75,7 @@
   }
   
   .nav-link {
-    @apply relative text-sm uppercase tracking-wider px-4 py-2 text-white hover:text-white/80 transition-colors;
+    @apply relative text-sm uppercase tracking-wide px-4 py-2 text-white hover:text-white/80 transition-colors;
   }
   
   .nav-link::after {
@@ -88,7 +88,7 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-playfair font-medium mb-8;
+    @apply text-3xl md:text-4xl font-lora font-medium mb-8;
   }
   
   .btn-primary {
