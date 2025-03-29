@@ -1,4 +1,3 @@
-
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Customers = () => {
   // Order steps data with updated titles to match step details
@@ -278,13 +278,17 @@ const Customers = () => {
                     </div>
                   </div>
                   
-                  {/* Step image */}
-                  <div className="h-full">
-                    <img 
-                      src={stepDetails[activeStep as keyof typeof stepDetails]?.image} 
-                      alt={`Шаг ${activeStep}`}
-                      className="w-full h-full object-cover"
-                    />
+                  {/* Step image with consistent sizing */}
+                  <div className="h-full flex items-center justify-center">
+                    <div className="w-full h-full">
+                      <AspectRatio ratio={4/3} className="h-full">
+                        <img 
+                          src={stepDetails[activeStep as keyof typeof stepDetails]?.image} 
+                          alt={`Шаг ${activeStep}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </AspectRatio>
+                    </div>
                   </div>
                 </div>
               </div>
