@@ -25,7 +25,7 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
           />
           <Badge 
             variant="outline" 
-            className="absolute top-3 right-3 bg-white/80 text-[#8B5CF6] border border-[#8B5CF6]/30 px-2 py-0.5 text-xs font-normal shadow-sm"
+            className="absolute bottom-3 left-3 bg-white/80 text-[#8B5CF6] border border-[#8B5CF6]/30 px-2 py-0.5 text-xs font-normal shadow-sm"
           >
             <BadgeCheck size={12} className="mr-1" />
             {subtitle}
