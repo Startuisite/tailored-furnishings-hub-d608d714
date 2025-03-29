@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BadgeCheck } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Link } from 'react-router-dom';
 
 type CategoryProps = {
@@ -26,7 +27,13 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
         <CardContent className="flex items-center justify-between p-4 bg-[rgb(242,237,231)]">
           <div className="flex items-center space-x-2">
             <h3 className="text-lg font-medium">{title}</h3>
-            <span className="text-sm text-gray-500">• {subtitle}</span>
+            <Badge 
+              variant="outline" 
+              className="ml-2 bg-white/50 text-[#8B5CF6] border border-[#8B5CF6]/30 px-2 py-0 text-xs font-normal"
+            >
+              <BadgeCheck size={12} className="mr-1" />
+              {subtitle}
+            </Badge>
           </div>
           <div className="bg-[rgb(252,247,241)] p-2 rounded-full shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-md">
             <ArrowRight 
