@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,7 +10,7 @@ import Designers from "./pages/Designers";
 import Customers from "./pages/Customers";
 import Information from "./pages/Information";
 import NotFound from "./pages/NotFound";
-import FloatingContactButton from "./components/FloatingContactButton";
+import FloatingContactButton from "./components/floating-contact/FloatingContactButton";
 
 const queryClient = new QueryClient();
 
