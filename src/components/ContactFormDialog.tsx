@@ -14,12 +14,14 @@ interface ContactFormDialogProps {
   trigger: React.ReactNode;
   title?: string;
   description?: string;
+  showDesignerCheckbox?: boolean;
 }
 
 const ContactFormDialog = ({
   trigger,
   title = "Заказать консультацию",
   description = "Заполните форму, и наш менеджер свяжется с вами в ближайшее время",
+  showDesignerCheckbox = false,
 }: ContactFormDialogProps) => {
   const [open, setOpen] = useState(false);
 
@@ -38,7 +40,10 @@ const ContactFormDialog = ({
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        <ContactForm onSuccess={handleSuccess} />
+        <ContactForm 
+          onSuccess={handleSuccess} 
+          showDesignerCheckbox={showDesignerCheckbox} 
+        />
       </DialogContent>
     </Dialog>
   );

@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero images={heroImages} />
+      <Hero images={heroImages} showDesignerCheckbox={true} />
       <Footer />
     </div>
   );

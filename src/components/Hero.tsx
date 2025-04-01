@@ -6,9 +6,10 @@ import { ArrowRight } from "lucide-react";
 
 interface HeroProps {
   images: string[];
+  showDesignerCheckbox?: boolean;
 }
 
-const Hero = ({ images }: HeroProps) => {
+const Hero = ({ images, showDesignerCheckbox = false }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [prevImageIndex, setPrevImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -86,6 +87,7 @@ const Hero = ({ images }: HeroProps) => {
               <ArrowRight className="h-6 w-6 md:h-8 md:w-8" />
             </Button>
           }
+          showDesignerCheckbox={showDesignerCheckbox}
         />
       </div>
       

@@ -11,12 +11,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { Checkbox } from "@/components/ui/checkbox";
 
-// Form validation schema
+// Form validation schema with optional isDesigner field
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Имя должно содержать минимум 2 символа",
@@ -28,6 +30,7 @@ const formSchema = z.object({
     message: "Введите корректный email",
   }),
   message: z.string().optional(),
+  isDesigner: z.boolean().optional(),
 });
 
 // Form values type
@@ -36,9 +39,10 @@ type FormValues = z.infer<typeof formSchema>;
 interface ContactFormProps {
   onSuccess?: () => void;
   customButtonClass?: string;
+  showDesignerCheckbox?: boolean;
 }
 
-const ContactForm = ({ onSuccess, customButtonClass }: ContactFormProps) => {
+const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = false }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormValues>({
@@ -48,6 +52,7 @@ const ContactForm = ({ onSuccess, customButtonClass }: ContactFormProps) => {
       phone: "",
       email: "",
       message: "",
+      isDesigner: false,
     },
   });
 
@@ -137,6 +142,30 @@ const ContactForm = ({ onSuccess, customButtonClass }: ContactFormProps) => {
               </FormItem>
             )}
           />
+          
+          {/* Designer checkbox - only shown if showDesignerCheckbox prop is true */}
+          {showDesignerCheckbox && (
+            <FormField
+              control={form.control}
+              name="isDesigner"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Вы дизайнер?</FormLabel>
+                    <FormDescription>
+                      Мы предоставляем особые условия для дизайнеров
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+          )}
         </div>
         
         <Button 
