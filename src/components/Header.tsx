@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <header 
-      className={`navbar ${scrolled ? 'bg-[rgb(230,237,243)]/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
+      className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
     >
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
         <Link to="/" className="z-10 flex items-center gap-2 text-black">

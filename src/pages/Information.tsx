@@ -1,4 +1,5 @@
-import { MapPin, Phone, Mail, FileText, Award, Clock, Info, Star, BadgeCheck } from "lucide-react";
+
+import { MapPin, Phone, Mail, FileText, Award, Clock, BadgeCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,17 +11,17 @@ const Information = () => {
   // Information cards data
   const infoCards = [
     {
-      icon: <Award className="h-10 w-10 text-primary" />,
+      icon: <Award className="h-10 w-10 text-npm-blue" />,
       title: "Гарантия качества",
       description: "Мы предоставляем гарантию на всю нашу мебель в течение 2 лет с момента покупки. Используем только проверенные и качественные материалы."
     },
     {
-      icon: <Clock className="h-10 w-10 text-primary" />,
+      icon: <Clock className="h-10 w-10 text-npm-blue" />,
       title: "Сроки изготовления",
       description: "Стандартный срок изготовления мебели составляет от 2 до 4 недель. Точные сроки определяются после согласования всех деталей заказа."
     },
     {
-      icon: <FileText className="h-10 w-10 text-primary" />,
+      icon: <FileText className="h-10 w-10 text-npm-blue" />,
       title: "Документация",
       description: "Вся наша мебель сертифицирована и соответствует российским и международным стандартам качества и безопасности."
     }
@@ -65,7 +66,7 @@ const Information = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#e6edf3] to-[#fcf7f1]">
+    <div className="min-h-screen bg-gradient-to-b from-npm-blue to-npm-light">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
@@ -94,7 +95,7 @@ const Information = () => {
               {infoCards.map((card, index) => (
                 <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-[#fcf7f1] p-3 rounded-full w-16 h-16 mx-auto">
+                    <div className="mb-4 flex justify-center bg-npm-light p-3 rounded-full w-16 h-16 mx-auto">
                       {card.icon}
                     </div>
                     <h3 className="text-xl font-medium mb-3 text-center">{card.title}</h3>
@@ -106,7 +107,7 @@ const Information = () => {
           </section>
 
           {/* Testimonials Section */}
-          <section className="mb-16 bg-[#fcf7f1] p-8 rounded-xl shadow-md">
+          <section className="mb-16 bg-npm-light p-8 rounded-xl shadow-md">
             <h2 className="section-title text-center mb-8">Отзывы наших клиентов</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
@@ -114,10 +115,17 @@ const Information = () => {
                   <CardContent className="p-6">
                     <div className="flex mb-4 justify-center">
                       {[...Array(5)].map((_, i) => (
-                        <Star 
+                        <svg 
                           key={i} 
                           className={`h-5 w-5 ${i < testimonial.rating ? 'text-[#FFD700] fill-[#FFD700]' : 'text-muted-foreground'}`}
-                        />
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" 
+                          fill="currentColor"
+                          stroke="currentColor"
+                          strokeWidth="1"
+                        >
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
                       ))}
                     </div>
                     <p className="text-foreground italic mb-4 text-center">"{testimonial.text}"</p>
@@ -132,14 +140,14 @@ const Information = () => {
           </section>
 
           {/* Certificates Section */}
-          <section className="mb-16 bg-[#e6edf3] p-8 rounded-xl shadow-md">
+          <section className="mb-16 bg-npm-blue p-8 rounded-xl shadow-md">
             <h2 className="section-title text-center mb-8">Наши сертификаты</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {certificates.map((certificate, index) => (
                 <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-[#fcf7f1] p-3 rounded-full w-16 h-16 mx-auto">
-                      <BadgeCheck className="h-10 w-10 text-primary" />
+                    <div className="mb-4 flex justify-center bg-npm-light p-3 rounded-full w-16 h-16 mx-auto">
+                      <BadgeCheck className="h-10 w-10 text-npm-blue" />
                     </div>
                     <h3 className="text-xl font-medium mb-3 text-center">{certificate.title}</h3>
                     <p className="text-center text-foreground">{certificate.description}</p>
@@ -174,7 +182,7 @@ const Information = () => {
                 {/* Contacts */}
                 <div className="space-y-4 flex-grow">
                   <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
+                    <MapPin className="h-6 w-6 flex-shrink-0 mt-1 text-npm-blue" />
                     <div>
                       <p className="font-medium">Адрес</p>
                       <p>г. Москва, ул. Примерная, д. 123</p>
@@ -183,7 +191,7 @@ const Information = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
+                    <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-npm-blue" />
                     <div>
                       <p className="font-medium">Телефон</p>
                       <p>+7 (999) 123-45-67</p>
@@ -192,7 +200,7 @@ const Information = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
+                    <Mail className="h-6 w-6 flex-shrink-0 mt-1 text-npm-blue" />
                     <div>
                       <p className="font-medium">Email</p>
                       <p>info@npm-mebel.ru</p>
@@ -202,7 +210,7 @@ const Information = () => {
                 </div>
                 
                 <Button 
-                  className="w-full mt-6 flex items-center justify-center gap-2" 
+                  className="w-full mt-6 flex items-center justify-center gap-2 bg-npm-beige hover:bg-npm-blue text-black" 
                   onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
                 >
                   Написать нам

@@ -57,6 +57,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Добавляем новую цветовую палитру
+				npm: {
+					blue: "#b3c9dd",
+					beige: "#e5dbb7",
+					light: "#fbf6f0"
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
