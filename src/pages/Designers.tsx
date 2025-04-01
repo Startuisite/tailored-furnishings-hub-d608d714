@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Check, Plus, MessageSquare } from "lucide-react";
 import Header from "../components/Header";
@@ -12,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { toast } from "@/hooks/use-toast";
+import { submitContactForm } from "@/utils/supabaseClient";
 
 const Designers = () => {
   const [benefits] = useState([
