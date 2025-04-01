@@ -65,13 +65,32 @@ const Designers = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data);
-    toast({
-      title: "Форма отправлена",
-      description: "Мы свяжемся с вами в ближайшее время",
-    });
-    form.reset();
+    try {
+      // Convert the form data to match our submitContactForm function requirements
+      await submitContactForm({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+        isDesigner: true, // This is from designers page, so set as designer
+        source: 'designers_page'
+      });
+      
+      toast({
+        title: "Форма отправлена",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Ошибка отправки",
+        description: "Пожалуйста, попробуйте позже",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
