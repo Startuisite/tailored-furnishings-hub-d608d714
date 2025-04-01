@@ -32,10 +32,6 @@ const Header = () => {
             alt="НПМ Логотип" 
             className="h-10 w-auto"
           />
-          <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-wider">НПМ</span>
-            <span className="text-xs tracking-wide">не просто мебель</span>
-          </div>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-1">
