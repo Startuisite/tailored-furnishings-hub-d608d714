@@ -156,7 +156,7 @@ const Information = () => {
               <CardContent className="p-6 flex flex-col h-full">
                 <h3 className="text-2xl font-medium mb-6">Заполните заявку</h3>
                 <div className="flex-grow">
-                  <ContactForm customButtonClass="mt-auto" />
+                  <ContactForm customButtonClass="mt-auto" showDesignerCheckbox={true} />
                 </div>
               </CardContent>
             </Card>
