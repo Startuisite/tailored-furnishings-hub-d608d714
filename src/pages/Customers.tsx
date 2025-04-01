@@ -118,14 +118,7 @@ const Customers = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 ПОЛНОСТЬЮ берем весь процесс разработки и реализации проекта на себя
               </h2>
-              <Button 
-                className="flex items-center gap-2 text-base bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80 rounded-lg self-start"
-                size="lg"
-                onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
-              >
-                <MessageCircle className="h-5 w-5" />
-                Написать нам в телеграмм
-              </Button>
+              {/* Removed Telegram button */}
             </div>
           </section>
 
@@ -171,7 +164,7 @@ const Customers = () => {
                   </p>
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[rgb(230,237,243)] flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
                         <ShieldCheck className="h-6 w-6" />
                       </div>
                       <div>
@@ -180,7 +173,7 @@ const Customers = () => {
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[rgb(230,237,243)] flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
                         <Truck className="h-6 w-6" />
                       </div>
                       <div>
@@ -189,7 +182,7 @@ const Customers = () => {
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[rgb(230,237,243)] flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
                         <ClipboardCheck className="h-6 w-6" />
                       </div>
                       <div>
@@ -223,7 +216,7 @@ const Customers = () => {
                         : "bg-[rgb(245,245,245)] hover:bg-[rgb(240,240,240)]"
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-full bg-[rgb(230,237,243)] flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
                       <span className="font-bold">{step.number}</span>
                     </div>
                     <div className="flex-grow">
@@ -262,7 +255,7 @@ const Customers = () => {
                       
                       {activeStep < 6 && (
                         <Button 
-                          className="flex items-center gap-2 bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80"
+                          className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
                           onClick={handleNextStep}
                         >
                           Следующий шаг <ArrowRight className="h-4 w-4" />
@@ -271,7 +264,7 @@ const Customers = () => {
                       
                       {activeStep === 6 && (
                         <Button 
-                          className="flex items-center gap-2 bg-[rgb(230,237,243)] text-black hover:bg-[rgb(230,237,243)]/80"
+                          className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
                           onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
                         >
                           Связаться с нами <MessageCircle className="h-4 w-4" />
