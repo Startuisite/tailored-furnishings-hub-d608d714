@@ -1,3 +1,4 @@
+
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -46,22 +47,22 @@ const Customers = () => {
   // State for the active step in the order schema
   const [activeStep, setActiveStep] = useState(1);
 
-  // Detailed information for each step with updated images
+  // Detailed information for each step with updated external image links
   const stepDetails = {
     1: {
       title: "Знакомство",
       description: "На этом шаге мы изучаем ваши задачи и пожелания, понимаем параметры помещения, количество и возраст детей. Продумываем зонирование, расположение мебели в комнате и предлагаем концепт решения.",
-      image: "/lovable-uploads/e0177671-9ff7-4a70-ab7e-f3fef986148a.png"
+      image: "https://i.postimg.cc/PxXf4pJg/image.png"
     },
     2: {
       title: "Предварительный расчет",
       description: "Делаем предварительную оценку стоимости проекта, учитывая выбранные материалы, фурнитуру и особенности конструкции. Обсуждаем возможные варианты оптимизации бюджета.",
-      image: "/lovable-uploads/de646832-bfa5-4fd9-8ad2-61ce418ea0ef.png"
+      image: "https://i.postimg.cc/7LxMg91w/image.png"
     },
     3: {
       title: "Обмерный план",
       description: "Специалист выезжает к вам для проведения точных замеров помещения. Учитываются все нюансы: розетки, вентиляция, радиаторы и другие особенности, которые могут влиять на проект.",
-      image: "/lovable-uploads/c1f7eb82-b777-4097-94e4-727fd136286a.png"
+      image: "https://i.postimg.cc/cLdXmdZp/image.png"
     },
     4: {
       title: "Дизайн проект",
@@ -71,12 +72,12 @@ const Customers = () => {
     5: {
       title: "Изготовление мебели",
       description: "Производим мебель на собственном производстве, используя современное оборудование и качественные материалы. Контролируем каждый этап производства для гарантии качества.",
-      image: "/lovable-uploads/f886d12c-466b-43bf-80a0-0fc6b512d5f9.png"
+      image: "https://i.postimg.cc/CMNZ80PB/image.png"
     },
     6: {
       title: "Монтаж под ключ",
       description: "Осуществляем доставку и профессиональную сборку мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
-      image: "/lovable-uploads/6be290da-fdcf-4e5b-a684-89489fa8b203.png"
+      image: "https://i.postimg.cc/4d4GkDzq/image.png"
     },
   };
 
@@ -104,11 +105,11 @@ const Customers = () => {
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
-          {/* Hero Section with Image and CTA */}
+          {/* Hero Section with Image and CTA - Updated with external image link */}
           <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
             <div className="h-full">
               <img 
-                src="/lovable-uploads/55faea24-7c9e-4657-8a85-4d7c0e54bf48.png" 
+                src="https://i.postimg.cc/FKFwCjbV/image.png" 
                 alt="Комфортный интерьер" 
                 className="w-full h-full object-cover"
               />
