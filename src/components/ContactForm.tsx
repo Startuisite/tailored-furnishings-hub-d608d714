@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
 
-// Form validation schema with optional isDesigner field
+// Form validation schema with optional isDesigner field and required consent
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Имя должно содержать минимум 2 символа",
@@ -31,21 +31,41 @@ const formSchema = z.object({
   }),
   message: z.string().optional(),
   isDesigner: z.boolean().optional(),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "Необходимо согласие на обработку персональных данных" }),
+  }),
+});
+
+// Phone-only form schema
+const phoneOnlySchema = z.object({
+  phone: z.string().min(6, {
+    message: "Введите корректный номер телефона",
+  }),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "Необходимо согласие на обработку персональных данных" }),
+  }),
 });
 
 // Form values type
 type FormValues = z.infer<typeof formSchema>;
+type PhoneOnlyFormValues = z.infer<typeof phoneOnlySchema>;
 
 interface ContactFormProps {
   onSuccess?: () => void;
   customButtonClass?: string;
   showDesignerCheckbox?: boolean;
+  phoneOnly?: boolean;
 }
 
-const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = false }: ContactFormProps) => {
+const ContactForm = ({ 
+  onSuccess, 
+  customButtonClass, 
+  showDesignerCheckbox = false,
+  phoneOnly = false
+}: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<FormValues>({
+  const fullForm = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -53,10 +73,19 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
       email: "",
       message: "",
       isDesigner: false,
+      consent: false,
     },
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const phoneOnlyForm = useForm<PhoneOnlyFormValues>({
+    resolver: zodResolver(phoneOnlySchema),
+    defaultValues: {
+      phone: "",
+      consent: false,
+    },
+  });
+
+  const onSubmit = async (data: FormValues | PhoneOnlyFormValues) => {
     setIsSubmitting(true);
     
     try {
@@ -66,7 +95,11 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
       console.log("Form submitted:", data);
       toast.success("Ваша заявка успешно отправлена!");
       
-      form.reset();
+      if (phoneOnly) {
+        phoneOnlyForm.reset();
+      } else {
+        fullForm.reset();
+      }
       
       if (onSuccess) {
         onSuccess();
@@ -79,12 +112,65 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
     }
   };
 
+  if (phoneOnly) {
+    return (
+      <Form {...phoneOnlyForm}>
+        <form onSubmit={phoneOnlyForm.handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
+          <div className="space-y-6 flex-grow">
+            <FormField
+              control={phoneOnlyForm.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Телефон</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+7 (___) ___-__-__" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={phoneOnlyForm.control}
+              name="consent"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Согласие на обработку персональных данных</FormLabel>
+                    <FormDescription>
+                      Нажимая кнопку, вы даете согласие на обработку персональных данных
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          
+          <Button 
+            type="submit" 
+            className={`w-full ${customButtonClass || ''}`} 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Отправка..." : "Заказать звонок"}
+          </Button>
+        </form>
+      </Form>
+    );
+  }
+
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
+    <Form {...fullForm}>
+      <form onSubmit={fullForm.handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
         <div className="space-y-6 flex-grow">
           <FormField
-            control={form.control}
+            control={fullForm.control}
             name="name"
             render={({ field }) => (
               <FormItem>
@@ -98,7 +184,7 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
           />
           
           <FormField
-            control={form.control}
+            control={fullForm.control}
             name="phone"
             render={({ field }) => (
               <FormItem>
@@ -112,7 +198,7 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
           />
           
           <FormField
-            control={form.control}
+            control={fullForm.control}
             name="email"
             render={({ field }) => (
               <FormItem>
@@ -126,7 +212,7 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
           />
           
           <FormField
-            control={form.control}
+            control={fullForm.control}
             name="message"
             render={({ field }) => (
               <FormItem>
@@ -146,7 +232,7 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
           {/* Designer checkbox - only shown if showDesignerCheckbox prop is true */}
           {showDesignerCheckbox && (
             <FormField
-              control={form.control}
+              control={fullForm.control}
               name="isDesigner"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
@@ -166,6 +252,28 @@ const ContactForm = ({ onSuccess, customButtonClass, showDesignerCheckbox = fals
               )}
             />
           )}
+          
+          {/* Consent checkbox - always shown */}
+          <FormField
+            control={fullForm.control}
+            name="consent"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>Согласие на обработку персональных данных</FormLabel>
+                  <FormDescription>
+                    Нажимая кнопку, вы даете согласие на обработку персональных данных
+                  </FormDescription>
+                </div>
+              </FormItem>
+            )}
+          />
         </div>
         
         <Button 

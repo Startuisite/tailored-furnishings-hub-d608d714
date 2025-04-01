@@ -132,6 +132,7 @@ const FloatingContactButton = () => {
                 }
                 title="Оставьте ваши данные"
                 description="Заполните форму, и мы свяжемся с вами в ближайшее время"
+                showDesignerCheckbox={true}
               />
               {isHovered === 'contact' && (
                 <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
@@ -160,6 +161,7 @@ const FloatingContactButton = () => {
                 }
                 title="Заказать звонок"
                 description="Оставьте свой номер телефона, и мы перезвоним вам в ближайшее время"
+                phoneOnly={true}
               />
               {isHovered === 'call' && (
                 <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
@@ -191,7 +193,7 @@ const FloatingContactButton = () => {
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : contactIcons[currentIcon]}
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+            {/* Removed red dot */}
           </Button>
         </motion.div>
       </div>
