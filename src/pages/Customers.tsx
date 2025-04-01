@@ -1,4 +1,3 @@
-
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -43,7 +42,7 @@ const Customers = () => {
       description: "Доставка и профессиональная сборка мебели у вас дома"
     }
   ];
-
+  
   // State for the active step in the order schema
   const [activeStep, setActiveStep] = useState(1);
 
@@ -262,6 +261,7 @@ const Customers = () => {
                         </Button>
                       )}
                       
+                      
                       {activeStep === 6 && (
                         <Button 
                           className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
@@ -270,6 +270,7 @@ const Customers = () => {
                           Связаться с нами <MessageCircle className="h-4 w-4" />
                         </Button>
                       )}
+                      
                     </div>
                   </div>
                   
