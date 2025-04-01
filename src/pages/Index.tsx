@@ -125,7 +125,14 @@ const Index = () => {
       <Header />
       <Hero images={heroImages} showDesignerCheckbox={true} />
       
-      {/* Catalog section added to homepage */}
+      {/* Added slogan above catalog section */}
+      <div className="bg-npm-light py-12 text-center">
+        <h2 className="text-4xl md:text-6xl font-playfair">
+          Твоя мебель – твои правила
+        </h2>
+      </div>
+      
+      {/* Catalog section */}
       <section className="py-16 bg-npm-light/30">
         <div className="container-custom">
           <h1 className="section-title mb-10 text-center">Каталог</h1>

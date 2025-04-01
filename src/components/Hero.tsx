@@ -74,11 +74,8 @@ const Hero = ({ images, showDesignerCheckbox = false }: HeroProps) => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-30"></div>
       
-      {/* Content */}
+      {/* Content - Removed the text heading */}
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-32 text-white">
-        <h2 className="text-4xl md:text-6xl font-playfair mb-12 text-center px-4">
-          Твоя мебель – твои правила
-        </h2>
         <ContactFormDialog
           trigger={
             <Button className="text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 bg-npm-beige text-black hover:bg-npm-beige/90 transform hover:scale-105 transition-all duration-300 shadow-lg">
