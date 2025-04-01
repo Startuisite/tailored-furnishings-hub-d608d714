@@ -16,7 +16,6 @@ interface ContactFormDialogProps {
   description?: string;
   showDesignerCheckbox?: boolean;
   phoneOnly?: boolean;
-  source?: string;
 }
 
 const ContactFormDialog = ({
@@ -25,7 +24,6 @@ const ContactFormDialog = ({
   description = "Заполните форму, и наш менеджер свяжется с вами в ближайшее время",
   showDesignerCheckbox = false,
   phoneOnly = false,
-  source,
 }: ContactFormDialogProps) => {
   const [open, setOpen] = useState(false);
 
@@ -48,7 +46,6 @@ const ContactFormDialog = ({
           onSuccess={handleSuccess} 
           showDesignerCheckbox={showDesignerCheckbox}
           phoneOnly={phoneOnly}
-          source={source}
         />
       </DialogContent>
     </Dialog>

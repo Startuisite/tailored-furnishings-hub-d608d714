@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -16,8 +17,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useLocation } from "react-router-dom";
-import { submitContactForm } from "@/utils/supabaseClient";
 
 // Form validation schema with optional isDesigner field and required consent
 const formSchema = z.object({
@@ -56,30 +55,15 @@ interface ContactFormProps {
   customButtonClass?: string;
   showDesignerCheckbox?: boolean;
   phoneOnly?: boolean;
-  source?: string; // Added source prop to identify where the form is being submitted from
 }
 
 const ContactForm = ({ 
   onSuccess, 
   customButtonClass, 
   showDesignerCheckbox = false,
-  phoneOnly = false,
-  source = 'general' // Default source value
+  phoneOnly = false
 }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const location = useLocation();
-  
-  // Determine source based on current route if not explicitly provided
-  const determineSource = () => {
-    if (source !== 'general') return source;
-    
-    const path = location.pathname;
-    if (path === '/designers') return 'designers_page';
-    if (path === '/customers') return 'customers_page';
-    if (path === '/information') return 'information_page';
-    if (path === '/') return 'home_page';
-    return 'other';
-  };
 
   const fullForm = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -89,7 +73,7 @@ const ContactForm = ({
       email: "",
       message: "",
       isDesigner: false,
-      consent: true,
+      consent: true, // Changed from false to true to match the schema requirement
     },
   });
 
@@ -97,7 +81,7 @@ const ContactForm = ({
     resolver: zodResolver(phoneOnlySchema),
     defaultValues: {
       phone: "",
-      consent: true,
+      consent: true, // Changed from false to true to match the schema requirement
     },
   });
 
@@ -105,16 +89,8 @@ const ContactForm = ({
     setIsSubmitting(true);
     
     try {
-      const currentSource = determineSource();
-      
-      // Prepare the data for submission to Supabase
-      const submissionData = {
-        ...(data as any), // Cast to any as we'll handle the differences
-        source: currentSource,
-      };
-      
-      // Submit to Supabase
-      await submitContactForm(submissionData);
+      // Simulate API call with timeout
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       console.log("Form submitted:", data);
       toast.success("Ваша заявка успешно отправлена!");

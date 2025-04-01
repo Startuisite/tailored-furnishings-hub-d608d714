@@ -65,7 +65,6 @@ const FloatingContactButton = () => {
                 title="Оставьте ваши данные"
                 description="Заполните форму, и мы свяжемся с вами в ближайшее время"
                 showDesignerCheckbox={true}
-                source="floating_button"
               />
             </ContactOption>
 
@@ -90,7 +89,6 @@ const FloatingContactButton = () => {
                 title="Заказать звонок"
                 description="Оставьте свой номер телефона, и мы перезвоним вам в ближайшее время"
                 phoneOnly={true}
-                source="floating_call_button"
               />
             </ContactOption>
           </>

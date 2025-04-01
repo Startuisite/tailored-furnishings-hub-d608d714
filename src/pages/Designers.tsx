@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Check, Plus, MessageSquare } from "lucide-react";
 import Header from "../components/Header";
@@ -11,7 +12,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { toast } from "@/hooks/use-toast";
-import { submitContactForm } from "@/utils/supabaseClient";
 
 const Designers = () => {
   const [benefits] = useState([
@@ -65,32 +65,13 @@ const Designers = () => {
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = (data: any) => {
     console.log(data);
-    try {
-      // Convert the form data to match our submitContactForm function requirements
-      await submitContactForm({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        message: data.message,
-        isDesigner: true, // This is from designers page, so set as designer
-        source: 'designers_page'
-      });
-      
-      toast({
-        title: "Форма отправлена",
-        description: "Мы свяжемся с вами в ближайшее время",
-      });
-      form.reset();
-    } catch (error) {
-      console.error("Form submission error:", error);
-      toast({
-        title: "Ошибка отправки",
-        description: "Пожалуйста, попробуйте позже",
-        variant: "destructive"
-      });
-    }
+    toast({
+      title: "Форма отправлена",
+      description: "Мы свяжемся с вами в ближайшее время",
+    });
+    form.reset();
   };
 
   return (
