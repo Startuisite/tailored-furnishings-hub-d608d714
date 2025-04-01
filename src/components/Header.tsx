@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Sofa } from "lucide-react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -28,7 +27,11 @@ const Header = () => {
     >
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
         <Link to="/" className="z-10 flex items-center gap-2 text-black">
-          <Sofa size={42} strokeWidth={1.5} className="text-black" />
+          <img 
+            src="https://i.postimg.cc/vmJS9BL5/1.png" 
+            alt="НПМ Логотип" 
+            className="h-10 w-auto"
+          />
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-wider">НПМ</span>
             <span className="text-xs tracking-wide">не просто мебель</span>
