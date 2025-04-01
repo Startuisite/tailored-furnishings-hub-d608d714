@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Check, Plus, MessageSquare } from "lucide-react";
+import { Check, MessageSquare } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const Designers = () => {
@@ -90,18 +89,11 @@ const Designers = () => {
         throw error;
       }
       
-      toast({
-        title: "Форма отправлена",
-        description: "Мы свяжемся с вами в ближайшее время",
-      });
+      toast.success("Ваша заявка успешно отправлена!");
       form.reset();
     } catch (error) {
       console.error("Form submission error:", error);
-      toast({
-        title: "Ошибка",
-        description: "Произошла ошибка при отправке формы. Попробуйте позже.",
-        variant: "destructive"
-      });
+      toast.error("Ошибка при отправке. Пожалуйста, попробуйте позже.");
     }
   };
 
