@@ -8,7 +8,7 @@ interface ContactOptionProps {
   label: string;
   color: string;
   onClick?: () => void;
-  isHovered: boolean;
+  isHovered: string | null;
   setIsHovered: (value: string | null) => void;
   id: string;
   children?: ReactNode;
