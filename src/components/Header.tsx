@@ -21,6 +21,28 @@ const Header = () => {
     };
   }, []);
 
+  // Функция для плавной прокрутки к разделу каталога
+  const scrollToCatalog = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const catalogSection = document.querySelector('.catalog-section');
+    if (catalogSection) {
+      catalogSection.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname !== '/') {
+      window.location.href = '/';
+    }
+  };
+
+  // Функция для плавной прокрутки к разделу "Покупателям"
+  const scrollToCustomers = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const customersSection = document.querySelector('.customers-section');
+    if (customersSection) {
+      customersSection.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname !== '/') {
+      window.location.href = '/';
+    }
+  };
+
   return (
     <header 
       className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
@@ -35,18 +57,20 @@ const Header = () => {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-1">
-          <Link 
-            to="/catalog" 
+          <a 
+            href="#catalog" 
+            onClick={scrollToCatalog}
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/catalog' ? 'after:w-2/3' : ''}`}
           >
             Каталог
-          </Link>
-          <Link 
-            to="/customers" 
+          </a>
+          <a 
+            href="#customers" 
+            onClick={scrollToCustomers}
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/customers' ? 'after:w-2/3' : ''}`}
           >
             Покупателям
-          </Link>
+          </a>
           <Link 
             to="/designers" 
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/designers' ? 'after:w-2/3' : ''}`}
