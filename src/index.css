@@ -92,6 +92,6 @@
   }
   
   .btn-primary {
-    @apply px-8 py-3 border border-white text-white hover:bg-white hover:text-black transition-all duration-300;
+    @apply px-8 py-3 border border-white text-center flex justify-center items-center;
   }
 }
