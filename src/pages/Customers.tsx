@@ -1,3 +1,4 @@
+
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -265,7 +266,7 @@ const Customers = () => {
                       {activeStep === 6 && (
                         <Button 
                           className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
-                          onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
+                          onClick={() => window.open("https://wa.me/message/CHYQHBO6KIQMP1", "_blank")}
                         >
                           Связаться с нами <MessageCircle className="h-4 w-4" />
                         </Button>
