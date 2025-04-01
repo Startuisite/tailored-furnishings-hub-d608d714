@@ -1,10 +1,12 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   MessageCircle, 
   Phone, 
   X,
-  MessageSquare
+  MessageSquare,
+  Mail,
+  Headphones
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -20,9 +22,36 @@ const FloatingContactButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState<string | null>(null);
   const [showWhatsAppPopup, setShowWhatsAppPopup] = useState(false);
+  const [currentIcon, setCurrentIcon] = useState<number>(0);
+  const [isPulsing, setIsPulsing] = useState(true);
+
+  // Array of contact button icons to cycle through
+  const contactIcons = [
+    <MessageCircle key="message" size={24} />,
+    <Phone key="phone" size={24} />,
+    <Mail key="mail" size={24} />
+  ];
+
+  // Cycle between icons every 3 seconds
+  useEffect(() => {
+    const iconInterval = setInterval(() => {
+      setCurrentIcon((prev) => (prev + 1) % contactIcons.length);
+    }, 3000);
+
+    // Create attention-grabbing pulse animation interval
+    const pulseInterval = setInterval(() => {
+      setIsPulsing(true);
+      setTimeout(() => setIsPulsing(false), 1000);
+    }, 5000);
+
+    return () => {
+      clearInterval(iconInterval);
+      clearInterval(pulseInterval);
+    };
+  }, []);
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/+74956496022', '_blank');
+    window.open('https://wa.me/message/CHYQHBO6KIQMP1', '_blank');
   };
 
   return (
@@ -72,7 +101,7 @@ const FloatingContactButton = () => {
               <Button
                 size="icon"
                 className={`rounded-full bg-[#25D366] hover:bg-[#128C7E] shadow-lg transition-transform transform hover:scale-110 ${isHovered === 'whatsapp' ? 'scale-110' : ''}`}
-                onClick={() => setShowWhatsAppPopup(true)}
+                onClick={handleWhatsAppClick}
               >
                 <MessageCircle size={24} />
               </Button>
@@ -141,17 +170,30 @@ const FloatingContactButton = () => {
           </>
         )}
 
-        {/* Main toggle button */}
-        <Button
-          size="lg"
-          className={`rounded-full shadow-lg transition-colors ${
-            isOpen ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
-          } hover:scale-110 transition-transform transform relative`}
-          onClick={() => setIsOpen(!isOpen)}
+        {/* Main toggle button with animated icon change */}
+        <motion.div
+          animate={{
+            scale: isPulsing ? [1, 1.1, 1] : 1,
+            boxShadow: isPulsing ? "0px 0px 8px 4px rgba(155, 135, 245, 0.6)" : "0px 0px 0px 0px rgba(155, 135, 245, 0)"
+          }}
+          transition={{
+            scale: { duration: 0.6, ease: "easeInOut" },
+            boxShadow: { duration: 0.6, ease: "easeInOut" }
+          }}
         >
-          {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-        </Button>
+          <Button
+            size="lg"
+            className={`rounded-full shadow-lg transition-colors ${
+              isOpen 
+                ? "bg-accent text-accent-foreground" 
+                : "bg-[#9b87f5] text-white hover:bg-[#8a70fa]"
+            } hover:scale-110 transition-transform transform relative`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : contactIcons[currentIcon]}
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
