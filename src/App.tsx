@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Catalog from "./pages/Catalog";
 import CategoryDetail from "./pages/CategoryDetail";
-import Designers from "./pages/Designers";
 import Information from "./pages/Information";
 import NotFound from "./pages/NotFound";
 import FloatingContactButton from "./components/floating-contact/FloatingContactButton";
@@ -24,8 +23,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/catalog" element={<Navigate to="/" />} />
           <Route path="/catalog/:category" element={<CategoryDetail />} />
-          <Route path="/designers" element={<Designers />} />
           <Route path="/customers" element={<Navigate to="/" />} />
+          <Route path="/designers" element={<Navigate to="/" />} />
           <Route path="/information" element={<Information />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

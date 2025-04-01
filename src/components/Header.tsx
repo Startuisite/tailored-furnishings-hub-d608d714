@@ -42,6 +42,17 @@ const Header = () => {
       window.location.href = '/';
     }
   };
+  
+  // Функция для плавной прокрутки к разделу "Дизайнерам"
+  const scrollToDesigners = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const designersSection = document.querySelector('.designers-section');
+    if (designersSection) {
+      designersSection.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname !== '/') {
+      window.location.href = '/';
+    }
+  };
 
   return (
     <header 
@@ -71,12 +82,13 @@ const Header = () => {
           >
             Покупателям
           </a>
-          <Link 
-            to="/designers" 
+          <a 
+            href="#designers" 
+            onClick={scrollToDesigners}
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/designers' ? 'after:w-2/3' : ''}`}
           >
             Дизайнерам
-          </Link>
+          </a>
           <Link 
             to="/information" 
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/information' ? 'after:w-2/3' : ''}`}
