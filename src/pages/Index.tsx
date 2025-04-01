@@ -12,7 +12,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
       <Hero images={heroImages} showDesignerCheckbox={true} />
       <Footer />
