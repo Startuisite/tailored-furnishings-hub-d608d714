@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Check, MessageSquare } from "lucide-react";
 import Header from "../components/Header";
@@ -102,7 +103,7 @@ const Designers = () => {
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
-          {/* Hero Section */}
+          {/* Hero Section - Updated with external image link */}
           <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
             <div className="bg-[rgb(230,237,243)] p-8 rounded-xl flex flex-col justify-between">
               <div>
@@ -130,7 +131,7 @@ const Designers = () => {
             </div>
             <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">
               <img 
-                src="/lovable-uploads/56b0e29d-bfe5-4160-9b67-42170d60054e.png" 
+                src="https://i.postimg.cc/DZMXMJ0M/image.png" 
                 alt="Дизайнер за работой" 
                 className="w-full h-full object-cover"
               />
