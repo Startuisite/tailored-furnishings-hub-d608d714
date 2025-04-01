@@ -1,11 +1,25 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize the Supabase client
+// Initialize the Supabase client with proper error handling
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Check if the required environment variables are set
+if (!supabaseUrl || !supabaseKey) {
+  console.error('Missing Supabase environment variables. Make sure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set.');
+}
+
+// Create a client with fallbacks to prevent runtime errors
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder-url.supabase.co',  // Placeholder that won't actually connect
+  supabaseKey || 'placeholder-key'
+);
+
+// Function to check if Supabase is properly configured
+export const isSupabaseConfigured = () => {
+  return !!supabaseUrl && !!supabaseKey;
+};
 
 // Function to submit contact form data to Supabase
 export const submitContactForm = async (formData: {
@@ -16,6 +30,12 @@ export const submitContactForm = async (formData: {
   isDesigner?: boolean;
   source: string;
 }) => {
+  // First check if Supabase is configured
+  if (!isSupabaseConfigured()) {
+    console.error('Supabase is not configured properly. Contact form submission failed.');
+    throw new Error('Database connection not configured. Please contact the administrator.');
+  }
+  
   // Determine the userType based on form data and source
   let userType = 'customer'; // Default value
   
