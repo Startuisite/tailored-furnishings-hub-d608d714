@@ -4,11 +4,11 @@ import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 
 const Index = () => {
-  // Массив изображений для слайдера с новыми загруженными фото
+  // Массив изображений для слайдера с внешними ссылками для более быстрой загрузки
   const heroImages = [
-    "/lovable-uploads/99ae9dcd-dc47-4f26-b39c-0590b4e44498.png", // Ванная комната
-    "/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png", // Кухня
-    "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png"  // Спальня/кабинет
+    "https://i.postimg.cc/44DsS9HD/0-T2p-Iwn3-Cf.png", // Ванная комната
+    "https://i.postimg.cc/MTZvXjmP/bfl8-HSy-URY.png", // Кухня
+    "https://i.postimg.cc/sfqgCLq0/hbi6-LHogp-Q.png"  // Спальня/кабинет
   ];
 
   return (
