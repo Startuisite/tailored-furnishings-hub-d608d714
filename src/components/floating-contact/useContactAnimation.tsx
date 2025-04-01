@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 export const useContactAnimation = () => {
   const [currentIcon, setCurrentIcon] = useState<number>(0);
-  const [isPulsing, setIsPulsing] = useState(true);
+  const [isPulsing, setIsPulsing] = useState(false);
 
   // Array of contact button icons to cycle through
   const contactIcons: ReactNode[] = [
