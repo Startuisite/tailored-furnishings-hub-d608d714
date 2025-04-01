@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -73,7 +72,7 @@ const ContactForm = ({
       email: "",
       message: "",
       isDesigner: false,
-      consent: false,
+      consent: true, // Changed from false to true to match the schema requirement
     },
   });
 
@@ -81,7 +80,7 @@ const ContactForm = ({
     resolver: zodResolver(phoneOnlySchema),
     defaultValues: {
       phone: "",
-      consent: false,
+      consent: true, // Changed from false to true to match the schema requirement
     },
   });
 
