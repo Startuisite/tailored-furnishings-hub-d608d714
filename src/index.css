@@ -92,6 +92,6 @@
   }
   
   .btn-primary {
-    @apply px-8 py-3 border border-white text-center flex justify-center items-center;
+    @apply px-8 py-3 text-center flex justify-center items-center;
   }
 }

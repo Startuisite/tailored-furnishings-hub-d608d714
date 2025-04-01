@@ -81,7 +81,7 @@ const Hero = ({ images, showDesignerCheckbox = false }: HeroProps) => {
         </h2>
         <ContactFormDialog
           trigger={
-            <Button className="btn-primary text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 border-2 bg-npm-beige text-black hover:bg-npm-beige/90 transform hover:scale-105 transition-all duration-300 shadow-lg">
+            <Button className="text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 bg-npm-beige text-black hover:bg-npm-beige/90 transform hover:scale-105 transition-all duration-300 shadow-lg">
               Заказать консультацию
             </Button>
           }
