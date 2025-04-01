@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
+import { supabase } from "@/integrations/supabase/client";
 
 // Form validation schema with optional isDesigner field and required consent
 const formSchema = z.object({
@@ -55,13 +56,15 @@ interface ContactFormProps {
   customButtonClass?: string;
   showDesignerCheckbox?: boolean;
   phoneOnly?: boolean;
+  sourcePageType?: 'designers' | 'customers' | 'default';
 }
 
 const ContactForm = ({ 
   onSuccess, 
   customButtonClass, 
   showDesignerCheckbox = false,
-  phoneOnly = false
+  phoneOnly = false,
+  sourcePageType = 'default'
 }: ContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -73,7 +76,7 @@ const ContactForm = ({
       email: "",
       message: "",
       isDesigner: false,
-      consent: true, // Changed from false to true to match the schema requirement
+      consent: true,
     },
   });
 
@@ -81,7 +84,7 @@ const ContactForm = ({
     resolver: zodResolver(phoneOnlySchema),
     defaultValues: {
       phone: "",
-      consent: true, // Changed from false to true to match the schema requirement
+      consent: true,
     },
   });
 
@@ -89,10 +92,39 @@ const ContactForm = ({
     setIsSubmitting(true);
     
     try {
-      // Simulate API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Determine client type based on source page or checkbox
+      let clientType = 'Покупатель';
       
-      console.log("Form submitted:", data);
+      if (sourcePageType === 'designers') {
+        clientType = 'Дизайнер';
+      } else if (sourcePageType === 'customers') {
+        clientType = 'Покупатель';
+      } else if (!phoneOnly && 'isDesigner' in data && data.isDesigner) {
+        clientType = 'Дизайнер';
+      }
+      
+      // Prepare form data for Supabase
+      const formData = {
+        "Имя": phoneOnly ? "" : (data as FormValues).name || "",
+        "Телефон": data.phone,
+        "Email": phoneOnly ? "" : (data as FormValues).email || "",
+        "Сообщение": phoneOnly ? "" : (data as FormValues).message || "",
+        "Тип клиента": clientType,
+        "Статус": "Новая"
+      };
+      
+      console.log("Sending to Supabase:", formData);
+      
+      // Insert data into Supabase
+      const { error } = await supabase
+        .from("Заявки")
+        .insert(formData);
+      
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+      
       toast.success("Ваша заявка успешно отправлена!");
       
       if (phoneOnly) {

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import ContactForm from "@/components/ContactForm";
 
 const Customers = () => {
   // Order steps data with updated titles to match step details
@@ -292,6 +293,14 @@ const Customers = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+          
+          {/* Contact Form for Customers */}
+          <section className="mb-16">
+            <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
+            <div className="max-w-md mx-auto bg-white shadow-md rounded-xl p-6">
+              <ContactForm sourcePageType="customers" />
             </div>
           </section>
         </div>

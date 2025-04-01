@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Designers = () => {
   const [benefits] = useState([
@@ -65,13 +66,43 @@ const Designers = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    toast({
-      title: "Форма отправлена",
-      description: "Мы свяжемся с вами в ближайшее время",
-    });
-    form.reset();
+  const onSubmit = async (data: any) => {
+    try {
+      console.log(data);
+      
+      // Prepare data for Supabase
+      const formData = {
+        "Имя": data.name,
+        "Телефон": data.phone,
+        "Email": data.email,
+        "Сообщение": data.message,
+        "Тип клиента": "Дизайнер", // Fixed value since this is the Designers page
+        "Статус": "Новая"
+      };
+      
+      // Insert data into Supabase
+      const { error } = await supabase
+        .from("Заявки")
+        .insert(formData);
+      
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+      
+      toast({
+        title: "Форма отправлена",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла ошибка при отправке формы. Попробуйте позже.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
