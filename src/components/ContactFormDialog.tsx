@@ -37,10 +37,10 @@ const ContactFormDialog = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+        <DialogHeader className="mb-4">
+          <DialogTitle className="text-lg">{title}</DialogTitle>
+          <DialogDescription className="text-sm">{description}</DialogDescription>
         </DialogHeader>
         <ContactForm 
           onSuccess={handleSuccess} 

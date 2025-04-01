@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -114,18 +115,18 @@ const ContactForm = ({
   if (phoneOnly) {
     return (
       <Form {...phoneOnlyForm}>
-        <form onSubmit={phoneOnlyForm.handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
-          <div className="space-y-6 flex-grow">
+        <form onSubmit={phoneOnlyForm.handleSubmit(onSubmit)} className="space-y-4 h-full flex flex-col">
+          <div className="space-y-4 flex-grow">
             <FormField
               control={phoneOnlyForm.control}
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Телефон</FormLabel>
+                  <FormLabel className="text-sm">Телефон</FormLabel>
                   <FormControl>
                     <Input placeholder="+7 (___) ___-__-__" {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs" />
                 </FormItem>
               )}
             />
@@ -134,7 +135,7 @@ const ContactForm = ({
               control={phoneOnlyForm.control}
               name="consent"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -142,8 +143,8 @@ const ContactForm = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Согласие на обработку персональных данных</FormLabel>
-                    <FormDescription>
+                    <FormLabel className="text-sm">Согласие на обработку персональных данных</FormLabel>
+                    <FormDescription className="text-xs">
                       Нажимая кнопку, вы даете согласие на обработку персональных данных
                     </FormDescription>
                   </div>
@@ -166,18 +167,18 @@ const ContactForm = ({
 
   return (
     <Form {...fullForm}>
-      <form onSubmit={fullForm.handleSubmit(onSubmit)} className="space-y-6 h-full flex flex-col">
-        <div className="space-y-6 flex-grow">
+      <form onSubmit={fullForm.handleSubmit(onSubmit)} className="space-y-4 h-full flex flex-col">
+        <div className="space-y-4 flex-grow">
           <FormField
             control={fullForm.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Имя</FormLabel>
+                <FormLabel className="text-sm">Имя</FormLabel>
                 <FormControl>
                   <Input placeholder="Ваше имя" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs" />
               </FormItem>
             )}
           />
@@ -187,11 +188,11 @@ const ContactForm = ({
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Телефон</FormLabel>
+                <FormLabel className="text-sm">Телефон</FormLabel>
                 <FormControl>
                   <Input placeholder="+7 (___) ___-__-__" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs" />
               </FormItem>
             )}
           />
@@ -201,11 +202,11 @@ const ContactForm = ({
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="text-sm">Email</FormLabel>
                 <FormControl>
                   <Input placeholder="your@email.com" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs" />
               </FormItem>
             )}
           />
@@ -215,15 +216,15 @@ const ContactForm = ({
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Сообщение</FormLabel>
+                <FormLabel className="text-sm">Сообщение</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="Опишите ваш запрос" 
-                    className="resize-none" 
+                    className="resize-none min-h-[60px]" 
                     {...field} 
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-xs" />
               </FormItem>
             )}
           />
@@ -234,7 +235,7 @@ const ContactForm = ({
               control={fullForm.control}
               name="isDesigner"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -242,8 +243,8 @@ const ContactForm = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Вы дизайнер?</FormLabel>
-                    <FormDescription>
+                    <FormLabel className="text-sm">Вы дизайнер?</FormLabel>
+                    <FormDescription className="text-xs">
                       Мы предоставляем особые условия для дизайнеров
                     </FormDescription>
                   </div>
@@ -257,7 +258,7 @@ const ContactForm = ({
             control={fullForm.control}
             name="consent"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
@@ -265,8 +266,8 @@ const ContactForm = ({
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>Согласие на обработку персональных данных</FormLabel>
-                  <FormDescription>
+                  <FormLabel className="text-sm">Согласие на обработку персональных данных</FormLabel>
+                  <FormDescription className="text-xs">
                     Нажимая кнопку, вы даете согласие на обработку персональных данных
                   </FormDescription>
                 </div>
