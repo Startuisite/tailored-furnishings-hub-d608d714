@@ -23,13 +23,6 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
             alt={title} 
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <Badge 
-            variant="outline" 
-            className="absolute bottom-3 left-3 bg-white/80 text-black border border-npm-blue/30 px-2 py-0.5 text-xs font-normal shadow-sm"
-          >
-            <BadgeCheck size={12} className="mr-1" />
-            {subtitle}
-          </Badge>
         </div>
         <CardContent className="flex items-center justify-between p-4 bg-npm-beige">
           <div className="flex items-center space-x-2">
