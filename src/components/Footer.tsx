@@ -1,7 +1,8 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const Footer = () => {
   return (
@@ -11,55 +12,48 @@ const Footer = () => {
           <div>
             <h3 className="text-xl mb-4 font-medium">Каталог</h3>
             <ul className="space-y-2">
-              <li><Link to="/catalog" className="text-gray-700 hover:text-black transition-colors">Кухня</Link></li>
-              <li><Link to="/catalog" className="text-gray-700 hover:text-black transition-colors">Гардероб</Link></li>
-              <li><Link to="/catalog" className="text-gray-700 hover:text-black transition-colors">Шкафы</Link></li>
-              <li><Link to="/catalog" className="text-gray-700 hover:text-black transition-colors">Спальня</Link></li>
-              <li><Link to="/catalog" className="text-gray-700 hover:text-black transition-colors">Гостиная</Link></li>
-              <li><Link to="/catalog" className="text-gray-700 hover:text-black transition-colors">Детская</Link></li>
+              <li><Link to="/#catalog" className="text-gray-700 hover:text-black transition-colors">Каталог</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-xl mb-4 font-medium">Покупателям</h3>
             <ul className="space-y-2">
-              <li><Link to="/customers" className="text-gray-700 hover:text-black transition-colors">Доставка и оплата</Link></li>
-              <li><Link to="/customers" className="text-gray-700 hover:text-black transition-colors">Схема заказа</Link></li>
-              <li><Link to="/customers" className="text-gray-700 hover:text-black transition-colors">Гарантия</Link></li>
-              <li><Link to="/customers" className="text-gray-700 hover:text-black transition-colors">Часто задаваемые вопросы</Link></li>
+              <li><Link to="/#delivery" className="text-gray-700 hover:text-black transition-colors">Доставка и оплата</Link></li>
+              <li><Link to="/#order-schema" className="text-gray-700 hover:text-black transition-colors">Схема заказа</Link></li>
+              <li><Link to="/#warranty" className="text-gray-700 hover:text-black transition-colors">Гарантия</Link></li>
+              <li><Link to="/#faq" className="text-gray-700 hover:text-black transition-colors">Часто задаваемые вопросы</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-xl mb-4 font-medium">Дизайнерам</h3>
             <ul className="space-y-2">
-              <li><Link to="/designers" className="text-gray-700 hover:text-black transition-colors">Сотрудничество</Link></li>
-              <li><Link to="/designers" className="text-gray-700 hover:text-black transition-colors">Материалы</Link></li>
-              <li><Link to="/designers" className="text-gray-700 hover:text-black transition-colors">Портфолио</Link></li>
+              <li><Link to="/#designers" className="text-gray-700 hover:text-black transition-colors">Сотрудничество</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-xl mb-4 font-medium">Контакты</h3>
             <ul className="space-y-2">
-              <li className="text-gray-700">+7 918 058-40-61</li>
+              <li>
+                <a href="tel:+79180584061" className="text-gray-700 hover:text-black transition-colors">
+                  +7 918 058-40-61
+                </a>
+              </li>
               <li className="text-gray-700">npm.neprostomebel@mail.ru</li>
-              <li className="text-gray-700">г. Москва, ул. Примерная, д. 123</li>
             </ul>
             
             <div className="mt-6 flex space-x-4">
               <a href="https://vk.com/npmmebel" target="_blank" rel="noopener noreferrer" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <path d="M14.83 12.83a2.83 2.83 0 1 0 0-5.66 2.83 2.83 0 0 0 0 5.66Z"></path>
-                  <path d="M11.66 12.83H5.83a2.83 2.83 0 0 0 0 5.66h5.83"></path>
-                  <path d="M14.83 18.5a2.83 2.83 0 1 0 0-5.66"></path>
-                </svg>
+                <Avatar className="h-5 w-5">
+                  <AvatarImage src="https://mywebicons.ru/i/png/c6ba21b652e197f7a182c9554c2c9796.png" alt="VK" />
+                </Avatar>
               </a>
               <a href="https://t.me/NPM_MEBEL" target="_blank" rel="noopener noreferrer" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <path d="m22 5-11 7L2 5"></path>
-                  <path d="M6 9v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"></path>
-                </svg>
+                <Avatar className="h-5 w-5">
+                  <AvatarImage src="https://cdn-icons-png.flaticon.com/512/87/87413.png" alt="Telegram" />
+                </Avatar>
               </a>
             </div>
             

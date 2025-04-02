@@ -42,7 +42,7 @@ export type Database = {
         }
         Relationships: []
       }
-      Заявки: {
+      client_requests: {
         Row: {
           created_at: string
           Email: string | null
