@@ -9,6 +9,8 @@ import Footer from "../components/Footer";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import ContactFormDialog from "@/components/ContactFormDialog";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 const CategoryDetail = () => {
   const { category } = useParams();
@@ -100,42 +102,44 @@ const CategoryDetail = () => {
             <ArrowLeft className="mr-2" size={16} /> Назад к каталогу
           </Button>
 
-          <div className="bg-white rounded-xl shadow-md overflow-hidden">
-            {/* Original layout - Grid with left content and right image */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Left content column (Blocks 1 & 2) */}
-              <div className="p-6 lg:p-8">
-                <h1 className="text-3xl font-medium mb-4">
-                  {categoryData["Название карточки"]} на заказ по индивидуальным размерам
-                </h1>
-                
-                {/* Block 1 - Top left content */}
-                <div className="space-y-4 mb-6">
-                  <p className="text-gray-700">
-                    {categoryData["Наполнение карточки (Блок 1)"]}
-                  </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left column - Split into two cards */}
+            <div className="space-y-6">
+              {/* Block 1 - Top card */}
+              <Card className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div className="p-6 lg:p-8">
+                  <h1 className="text-3xl font-medium mb-6">
+                    {categoryData["Название карточки"]} на заказ по индивидуальным размерам
+                  </h1>
+                  
+                  <div className="space-y-4">
+                    <p className="text-gray-700">
+                      {categoryData["Наполнение карточки (Блок 1)"]}
+                    </p>
+                  </div>
                 </div>
+              </Card>
 
-                {/* Block 2 - Bottom left content */}
-                <div className="space-y-4 mb-8">
-                  <p className="text-gray-700">
-                    {categoryData["Наполнение карточки (блок 2)"]}
-                  </p>
-                </div>
-
-                {/* Call to action button */}
-                <div className="mt-8">
-                  <h2 className="text-2xl font-medium mb-4">
+              {/* Block 2 - Bottom card with CTA */}
+              <Card className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div className="p-6 lg:p-8">
+                  <h2 className="text-2xl font-medium mb-6">
                     Нужна мебель в {categoryData["Название карточки"].toLowerCase()}?
                   </h2>
-                  <Button onClick={openContactForm} className="px-8 py-6 h-auto text-base">
+                  
+                  <Button 
+                    onClick={openContactForm} 
+                    className="bg-[#8DD4DA] hover:bg-[#7BC9CF] text-black px-8 py-6 h-auto text-base"
+                  >
                     Да, нужна
                   </Button>
                 </div>
-              </div>
+              </Card>
+            </div>
 
-              {/* Right column - Image (Block 3) */}
-              <div className="lg:p-0">
+            {/* Block 3 - Right column with image */}
+            <div className="h-full">
+              <Card className="bg-white rounded-xl shadow-sm overflow-hidden h-full">
                 <div className="h-full">
                   <img
                     src={categoryData["Фото внутри карточки (блок 3)"] || categoryData["Фото в каталоге"]}
@@ -143,14 +147,13 @@ const CategoryDetail = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>
       </main>
       <Footer />
       
-      {/* Used with controlled open state */}
       <ContactFormDialog 
         trigger={<div />} // Empty div as trigger since we manually control open state
         title="Заказать дизайн-проект"
