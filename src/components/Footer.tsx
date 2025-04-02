@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
@@ -36,10 +37,57 @@ const Footer = () => {
           <div>
             <h3 className="text-xl mb-4 font-medium">Покупателям</h3>
             <ul className="space-y-2">
-              <li><Link to="/#delivery" className="text-gray-700 hover:text-black transition-colors">Доставка и оплата</Link></li>
-              <li><Link to="/#order-schema" className="text-gray-700 hover:text-black transition-colors">Схема заказа</Link></li>
-              <li><Link to="/#warranty" className="text-gray-700 hover:text-black transition-colors">Гарантия</Link></li>
-              <li><Link to="/#faq" className="text-gray-700 hover:text-black transition-colors">Часто задаваемые вопросы</Link></li>
+              <li>
+                <Link 
+                  to="/" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.location.pathname === '/') {
+                      const orderSchemaSection = document.querySelector('#order-schema');
+                      orderSchemaSection?.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.location.href = '/#order-schema';
+                    }
+                  }}
+                  className="text-gray-700 hover:text-black transition-colors"
+                >
+                  Схема заказа
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.location.pathname === '/') {
+                      const warrantySection = document.querySelector('#warranty');
+                      warrantySection?.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.location.href = '/#warranty';
+                    }
+                  }}
+                  className="text-gray-700 hover:text-black transition-colors"
+                >
+                  Гарантия
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.location.pathname === '/') {
+                      const faqSection = document.querySelector('#faq');
+                      faqSection?.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.location.href = '/#faq';
+                    }
+                  }}
+                  className="text-gray-700 hover:text-black transition-colors"
+                >
+                  Часто задаваемые вопросы
+                </Link>
+              </li>
             </ul>
           </div>
           
