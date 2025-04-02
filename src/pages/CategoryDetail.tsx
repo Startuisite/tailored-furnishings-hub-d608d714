@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import ContactFormDialog from '@/components/ContactFormDialog';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, MessageSquare } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const getCategoryData = (categoryName: string) => {
   // This data would ideally come from a database or API
@@ -74,79 +74,103 @@ const CategoryDetail = () => {
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
+          {/* Main content: Two columns with text blocks on left and image on right */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Block 1: Title and Description */}
-            <div className="lg:col-span-6 bg-[#F5F5F5] rounded-xl p-8">
-              <h1 className="text-4xl font-playfair mb-6">
-                {categoryData.name} мебель на заказ по индивидуальным размерам
-              </h1>
-              <p className="text-lg mb-6">
-                {categoryData.description}
-              </p>
-              <p className="text-lg">
-                {categoryData.additionalText}
-              </p>
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <div className="grid grid-cols-1 gap-6">
+                {/* Block 1: Title and Description */}
+                <div className="bg-[#F5F5F5] rounded-xl p-8">
+                  <h1 className="text-4xl font-playfair mb-6">
+                    {categoryData.name} мебель на заказ по индивидуальным размерам
+                  </h1>
+                  <p className="text-lg mb-6">
+                    {categoryData.description}
+                  </p>
+                  <p className="text-lg">
+                    {categoryData.additionalText}
+                  </p>
+                </div>
+                
+                {/* Block 2: CTA Question */}
+                <div className="bg-[#F5F5F5] rounded-xl p-8 flex flex-col justify-between">
+                  <div className="mb-6">
+                    <h2 className="text-3xl font-medium mb-4">
+                      Нужна мебель {category && `в ${category.toLowerCase()}`}?
+                    </h2>
+                  </div>
+                  <div>
+                    <ContactFormDialog
+                      trigger={
+                        <Button 
+                          size="lg"
+                          className="bg-[#82D6E1] hover:bg-[#6BC3CE] text-black font-medium px-8 py-6 h-auto"
+                        >
+                          Да, нужна
+                        </Button>
+                      }
+                      title={`Заказать мебель ${category && `в ${category.toLowerCase()}`}`}
+                      description="Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время"
+                      sourcePageType="default"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             
-            {/* Block 2: CTA Question */}
-            <div className="lg:col-span-6 bg-[#F5F5F5] rounded-xl p-8 flex flex-col justify-between">
-              <div className="mb-6">
-                <h2 className="text-3xl font-medium mb-4">
-                  Нужна мебель {category && `в ${category.toLowerCase()}`}?
-                </h2>
-              </div>
-              <div>
-                <ContactFormDialog
-                  trigger={
-                    <Button 
-                      size="lg"
-                      className="bg-[#82D6E1] hover:bg-[#6BC3CE] text-black font-medium px-8 py-6 h-auto"
-                    >
-                      Да, нужна
-                    </Button>
-                  }
-                  title={`Заказать мебель ${category && `в ${category.toLowerCase()}`}`}
-                  description="Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время"
-                  sourcePageType="default"
-                />
-              </div>
-            </div>
-            
-            {/* Block 3: Category Image */}
-            <div className="lg:col-span-12">
-              <Card className="overflow-hidden border-0 shadow-md">
-                <div className="relative">
+            {/* Block 3: Category Image - right side */}
+            <div className="lg:col-span-5 order-1 lg:order-2">
+              <Card className="overflow-hidden border-0 shadow-md h-full">
+                <div className="h-full">
                   <img 
                     src={categoryData.image} 
                     alt={categoryData.name} 
-                    className="w-full h-[60vh] object-cover"
+                    className="w-full h-full object-cover"
                   />
-                  
-                  {/* Overlay with promotional text */}
-                  <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white p-8">
-                    <div className="text-center max-w-4xl">
-                      <h3 className="text-4xl md:text-6xl font-bold mb-6">СКИДКА НА МЕБЕЛЬ ДО 20%</h3>
-                      <p className="text-xl md:text-2xl mb-4">3D визуализация в подарок!</p>
-                      <p className="text-lg md:text-xl mb-8">Оставьте заявку и фиксируйте скидку</p>
-                      
-                      <ContactFormDialog
-                        trigger={
-                          <Button 
-                            size="lg"
-                            className="bg-[#82D6E1] hover:bg-[#6BC3CE] text-black font-medium px-8 py-6 h-auto"
-                          >
-                            Получить каталог
-                            <ArrowRight className="ml-2" />
-                          </Button>
-                        }
-                        title="Получить каталог"
-                        description="Оставьте свои контактные данные, и мы отправим вам каталог"
-                        sourcePageType="default"
-                      />
-                    </div>
-                  </div>
                 </div>
               </Card>
+            </div>
+          </div>
+          
+          {/* Information sections */}
+          <div className="mt-16">
+            <Separator className="mb-12" />
+            
+            {/* Customers section */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-playfair mb-8">Покупателям</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Доставка и оплата</h3>
+                  <p>Мы предлагаем гибкие условия оплаты и доставки. Доставка осуществляется по всей России. Возможна оплата частями и беспроцентная рассрочка до 12 месяцев.</p>
+                </div>
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Схема заказа</h3>
+                  <p>Процесс заказа включает в себя консультацию, замеры, разработку дизайн-проекта, согласование, производство и доставку с установкой мебели.</p>
+                </div>
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Гарантия</h3>
+                  <p>Мы предоставляем гарантию на всю нашу мебель сроком на 24 месяца. В течение этого времени все обнаруженные дефекты будут устранены бесплатно.</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Designers section */}
+            <div>
+              <h2 className="text-3xl font-playfair mb-8">Дизайнерам</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Сотрудничество</h3>
+                  <p>Мы предлагаем выгодные условия сотрудничества для дизайнеров и архитекторов. Индивидуальный подход к каждому проекту и специальные условия для постоянных партнеров.</p>
+                </div>
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Материалы</h3>
+                  <p>Мы работаем только с проверенными поставщиками материалов, что позволяет нам гарантировать высокое качество готовой продукции. Большой выбор материалов и фурнитуры.</p>
+                </div>
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Портфолио</h3>
+                  <p>В нашем портфолио представлены проекты различной сложности и стилистики. Мы готовы реализовать любые дизайнерские идеи и воплотить их в жизнь.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
