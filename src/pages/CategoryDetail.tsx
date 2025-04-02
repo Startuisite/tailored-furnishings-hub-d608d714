@@ -124,7 +124,7 @@ const CategoryDetail = () => {
               <Card className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="p-6 lg:p-8">
                   <h2 className="text-2xl font-medium mb-6">
-                    Нужна мебель в {categoryData["Название карточки"].toLowerCase()}?
+                    {categoryData["Наполнение карточки (блок 2)"]}
                   </h2>
                   
                   <Button 
