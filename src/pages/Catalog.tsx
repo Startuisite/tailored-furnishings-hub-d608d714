@@ -1,19 +1,17 @@
 
 import { useState } from 'react';
-import { ArrowRight, BadgeCheck } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Link } from 'react-router-dom';
 
 type CategoryProps = {
   title: string;
   image: string;
-  subtitle: string;
 };
 
-const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
+const CategoryCard = ({ title, image }: CategoryProps) => {
   return (
     <Link to={`/catalog/${title.toLowerCase()}`}>
       <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl">
@@ -45,63 +43,51 @@ const Catalog = () => {
   const [categories] = useState<CategoryProps[]>([
     {
       title: "Прихожая",
-      image: "https://i.postimg.cc/sXRBKY6D/2-P5-Z3-R2o0t.png", 
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/sXRBKY6D/2-P5-Z3-R2o0t.png"
     },
     {
       title: "Гостиная",
-      image: "https://i.postimg.cc/2j1tDn2S/w-XOps33y-Lh.png",
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/2j1tDn2S/w-XOps33y-Lh.png"
     },
     {
       title: "Кухня",
-      image: "https://i.postimg.cc/DyXGPN0K/bfl8-HSy-URY.png",
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/DyXGPN0K/bfl8-HSy-URY.png"
     },
     {
       title: "Детская",
-      image: "https://i.postimg.cc/SQXDYk0S/c-COii-RTOMr.png",
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/SQXDYk0S/c-COii-RTOMr.png"
     },
     {
       title: "Спальня",
-      image: "https://i.postimg.cc/FRZBHxwY/hbi6-LHogp-Q.png", 
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/FRZBHxwY/hbi6-LHogp-Q.png"
     },
     {
-      title: "Гардероб",
-      image: "https://i.postimg.cc/CMf9Tjxs/k3u1-F9-Odg0.png",
-      subtitle: "под заказ"
+      title: "Гардеробная",
+      image: "https://i.postimg.cc/CMf9Tjxs/k3u1-F9-Odg0.png"
     },
     {
       title: "Шкафы",
-      image: "https://i.postimg.cc/W457YmfV/1b-F5-JIOCs-V-1.png",
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/W457YmfV/1b-F5-JIOCs-V-1.png"
     },
     {
-      title: "Ванна", 
-      image: "https://i.postimg.cc/G3kT55GP/0-T2p-Iwn3-Cf.png",
-      subtitle: "под заказ"
+      title: "Ванная комната",
+      image: "https://i.postimg.cc/G3kT55GP/0-T2p-Iwn3-Cf.png"
     },
     {
       title: "Мягкая мебель",
-      image: "https://i.postimg.cc/fyPz8PYd/AErw-XCs-HOn.png", 
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/fyPz8PYd/AErw-XCs-HOn.png"
     },
     {
-      title: "Отели",
-      image: "https://i.postimg.cc/x8BWBV8K/4-KM0-OH6-Myn.png", 
-      subtitle: "под заказ"
+      title: "Мебель для отелей",
+      image: "https://i.postimg.cc/x8BWBV8K/4-KM0-OH6-Myn.png"
     },
     {
-      title: "Перегородки из мебели", 
-      image: "https://i.postimg.cc/wB8HrJZ1/3-DZ5-Nk948-L.png",
-      subtitle: "под заказ" 
+      title: "Перегородки из мебели",
+      image: "https://i.postimg.cc/wB8HrJZ1/3-DZ5-Nk948-L.png"
     },
     {
       title: "Комплексная меблировка",
-      image: "https://i.postimg.cc/V6tKV0yk/aeog-UZSa-Uz.png",
-      subtitle: "под заказ"
+      image: "https://i.postimg.cc/V6tKV0yk/aeog-UZSa-Uz.png"
     },
   ]);
 
@@ -117,7 +103,6 @@ const Catalog = () => {
                 key={index}
                 title={category.title}
                 image={category.image}
-                subtitle={category.subtitle}
               />
             ))}
           </div>
