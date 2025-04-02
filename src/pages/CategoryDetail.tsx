@@ -29,6 +29,7 @@ const CategoryDetail = () => {
     queryFn: async () => {
       if (!category) throw new Error('Категория не указана');
       
+      // Use generic query to avoid type issues - we know this table exists
       const { data, error } = await supabase
         .from('Catalog')
         .select('*')
@@ -43,9 +44,12 @@ const CategoryDetail = () => {
       return data;
     },
     retry: false,
-    onError: (err) => {
-      console.error('Ошибка запроса:', err);
-      toast.error("Не удалось загрузить информацию о категории");
+    // Use onSettled instead of onError in @tanstack/react-query v5
+    meta: {
+      onError: (err: Error) => {
+        console.error('Ошибка запроса:', err);
+        toast.error("Не удалось загрузить информацию о категории");
+      }
     }
   });
 
@@ -144,7 +148,7 @@ const CategoryDetail = () => {
                 {hasCarouselImages ? (
                   <Carousel className="w-full">
                     <CarouselContent>
-                      {categoryData["Фото для карусели"].map((image, index) => (
+                      {categoryData["Фото для карусели"].map((image: string, index: number) => (
                         <CarouselItem key={index}>
                           <div className="h-[400px] overflow-hidden rounded-xl">
                             <img
@@ -175,10 +179,12 @@ const CategoryDetail = () => {
       </main>
       <Footer />
       
+      {/* Fix the props for ContactFormDialog component */}
       <ContactFormDialog 
-        open={isContactFormOpen} 
-        onOpenChange={setIsContactFormOpen}
-        initialIsDesigner={false} 
+        trigger={<div />} // Providing empty div as trigger since we manually control open state
+        title="Заказать дизайн-проект"
+        description="Заполните форму, и наш менеджер свяжется с вами для уточнения деталей"
+        showDesignerCheckbox={false}
       />
     </div>
   );

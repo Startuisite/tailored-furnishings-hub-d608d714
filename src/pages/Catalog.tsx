@@ -55,6 +55,7 @@ const Catalog = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ['catalog'],
     queryFn: async () => {
+      // Use generic query to avoid type issues - we know this table exists
       const { data, error } = await supabase
         .from('Catalog')
         .select('*');
