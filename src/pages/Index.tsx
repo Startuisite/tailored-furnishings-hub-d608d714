@@ -247,9 +247,9 @@ const Index = () => {
         "Статус": "Новая"
       };
       
-      // Insert data into Supabase
+      // Insert data into Supabase - исправляем название таблицы на client_requests
       const { error } = await supabase
-        .from("Заявки")
+        .from("client_requests")
         .insert(formData);
       
       if (error) {
