@@ -16,7 +16,7 @@ const FloatingContactButton = () => {
   const { currentIcon, isPulsing, contactIcons } = useContactAnimation();
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/message/CHYQHBO6KIQMP1', '_blank');
+    window.open('https://wa.me/79180584061', '_blank');
   };
 
   return (

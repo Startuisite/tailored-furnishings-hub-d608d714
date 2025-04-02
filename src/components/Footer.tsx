@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { Mail, MessageSquare } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -42,29 +42,23 @@ const Footer = () => {
           <div>
             <h3 className="text-xl mb-4 font-medium">Контакты</h3>
             <ul className="space-y-2">
-              <li className="text-gray-700">+7 (999) 123-45-67</li>
-              <li className="text-gray-700">info@npm-mebel.ru</li>
+              <li className="text-gray-700">+7 918 058-40-61</li>
+              <li className="text-gray-700">npm.neprostomebel@mail.ru</li>
               <li className="text-gray-700">г. Москва, ул. Примерная, д. 123</li>
             </ul>
             
             <div className="mt-6 flex space-x-4">
-              <a href="#" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
+              <a href="https://vk.com/npmmebel" target="_blank" rel="noopener noreferrer" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  <path d="M14.83 12.83a2.83 2.83 0 1 0 0-5.66 2.83 2.83 0 0 0 0 5.66Z"></path>
+                  <path d="M11.66 12.83H5.83a2.83 2.83 0 0 0 0 5.66h5.83"></path>
+                  <path d="M14.83 18.5a2.83 2.83 0 1 0 0-5.66"></path>
                 </svg>
               </a>
-              <a href="#" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
+              <a href="https://t.me/NPM_MEBEL" target="_blank" rel="noopener noreferrer" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              </a>
-              <a href="#" className="bg-npm-light p-2 rounded-full hover:bg-npm-beige transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
+                  <path d="m22 5-11 7L2 5"></path>
+                  <path d="M6 9v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"></path>
                 </svg>
               </a>
             </div>
@@ -74,7 +68,7 @@ const Footer = () => {
               <Button 
                 variant="outline" 
                 className="w-full bg-npm-light hover:bg-npm-beige text-black border-gray-300 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = "mailto:director@npm-mebel.ru"}
+                onClick={() => window.location.href = "mailto:npm.neprostomebel@mail.ru"}
               >
                 <Mail className="h-4 w-4" />
                 Написать директору

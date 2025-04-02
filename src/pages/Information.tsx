@@ -194,7 +194,7 @@ const Information = () => {
                     <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-npm-blue" />
                     <div>
                       <p className="font-medium">Телефон</p>
-                      <p>+7 (999) 123-45-67</p>
+                      <p>+7 918 058-40-61</p>
                       <p className="text-sm text-muted-foreground mt-1">Ежедневно с 9:00 до 20:00</p>
                     </div>
                   </div>
@@ -203,7 +203,7 @@ const Information = () => {
                     <Mail className="h-6 w-6 flex-shrink-0 mt-1 text-npm-blue" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p>info@npm-mebel.ru</p>
+                      <p>npm.neprostomebel@mail.ru</p>
                       <p className="text-sm text-muted-foreground mt-1">Мы отвечаем в течение 24 часов</p>
                     </div>
                   </div>
@@ -211,7 +211,7 @@ const Information = () => {
                 
                 <Button 
                   className="w-full mt-6 flex items-center justify-center gap-2 bg-npm-beige hover:bg-npm-blue text-black" 
-                  onClick={() => window.open("https://t.me/npmfurniture", "_blank")}
+                  onClick={() => window.open("https://t.me/NPM_MEBEL", "_blank")}
                 >
                   Написать нам
                 </Button>
