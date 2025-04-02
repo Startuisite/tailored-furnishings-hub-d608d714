@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight } from "lucide-react";
+import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContactFormDialog from '@/components/ContactFormDialog';
@@ -138,7 +138,7 @@ const CategoryDetail = () => {
     },
     6: {
       title: "Монтаж под ключ",
-      description: "Осуществляем доставку и профессиональная сборка мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
+      description: "Осуществляем доставку и профессиональную сборку мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
       image: "https://i.postimg.cc/4d4GkDzq/image.png"
     },
   };
@@ -255,7 +255,7 @@ const CategoryDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container-custom">
@@ -316,229 +316,392 @@ const CategoryDetail = () => {
             </div>
           </div>
           
-          {/* Information sections */}
-          <div className="mt-16">
-            <Separator className="mb-12" />
-            
-            {/* About Us Section */}
-            <section className="mb-16">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                <div>
-                  <h2 className="section-title mb-6">О нас</h2>
-                  <div className="space-y-4 text-lg">
-                    <p>
-                      Наша компания специализируется на производстве высококачественной 
-                      мебели на заказ для вашего дома и офиса. Мы используем только 
-                      проверенные материалы и современные технологии производства.
+          {/* Hero Section with Image and CTA */}
+          <section className="mt-16 mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
+            <div className="h-full">
+              <img 
+                src="https://i.postimg.cc/FKFwCjbV/image.png" 
+                alt="Комфортный интерьер" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-8 flex flex-col justify-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                ПОЛНОСТЬЮ берем весь процесс разработки и реализации проекта на себя
+              </h2>
+            </div>
+          </section>
+
+          {/* About Us Section */}
+          <section className="mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <div>
+                <h2 className="section-title mb-6">О нас</h2>
+                <div className="space-y-4 text-lg">
+                  <p>
+                    Наша компания специализируется на производстве высококачественной 
+                    мебели на заказ для вашего дома и офиса. Мы используем только 
+                    проверенные материалы и современные технологии производства.
+                  </p>
+                  <p>
+                    Работая с нами, вы получаете:
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
+                      <span>Индивидуальный подход к каждому клиенту</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
+                      <span>Качественную мебель, произведенную с учетом всех ваших пожеланий</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
+                      <span>Профессиональную доставку и сборку</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
+                      <span>Гарантию на всю нашу продукцию</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <Card className="border-0 shadow-md h-full">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-medium mb-4">Корпоративным клиентам</h3>
+                    <p className="text-lg mb-4">
+                      Мы предлагаем особые условия для корпоративных клиентов:
                     </p>
-                    <p>
-                      Работая с нами, вы получаете:
-                    </p>
-                    <ul className="space-y-2">
+                    <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
-                        <span>Индивидуальный подход к каждому клиенту</span>
+                        <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
+                          <ShieldCheck className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Расширенная гарантия</h4>
+                          <p>Специальные условия обслуживания для бизнеса</p>
+                        </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
-                        <span>Качественную мебель, произведенную с учетом всех ваших пожеланий</span>
+                        <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
+                          <Truck className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Быстрая доставка</h4>
+                          <p>Приоритетная доставка для корпоративных заказов</p>
+                        </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
-                        <span>Профессиональную доставку и сборку</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-black mt-0.5" />
-                        <span>Гарантию на всю нашу продукцию</span>
+                        <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
+                          <ClipboardCheck className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Специальные условия</h4>
+                          <p>Гибкие системы оплаты и индивидуальные предложения</p>
+                        </div>
                       </li>
                     </ul>
-                  </div>
-                </div>
-                <div>
-                  <Card className="border-0 shadow-md h-full">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-medium mb-4">Корпоративным клиентам</h3>
-                      <p className="text-lg mb-4">
-                        Мы предлагаем особые условия для корпоративных клиентов:
-                      </p>
-                      <ul className="space-y-4">
-                        <li className="flex items-start gap-3">
-                          <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                            <ShieldCheck className="h-6 w-6" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium">Расширенная гарантия</h4>
-                            <p>Специальные условия обслуживания для бизнеса</p>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                            <Truck className="h-6 w-6" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium">Быстрая доставка</h4>
-                            <p>Приоритетная доставка для корпоративных заказов</p>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                            <ClipboardCheck className="h-6 w-6" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium">Специальные условия</h4>
-                            <p>Гибкие системы оплаты и индивидуальные предложения</p>
-                          </div>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
+                  </CardContent>
+                </Card>
               </div>
-            </section>
+            </div>
+          </section>
 
-            {/* Interactive Order Schema Section */}
-            <section className="mb-16">
-              <h2 className="section-title text-center mb-8">Удобная схема заказа</h2>
-              <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
-                Процесс выстроен так, чтобы вы были услышаны, а мы преобразовали ваши идеи в конечный проект.
-              </p>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Left side - Steps list */}
-                <div className="flex flex-col space-y-3">
-                  {orderSteps.map((step) => (
-                    <div 
-                      key={step.number}
-                      onClick={() => handleStepSelect(step.number)}
-                      className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all ${
-                        activeStep === step.number 
-                          ? "bg-white shadow-md" 
-                          : "bg-[rgb(245,245,245)] hover:bg-[rgb(240,240,240)]"
-                      }`}
-                    >
-                      <div className="w-10 h-10 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                        <span className="font-bold">{step.number}</span>
-                      </div>
-                      <div className="flex-grow">
-                        <h3 className="font-medium">{step.title}</h3>
-                      </div>
-                      <ChevronRight className={`h-5 w-5 transition-colors ${
-                        activeStep === step.number ? "text-[rgb(0,0,0)]" : "text-[rgb(180,180,180)]"
-                      }`} />
+          {/* Interactive Order Schema Section */}
+          <section className="mb-16">
+            <h2 className="section-title text-center mb-8">Удобная схема заказа</h2>
+            <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
+              Процесс выстроен так, чтобы вы были услышаны, а мы преобразовали ваши идеи в конечный проект.
+            </p>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Left side - Steps list */}
+              <div className="flex flex-col space-y-3">
+                {orderSteps.map((step) => (
+                  <div 
+                    key={step.number}
+                    onClick={() => handleStepSelect(step.number)}
+                    className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all ${
+                      activeStep === step.number 
+                        ? "bg-white shadow-md" 
+                        : "bg-[rgb(245,245,245)] hover:bg-[rgb(240,240,240)]"
+                    }`}
+                  >
+                    <div className="w-10 h-10 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
+                      <span className="font-bold">{step.number}</span>
                     </div>
-                  ))}
-                </div>
-                
-                {/* Right side - Step details */}
-                <div className="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden">
-                  <div className="grid grid-cols-1 md:grid-cols-2">
-                    {/* Step detail information */}
-                    <div className="p-6 flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-2xl font-medium mb-4">
-                          {activeStep}. {stepDetails[activeStep as keyof typeof stepDetails]?.title}
-                        </h3>
-                        <p className="text-gray-700 mb-8">
-                          {stepDetails[activeStep as keyof typeof stepDetails]?.description}
-                        </p>
-                      </div>
-                      
-                      <div className="mt-auto flex justify-between items-center">
-                        <Button
-                          variant="outline"
-                          onClick={handlePrevStep}
-                          disabled={activeStep === 1}
-                          className={activeStep === 1 ? "opacity-50 cursor-not-allowed" : ""}
-                        >
-                          Предыдущий шаг
-                        </Button>
-                        
-                        {activeStep < 6 && (
-                          <Button 
-                            className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
-                            onClick={handleNextStep}
-                          >
-                            Следующий шаг <ArrowRight className="h-4 w-4" />
-                          </Button>
-                        )}
-                        
-                        {activeStep === 6 && (
-                          <Button 
-                            className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
-                            onClick={() => window.open("https://wa.me/message/CHYQHBO6KIQMP1", "_blank")}
-                          >
-                            Связаться с нами <MessageCircle className="h-4 w-4" />
-                          </Button>
-                        )}
-                      </div>
+                    <div className="flex-grow">
+                      <h3 className="font-medium">{step.title}</h3>
+                    </div>
+                    <ChevronRight className={`h-5 w-5 transition-colors ${
+                      activeStep === step.number ? "text-[rgb(0,0,0)]" : "text-[rgb(180,180,180)]"
+                    }`} />
+                  </div>
+                ))}
+              </div>
+              
+              {/* Right side - Step details */}
+              <div className="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  {/* Step detail information */}
+                  <div className="p-6 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-medium mb-4">
+                        {activeStep}. {stepDetails[activeStep as keyof typeof stepDetails]?.title}
+                      </h3>
+                      <p className="text-gray-700 mb-8">
+                        {stepDetails[activeStep as keyof typeof stepDetails]?.description}
+                      </p>
                     </div>
                     
-                    {/* Step image with consistent sizing */}
-                    <div className="h-full flex items-center justify-center">
-                      <div className="w-full h-full">
-                        <AspectRatio ratio={4/3} className="h-full">
-                          <img 
-                            src={stepDetails[activeStep as keyof typeof stepDetails]?.image} 
-                            alt={`Шаг ${activeStep}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </AspectRatio>
-                      </div>
+                    <div className="mt-auto flex justify-between items-center">
+                      <Button
+                        variant="outline"
+                        onClick={handlePrevStep}
+                        disabled={activeStep === 1}
+                        className={activeStep === 1 ? "opacity-50 cursor-not-allowed" : ""}
+                      >
+                        Предыдущий шаг
+                      </Button>
+                      
+                      {activeStep < 6 && (
+                        <Button 
+                          className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
+                          onClick={handleNextStep}
+                        >
+                          Следующий шаг <ArrowRight className="h-4 w-4" />
+                        </Button>
+                      )}
+                      
+                      {activeStep === 6 && (
+                        <Button 
+                          className="flex items-center gap-2 bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
+                          onClick={() => window.open("https://wa.me/message/CHYQHBO6KIQMP1", "_blank")}
+                        >
+                          Связаться с нами <MessageCircle className="h-4 w-4" />
+                        </Button>
+                      )}
                     </div>
                   </div>
-                </div>
-              </div>
-            </section>
-            
-            {/* Customers and Designers sections */}
-            <div>
-              {/* Customers section */}
-              <div className="mb-16">
-                <h2 className="section-title mb-8">Покупателям</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                    <h3 className="text-xl font-medium mb-4">Доставка и оплата</h3>
-                    <p>Мы предлагаем гибкие условия оплаты и доставки. Доставка осуществляется по всей России. Возможна оплата частями и беспроцентная рассрочка до 12 месяцев.</p>
-                  </div>
-                  <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                    <h3 className="text-xl font-medium mb-4">Схема заказа</h3>
-                    <p>Процесс заказа включает в себя консультацию, замеры, разработку дизайн-проекта, согласование, производство и доставку с установкой мебели.</p>
-                  </div>
-                  <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                    <h3 className="text-xl font-medium mb-4">Гарантия</h3>
-                    <p>Мы предоставляем гарантию на всю нашу мебель сроком на 24 месяца. В течение этого времени все обнаруженные дефекты будут устранены бесплатно.</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Designers section */}
-              <div>
-                <h2 className="section-title mb-8">Дизайнерам</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                    <h3 className="text-xl font-medium mb-4">Сотрудничество</h3>
-                    <p>Мы предлагаем выгодные условия сотрудничества для дизайнеров и архитекторов. Индивидуальный подход к каждому проекту и специальные условия для постоянных партнеров.</p>
-                  </div>
-                  <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                    <h3 className="text-xl font-medium mb-4">Материалы</h3>
-                    <p>Мы работаем только с проверенными поставщиками материалов, что позволяет нам гарантировать высокое качество готовой продукции. Большой выбор материалов и фурнитуры.</p>
-                  </div>
-                  <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                    <h3 className="text-xl font-medium mb-4">Портфолио</h3>
-                    <p>В нашем портфолио представлены проекты различной сложности и стилистики. Мы готовы реализовать любые дизайнерские идеи и воплотить их в жизнь.</p>
+                  
+                  {/* Step image with consistent sizing */}
+                  <div className="h-full flex items-center justify-center">
+                    <div className="w-full h-full">
+                      <AspectRatio ratio={4/3} className="h-full">
+                        <img 
+                          src={stepDetails[activeStep as keyof typeof stepDetails]?.image} 
+                          alt={`Шаг ${activeStep}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </AspectRatio>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Contact Form for Customers */}
-            <section className="mt-16">
-              <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
-              <div className="max-w-md mx-auto bg-white shadow-md rounded-xl p-6">
-                <ContactForm sourcePageType="customers" />
+          </section>
+          
+          {/* Customers and Designers sections */}
+          <div className="mb-16">
+            {/* Customers section */}
+            <div className="mb-16">
+              <h2 className="section-title mb-8">Покупателям</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Доставка и оплата</h3>
+                  <p>Мы предлагаем гибкие условия оплаты и доставки. Доставка осуществляется по всей России. Возможна оплата частями и беспроцентная рассрочка до 12 месяцев.</p>
+                </div>
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Схема заказа</h3>
+                  <p>Процесс заказа включает в себя консультацию, замеры, разработку дизайн-проекта, согласование, производство и доставку с установкой мебели.</p>
+                </div>
+                <div className="bg-[#F5F5F5] p-6 rounded-xl">
+                  <h3 className="text-xl font-medium mb-4">Гарантия</h3>
+                  <p>Мы предоставляем гарантию на всю нашу мебель сроком на 24 месяца. В течение этого времени все обнаруженные дефекты будут устранены бесплатно.</p>
+                </div>
               </div>
-            </section>
+            </div>
+            
+            {/* Designers section */}
+            <div>
+              <h2 className="section-title mb-8">Дизайнерам</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Hero Section for Designers */}
+                <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch mb-16">
+                  <div className="bg-[rgb(230,237,243)] p-8 rounded-xl flex flex-col justify-between">
+                    <div>
+                      <h1 className="section-title mb-6">Вы дизайнер</h1>
+                      <p className="text-lg">
+                        Приглашаем к сотрудничеству дизайнеров интерьеров. Мы предлагаем выгодные условия 
+                        партнерства, профессиональную поддержку и качественное исполнение ваших проектов.
+                      </p>
+                    </div>
+                    <div className="mt-8">
+                      <p className="font-medium mb-2">У вас есть?</p>
+                      <div className="flex items-center gap-3 mb-1">
+                        <div className="w-5 h-5 rounded bg-[rgb(242,237,231)] flex items-center justify-center">
+                          <Check size={16} />
+                        </div>
+                        <p>Клиенты, которым нужна мебель на заказ</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded bg-[rgb(242,237,231)] flex items-center justify-center">
+                          <Check size={16} />
+                        </div>
+                        <p>Проекты, требующие качественной реализации</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">
+                    <img 
+                      src="https://i.postimg.cc/DZMXMJ0M/image.png" 
+                      alt="Дизайнер за работой" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Quality Statement */}
+                <div className="md:col-span-3 mb-16">
+                  <h2 className="section-title text-center mb-4">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    {benefits.map((benefit, index) => (
+                      <Card key={index} className="border-0 shadow-md overflow-hidden h-full flex flex-col">
+                        <div className="p-6 bg-[rgb(242,237,231)] flex-1 flex flex-col">
+                          <h3 className="text-xl font-medium mb-4">{benefit.title}</h3>
+                          <p className="text-gray-700 flex-grow">{benefit.description}</p>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FAQ and Designer Form */}
+                <div className="md:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                  <div>
+                    <h2 className="section-title mb-6">Ответы на частые вопросы</h2>
+                    <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md p-6">
+                      {faqs.map((faq, index) => (
+                        <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
+                          <AccordionTrigger className="py-4 hover:no-underline font-medium">
+                            <div className="flex items-center gap-2 text-left">
+                              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[rgb(242,237,231)] flex items-center justify-center text-xs font-bold">
+                                {index + 1}
+                              </div>
+                              <span>{faq.question}</span>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="pl-8">
+                            <p className="text-gray-700">{faq.answer}</p>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </div>
+                  <div>
+                    <h2 className="section-title mb-6">Обратная связь</h2>
+                    <Card className="border-0 shadow-md">
+                      <CardContent className="p-6">
+                        <Form {...designerForm}>
+                          <form onSubmit={designerForm.handleSubmit(onDesignerSubmit)} className="space-y-4">
+                            <FormField
+                              control={designerForm.control}
+                              name="name"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Имя</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Введите ваше имя" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={designerForm.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Email</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Введите ваш email" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={designerForm.control}
+                              name="phone"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Телефон</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Введите ваш телефон" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={designerForm.control}
+                              name="message"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Сообщение</FormLabel>
+                                  <FormControl>
+                                    <Textarea placeholder="Опишите ваш запрос" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={designerForm.control}
+                              name="agreement"
+                              render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                  <FormControl>
+                                    <Checkbox 
+                                      checked={field.value} 
+                                      onCheckedChange={field.onChange}
+                                    />
+                                  </FormControl>
+                                  <div className="space-y-1 leading-none">
+                                    <FormLabel>
+                                      Я согласен на обработку персональных данных
+                                    </FormLabel>
+                                  </div>
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <Button type="submit" className="w-full bg-black text-white hover:bg-black/80">
+                              <MessageSquare className="mr-2 h-4 w-4" />
+                              Отправить
+                            </Button>
+                          </form>
+                        </Form>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* Contact Form for Customers */}
+          <section className="mt-16">
+            <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
+            <div className="max-w-md mx-auto bg-white shadow-md rounded-xl p-6">
+              <ContactForm sourcePageType="customers" />
+            </div>
+          </section>
         </div>
       </main>
       <Footer />
