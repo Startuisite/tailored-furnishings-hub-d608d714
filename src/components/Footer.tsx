@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
@@ -12,7 +11,25 @@ const Footer = () => {
           <div>
             <h3 className="text-xl mb-4 font-medium">Каталог</h3>
             <ul className="space-y-2">
-              <li><Link to="/#catalog" className="text-gray-700 hover:text-black transition-colors">Каталог</Link></li>
+              <li>
+                <Link 
+                  to="/" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.location.pathname === '/') {
+                      // If already on the main page, scroll to catalog section
+                      const catalogSection = document.querySelector('.catalog-section');
+                      catalogSection?.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      // If on another page, navigate to main page and add #catalog hash
+                      window.location.href = '/#catalog';
+                    }
+                  }}
+                  className="text-gray-700 hover:text-black transition-colors"
+                >
+                  Каталог
+                </Link>
+              </li>
             </ul>
           </div>
           
