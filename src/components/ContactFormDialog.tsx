@@ -23,7 +23,7 @@ const ContactFormDialog = ({
   trigger,
   title = "Заказать консультацию",
   description = "Заполните форму, и наш менеджер свяжется с вами в ближайшее время",
-  showDesignerCheckbox = false,
+  showDesignerCheckbox = true, // Changed default to true
   phoneOnly = false,
   sourcePageType = 'default',
 }: ContactFormDialogProps) => {

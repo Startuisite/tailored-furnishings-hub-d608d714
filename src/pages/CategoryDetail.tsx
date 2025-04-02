@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
@@ -9,9 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import ContactForm from '@/components/ContactForm';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -71,6 +69,7 @@ const CategoryDetail = () => {
       email: "",
       phone: "",
       message: "",
+      isDesigner: false,  // Added designer checkbox
       agreement: false,
     },
   });
@@ -224,7 +223,7 @@ const CategoryDetail = () => {
         "Телефон": data.phone,
         "Email": data.email,
         "Сообщение": data.message,
-        "Тип клиента": "Дизайнер",
+        "Тип клиента": data.isDesigner ? "Дизайнер" : "Покупатель", // Use the isDesigner field
         "Статус": "Новая"
       };
       
@@ -296,6 +295,7 @@ const CategoryDetail = () => {
                       title={`Заказать мебель ${category && `в ${category.toLowerCase()}`}`}
                       description="Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время"
                       sourcePageType="default"
+                      showDesignerCheckbox={true} // Show designer checkbox in the dialog
                     />
                   </div>
                 </div>
@@ -502,28 +502,8 @@ const CategoryDetail = () => {
             </div>
           </section>
           
-          {/* Customers and Designers sections */}
+          {/* Designers section - Keeping only this section */}
           <div className="mb-16">
-            {/* Customers section */}
-            <div className="mb-16">
-              <h2 className="section-title mb-8">Покупателям</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                  <h3 className="text-xl font-medium mb-4">Доставка и оплата</h3>
-                  <p>Мы предлагаем гибкие условия оплаты и доставки. Доставка осуществляется по всей России. Возможна оплата частями и беспроцентная рассрочка до 12 месяцев.</p>
-                </div>
-                <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                  <h3 className="text-xl font-medium mb-4">Схема заказа</h3>
-                  <p>Процесс заказа включает в себя консультацию, замеры, разработку дизайн-проекта, согласование, производство и доставку с установкой мебели.</p>
-                </div>
-                <div className="bg-[#F5F5F5] p-6 rounded-xl">
-                  <h3 className="text-xl font-medium mb-4">Гарантия</h3>
-                  <p>Мы предоставляем гарантию на всю нашу мебель сроком на 24 месяца. В течение этого времени все обнаруженные дефекты будут устранены бесплатно.</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Designers section */}
             <div>
               <h2 className="section-title mb-8">Дизайнерам</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -661,6 +641,28 @@ const CategoryDetail = () => {
                               )}
                             />
                             
+                            {/* Added designer checkbox to the feedback form */}
+                            <FormField
+                              control={designerForm.control}
+                              name="isDesigner"
+                              render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3">
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value}
+                                      onCheckedChange={field.onChange}
+                                    />
+                                  </FormControl>
+                                  <div className="space-y-1 leading-none">
+                                    <FormLabel className="text-sm">Вы дизайнер?</FormLabel>
+                                    <FormDescription className="text-xs">
+                                      Мы предоставляем особые условия для дизайнеров
+                                    </FormDescription>
+                                  </div>
+                                </FormItem>
+                              )}
+                            />
+                            
                             <FormField
                               control={designerForm.control}
                               name="agreement"
@@ -694,14 +696,6 @@ const CategoryDetail = () => {
               </div>
             </div>
           </div>
-
-          {/* Contact Form for Customers */}
-          <section className="mt-16">
-            <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
-            <div className="max-w-md mx-auto bg-white shadow-md rounded-xl p-6">
-              <ContactForm sourcePageType="customers" />
-            </div>
-          </section>
         </div>
       </main>
       <Footer />
