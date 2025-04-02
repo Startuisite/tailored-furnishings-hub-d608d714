@@ -115,9 +115,9 @@ const ContactForm = ({
       
       console.log("Sending to Supabase:", formData);
       
-      // Insert data into Supabase
+      // Insert data into Supabase - используем правильное название таблицы из types.ts
       const { error } = await supabase
-        .from("Заявки")
+        .from("client_requests")
         .insert(formData);
       
       if (error) {

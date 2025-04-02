@@ -80,9 +80,9 @@ const Designers = () => {
         "Статус": "Новая"
       };
       
-      // Insert data into Supabase
+      // Insert data into Supabase - исправляем название таблицы
       const { error } = await supabase
-        .from("Заявки")
+        .from("client_requests")
         .insert(formData);
       
       if (error) {
