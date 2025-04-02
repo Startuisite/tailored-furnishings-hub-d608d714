@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import ContactForm from "@/components/ContactForm";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const CategoryDetail = () => {
   const { category } = useParams();
@@ -88,7 +88,7 @@ const CategoryDetail = () => {
       image: "https://i.postimg.cc/4d4GkDzq/image.png"
     },
   };
-  
+
   // Designer FAQs state
   const faqs = [
     {
@@ -169,6 +169,30 @@ const CategoryDetail = () => {
     setIsContactFormOpen(true);
   };
 
+  // Prepare carousel images
+  const getCarouselImages = () => {
+    if (!categoryData) return [];
+    
+    const images = [];
+    
+    // Add main image from "Фото внутри карточки (блок 3)" if exists
+    if (categoryData["Фото внутри карточки (блок 3)"]) {
+      images.push(categoryData["Фото внутри карточки (блок 3)"]);
+    } 
+    // Fallback to catalog image if block 3 image doesn't exist
+    else if (categoryData["Фото в каталоге"]) {
+      images.push(categoryData["Фото в каталоге"]);
+    }
+    
+    // Add additional images from "Фото для карусели" if exists
+    if (categoryData["Фото для карусели"] && Array.isArray(categoryData["Фото для карусели"])) {
+      images.push(...categoryData["Фото для карусели"]);
+    }
+    
+    // Return unique images (remove duplicates)
+    return [...new Set(images)].filter(Boolean);
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-npm-light/30">
@@ -207,6 +231,9 @@ const CategoryDetail = () => {
       </div>
     );
   }
+
+  // Get carousel images
+  const carouselImages = getCarouselImages();
 
   return (
     <div className="min-h-screen bg-npm-light/30">
@@ -253,15 +280,35 @@ const CategoryDetail = () => {
               </Card>
             </div>
 
-            {/* Block 3 - Right column with image */}
+            {/* Block 3 - Right column with image carousel */}
             <div className="h-full">
               <Card className="bg-white rounded-xl shadow-sm overflow-hidden h-full">
                 <div className="h-full">
-                  <img
-                    src={categoryData["Фото внутри карточки (блок 3)"] || categoryData["Фото в каталоге"]}
-                    alt={categoryData["Название карточки"]}
-                    className="w-full h-full object-cover"
-                  />
+                  {carouselImages.length > 1 ? (
+                    <Carousel className="w-full h-full">
+                      <CarouselContent className="h-full">
+                        {carouselImages.map((image, index) => (
+                          <CarouselItem key={index} className="h-full">
+                            <AspectRatio ratio={4/3} className="h-full">
+                              <img
+                                src={image}
+                                alt={`${categoryData["Название карточки"]} - изображение ${index + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            </AspectRatio>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-2" />
+                      <CarouselNext className="right-2" />
+                    </Carousel>
+                  ) : (
+                    <img
+                      src={carouselImages[0] || categoryData["Фото в каталоге"]}
+                      alt={categoryData["Название карточки"]}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
               </Card>
             </div>
