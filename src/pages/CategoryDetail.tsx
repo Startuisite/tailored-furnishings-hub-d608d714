@@ -89,15 +89,15 @@ const CategoryDetail = () => {
       }
 
       try {
-        // Fetch category details from Supabase
-        const { data, error } = await supabase
+        // Fix: Use the correct table name from Supabase
+        const { data, error: supabaseError } = await supabase
           .from('Карточки каталога')
           .select('id, "Название карточки", "Наполнение карточки (Блок 1)", "Наполнение карточки (блок 2)", "Фото внутри карточки (блок 3)"')
           .ilike('Название карточки', `%${categoryId}%`)
           .maybeSingle();
 
-        if (error) {
-          throw error;
+        if (supabaseError) {
+          throw supabaseError;
         }
 
         if (data) {

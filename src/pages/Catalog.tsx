@@ -114,12 +114,13 @@ const Catalog = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data, error } = await supabase
+        // Fix: Use the correct table name from Supabase
+        const { data, error: supabaseError } = await supabase
           .from('Карточки каталога')
           .select('id, "Название карточки", "Фото в каталоге"');
 
-        if (error) {
-          throw error;
+        if (supabaseError) {
+          throw supabaseError;
         }
 
         // Transform data to match our CategoryProps structure
@@ -174,9 +175,10 @@ const Catalog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {loading 
               ? renderSkeletons()
-              : categories.map((category, index) => (
+              : categories.map((category) => (
                   <CategoryCard
-                    key={category.id || index}
+                    key={category.id}
+                    id={category.id}
                     title={category.title}
                     image={category.image}
                   />
