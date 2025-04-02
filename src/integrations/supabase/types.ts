@@ -9,6 +9,39 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      Catalog: {
+        Row: {
+          created_at: string
+          id: number
+          "Название карточки": string | null
+          "Наполнение карточки (Блок 1)": string | null
+          "Наполнение карточки (блок 2)": string | null
+          "Фото в каталоге": string | null
+          "Фото внутри карточки (блок 3)": string | null
+          "Фото для карусели": string[] | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          "Название карточки"?: string | null
+          "Наполнение карточки (Блок 1)"?: string | null
+          "Наполнение карточки (блок 2)"?: string | null
+          "Фото в каталоге"?: string | null
+          "Фото внутри карточки (блок 3)"?: string | null
+          "Фото для карусели"?: string[] | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          "Название карточки"?: string | null
+          "Наполнение карточки (Блок 1)"?: string | null
+          "Наполнение карточки (блок 2)"?: string | null
+          "Фото в каталоге"?: string | null
+          "Фото внутри карточки (блок 3)"?: string | null
+          "Фото для карусели"?: string[] | null
+        }
+        Relationships: []
+      }
       Заявки: {
         Row: {
           created_at: string

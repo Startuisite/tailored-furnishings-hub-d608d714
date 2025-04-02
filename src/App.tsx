@@ -21,7 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/catalog" element={<Navigate to="/" />} />
+          <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:category" element={<CategoryDetail />} />
           <Route path="/customers" element={<Navigate to="/" />} />
           <Route path="/designers" element={<Navigate to="/" />} />
