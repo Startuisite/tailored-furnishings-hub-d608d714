@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -71,62 +72,62 @@ const Index = () => {
   const [categories] = useState<CategoryProps[]>([
     {
       title: "Прихожая",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
+      image: "https://i.postimg.cc/sXRBKY6D/2-P5-Z3-R2o0t.png", 
       subtitle: "под заказ"
     },
     {
       title: "Гостиная",
-      image: "/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png",
+      image: "https://i.postimg.cc/2j1tDn2S/w-XOps33y-Lh.png",
       subtitle: "под заказ"
     },
     {
       title: "Кухня",
-      image: "/lovable-uploads/b6d95516-3e92-4f36-be7e-ebe9684d3cc9.png",
+      image: "https://i.postimg.cc/DyXGPN0K/bfl8-HSy-URY.png",
       subtitle: "под заказ"
     },
     {
       title: "Детская",
-      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png",
+      image: "https://i.postimg.cc/SQXDYk0S/c-COii-RTOMr.png",
       subtitle: "под заказ"
     },
     {
       title: "Спальня",
-      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png", 
+      image: "https://i.postimg.cc/FRZBHxwY/hbi6-LHogp-Q.png", 
       subtitle: "под заказ"
     },
     {
       title: "Гардероб",
-      image: "/lovable-uploads/5722e33c-6e2b-4d06-aa5c-5404f2aba4bd.png",
+      image: "https://i.postimg.cc/CMf9Tjxs/k3u1-F9-Odg0.png",
       subtitle: "под заказ"
     },
     {
       title: "Шкафы",
-      image: "/lovable-uploads/99ae9dcd-dc47-4f26-b39c-0590b4e44498.png",
+      image: "https://i.postimg.cc/W457YmfV/1b-F5-JIOCs-V-1.png",
       subtitle: "под заказ"
     },
     {
       title: "Ванна", 
-      image: "/lovable-uploads/99ae9dcd-dc47-4f26-b39c-0590b4e44498.png",
+      image: "https://i.postimg.cc/G3kT55GP/0-T2p-Iwn3-Cf.png",
       subtitle: "под заказ"
     },
     {
       title: "Мягкая мебель",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
+      image: "https://i.postimg.cc/fyPz8PYd/AErw-XCs-HOn.png", 
       subtitle: "под заказ"
     },
     {
       title: "Отели",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04", 
+      image: "https://i.postimg.cc/x8BWBV8K/4-KM0-OH6-Myn.png", 
       subtitle: "под заказ"
     },
     {
       title: "Перегородки из мебели", 
-      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
+      image: "https://i.postimg.cc/wB8HrJZ1/3-DZ5-Nk948-L.png",
       subtitle: "под заказ" 
     },
     {
       title: "Комплексная меблировка",
-      image: "/lovable-uploads/da406eaa-f6f8-4df1-8439-cce21af967c0.png",
+      image: "https://i.postimg.cc/V6tKV0yk/aeog-UZSa-Uz.png",
       subtitle: "под заказ"
     },
   ]);
