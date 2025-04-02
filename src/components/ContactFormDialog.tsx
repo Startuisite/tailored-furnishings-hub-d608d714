@@ -17,6 +17,9 @@ interface ContactFormDialogProps {
   showDesignerCheckbox?: boolean;
   phoneOnly?: boolean;
   sourcePageType?: 'designers' | 'customers' | 'default';
+  // Add controlled state props (optional)
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 const ContactFormDialog = ({
@@ -26,8 +29,15 @@ const ContactFormDialog = ({
   showDesignerCheckbox = true,
   phoneOnly = false,
   sourcePageType = 'default',
+  open: controlledOpen,
+  onOpenChange: setControlledOpen,
 }: ContactFormDialogProps) => {
-  const [open, setOpen] = useState(false);
+  // Use internal state if not controlled externally
+  const [internalOpen, setInternalOpen] = useState(false);
+  
+  // Use controlled state if provided, otherwise use internal state
+  const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
+  const setOpen = setControlledOpen || setInternalOpen;
 
   const handleSuccess = () => {
     // Close dialog on successful form submission

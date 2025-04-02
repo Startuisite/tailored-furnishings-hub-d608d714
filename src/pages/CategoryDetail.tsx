@@ -1,6 +1,6 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,15 +9,6 @@ import Footer from "../components/Footer";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import ContactFormDialog from "@/components/ContactFormDialog";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Badge } from "@/components/ui/badge";
-import { BadgeCheck } from "lucide-react";
 
 const CategoryDetail = () => {
   const { category } = useParams();
@@ -44,7 +35,7 @@ const CategoryDetail = () => {
       return data;
     },
     retry: false,
-    // Use onSettled instead of onError in @tanstack/react-query v5
+    // Use meta instead of onError in @tanstack/react-query v5
     meta: {
       onError: (err: Error) => {
         console.error('Ошибка запроса:', err);
@@ -55,6 +46,10 @@ const CategoryDetail = () => {
 
   const goBack = () => {
     navigate(-1);
+  };
+
+  const openContactForm = () => {
+    setIsContactFormOpen(true);
   };
 
   if (isLoading) {
@@ -96,14 +91,6 @@ const CategoryDetail = () => {
     );
   }
 
-  const openContactForm = () => {
-    setIsContactFormOpen(true);
-  };
-
-  const hasCarouselImages = categoryData["Фото для карусели"] && 
-    Array.isArray(categoryData["Фото для карусели"]) && 
-    categoryData["Фото для карусели"].length > 0;
-
   return (
     <div className="min-h-screen bg-npm-light/30">
       <Header />
@@ -114,64 +101,48 @@ const CategoryDetail = () => {
           </Button>
 
           <div className="bg-white rounded-xl shadow-md overflow-hidden">
+            {/* Original layout - Grid with left content and right image */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Left content column (Blocks 1 & 2) */}
               <div className="p-6 lg:p-8">
                 <h1 className="text-3xl font-medium mb-4">
-                  {categoryData["Название карточки"]}
+                  {categoryData["Название карточки"]} на заказ по индивидуальным размерам
                 </h1>
                 
-                <div className="relative inline-block mb-6">
-                  <Badge 
-                    variant="outline" 
-                    className="bg-npm-beige/40 text-black border border-npm-blue/30 px-2 py-0.5 text-xs font-normal"
-                  >
-                    <BadgeCheck size={12} className="mr-1" />
-                    под заказ
-                  </Badge>
-                </div>
-
-                <div className="space-y-4 mb-8">
+                {/* Block 1 - Top left content */}
+                <div className="space-y-4 mb-6">
                   <p className="text-gray-700">
                     {categoryData["Наполнение карточки (Блок 1)"]}
                   </p>
+                </div>
+
+                {/* Block 2 - Bottom left content */}
+                <div className="space-y-4 mb-8">
                   <p className="text-gray-700">
                     {categoryData["Наполнение карточки (блок 2)"]}
                   </p>
                 </div>
 
-                <Button onClick={openContactForm} className="w-full">
-                  Заказать дизайн-проект
-                </Button>
+                {/* Call to action button */}
+                <div className="mt-8">
+                  <h2 className="text-2xl font-medium mb-4">
+                    Нужна мебель в {categoryData["Название карточки"].toLowerCase()}?
+                  </h2>
+                  <Button onClick={openContactForm} className="px-8 py-6 h-auto text-base">
+                    Да, нужна
+                  </Button>
+                </div>
               </div>
 
-              <div className="lg:p-8 p-6">
-                {hasCarouselImages ? (
-                  <Carousel className="w-full">
-                    <CarouselContent>
-                      {categoryData["Фото для карусели"].map((image: string, index: number) => (
-                        <CarouselItem key={index}>
-                          <div className="h-[400px] overflow-hidden rounded-xl">
-                            <img
-                              src={image}
-                              alt={`${categoryData["Название карточки"]} - изображение ${index + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-2" />
-                    <CarouselNext className="right-2" />
-                  </Carousel>
-                ) : (
-                  <div className="h-[400px] overflow-hidden rounded-xl">
-                    <img
-                      src={categoryData["Фото внутри карточки (блок 3)"] || categoryData["Фото в каталоге"]}
-                      alt={categoryData["Название карточки"]}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
+              {/* Right column - Image (Block 3) */}
+              <div className="lg:p-0">
+                <div className="h-full">
+                  <img
+                    src={categoryData["Фото внутри карточки (блок 3)"] || categoryData["Фото в каталоге"]}
+                    alt={categoryData["Название карточки"]}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -179,12 +150,14 @@ const CategoryDetail = () => {
       </main>
       <Footer />
       
-      {/* Fix the props for ContactFormDialog component */}
+      {/* Used with controlled open state */}
       <ContactFormDialog 
-        trigger={<div />} // Providing empty div as trigger since we manually control open state
+        trigger={<div />} // Empty div as trigger since we manually control open state
         title="Заказать дизайн-проект"
         description="Заполните форму, и наш менеджер свяжется с вами для уточнения деталей"
         showDesignerCheckbox={false}
+        open={isContactFormOpen}
+        onOpenChange={setIsContactFormOpen}
       />
     </div>
   );
