@@ -42,36 +42,6 @@ export type Database = {
         }
         Relationships: []
       }
-      "Карточки каталога": {
-        Row: {
-          created_at: string
-          id: number
-          "Название карточки": string | null
-          "Наполнение карточки (Блок 1)": string | null
-          "Наполнение карточки (блок 2)": string | null
-          "Фото в каталоге": string | null
-          "Фото внутри карточки (блок 3)": string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          "Название карточки"?: string | null
-          "Наполнение карточки (Блок 1)"?: string | null
-          "Наполнение карточки (блок 2)"?: string | null
-          "Фото в каталоге"?: string | null
-          "Фото внутри карточки (блок 3)"?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          "Название карточки"?: string | null
-          "Наполнение карточки (Блок 1)"?: string | null
-          "Наполнение карточки (блок 2)"?: string | null
-          "Фото в каталоге"?: string | null
-          "Фото внутри карточки (блок 3)"?: string | null
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
