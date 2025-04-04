@@ -79,7 +79,7 @@ const Hero = ({ images, showDesignerCheckbox = false }: HeroProps) => {
         <ContactFormDialog
           trigger={
             <Button className="text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 bg-npm-beige text-black hover:bg-npm-beige/90 transform hover:scale-105 transition-all duration-300 shadow-lg">
-              Заказать консультацию
+              Заказать расчет
             </Button>
           }
           showDesignerCheckbox={showDesignerCheckbox}

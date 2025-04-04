@@ -38,7 +38,7 @@ const FloatingContactButton = () => {
               id="whatsapp"
               icon={<MessageCircle size={24} />}
               label="Написать в WhatsApp"
-              color="bg-[#25D366] hover:bg-[#128C7E]"
+              color="bg-[#fbf6f0] hover:bg-[#fbf6f0]/80"
               onClick={handleWhatsAppClick}
               isHovered={isHovered}
               setIsHovered={setIsHovered}

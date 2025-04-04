@@ -381,7 +381,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* About Us Section */}
+        {/* About Us Section - Updated to remove the Corporate Clients block and add image */}
         <section className="mb-16 container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div>
@@ -416,56 +416,25 @@ const Index = () => {
               </div>
             </div>
             <div>
-              <Card className="border-0 shadow-md h-full">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-medium mb-4">Корпоративным клиентам</h3>
-                  <p className="text-lg mb-4">
-                    Мы предлагаем особые условия для корпоративных клиентов:
-                  </p>
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                        <ShieldCheck className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">Расширенная гарантия</h4>
-                        <p>Специальные условия обслуживания для бизнеса</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                        <Truck className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">Быстрая доставка</h4>
-                        <p>Приоритетная доставка для корпоративных заказов</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                        <ClipboardCheck className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">Специальные условия</h4>
-                        <p>Гибкие системы оплаты и индивидуальные предложения</p>
-                      </div>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              {/* Replace corporate clients card with image */}
+              <img 
+                src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
+                alt="О нас" 
+                className="w-full h-auto rounded-lg shadow-md"
+              />
             </div>
           </div>
         </section>
 
-        {/* Interactive Order Schema Section */}
-        <section className="mb-16 container-custom">
+        {/* Interactive Order Schema Section - Updated to remove blue circles from numbers and add them to arrows */}
+        <section id="order-schema" className="mb-16 container-custom">
           <h2 className="section-title text-center mb-8">Удобная схема заказа</h2>
           <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
             Процесс выстроен так, чтобы вы были услышаны, а мы преобразовали ваши идеи в конечный проект.
           </p>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left side - Steps list */}
+            {/* Left side - Steps list with updated styling */}
             <div className="flex flex-col space-y-3">
               {orderSteps.map((step) => (
                 <div 
@@ -477,15 +446,15 @@ const Index = () => {
                       : "bg-[rgb(245,245,245)] hover:bg-[rgb(240,240,240)]"
                   }`}
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                    <span className="font-bold">{step.number}</span>
+                  <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">
+                    {step.number}
                   </div>
                   <div className="flex-grow">
                     <h3 className="font-medium">{step.title}</h3>
                   </div>
-                  <ChevronRight className={`h-5 w-5 transition-colors ${
-                    activeStep === step.number ? "text-[rgb(0,0,0)]" : "text-[rgb(180,180,180)]"
-                  }`} />
+                  <div className={`w-7 h-7 rounded-full ${activeStep === step.number ? "bg-[#b3c9dd]" : "bg-gray-200"} flex items-center justify-center`}>
+                    <ChevronRight className={`h-5 w-5 transition-colors text-white`} />
+                  </div>
                 </div>
               ))}
             </div>
@@ -551,16 +520,25 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact Form for Customers */}
+        {/* Contact Form for Customers - Updated to add image to the right */}
         <section className="mb-16 container-custom">
           <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
-          <div className="max-w-md mx-auto bg-white shadow-md rounded-xl p-6">
-            <ContactForm sourcePageType="customers" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white shadow-md rounded-xl p-6">
+              <ContactForm sourcePageType="customers" />
+            </div>
+            <div className="flex items-center justify-center">
+              <img 
+                src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
+                alt="Связаться с нами" 
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+            </div>
           </div>
         </section>
       </div>
 
-      {/* Content from Designers page */}
+      {/* Content from Designers page - Updated FAQ section */}
       <div id="designers" className="designers-section bg-[rgb(252,247,241)]/30 py-16">
         <div className="container-custom">
           {/* Hero Section for Designers */}
@@ -613,7 +591,7 @@ const Index = () => {
             </div>
           </section>
 
-          {/* FAQ Section */}
+          {/* FAQ Section - Updated styling for numbers and arrow */}
           <section className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
               <h2 className="section-title mb-6">Ответы на частые вопросы</h2>
@@ -621,11 +599,14 @@ const Index = () => {
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
                     <AccordionTrigger className="py-4 hover:no-underline font-medium">
-                      <div className="flex items-center gap-2 text-left">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[rgb(242,237,231)] flex items-center justify-center text-xs font-bold">
+                      <div className="flex items-center gap-2 text-left w-full">
+                        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold">
                           {index + 1}
                         </div>
-                        <span>{faq.question}</span>
+                        <span className="flex-grow">{faq.question}</span>
+                        <div className="w-7 h-7 rounded-full bg-[#e5dbb7] flex items-center justify-center ml-2">
+                          <ChevronRight className="h-4 w-4 transition-transform duration-200 transform group-data-[state=open]:rotate-90" />
+                        </div>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="pl-8">
@@ -636,7 +617,7 @@ const Index = () => {
               </Accordion>
             </div>
             <div>
-              <h2 className="section-title mb-6">Обратная связь</h2>
+              <h2 className="section-title mb-6">Не нашли ответа? Задайте свой вопрос</h2>
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <Form {...designerForm}>
@@ -717,7 +698,7 @@ const Index = () => {
                         )}
                       />
                       
-                      <Button type="submit" className="w-full bg-black text-white hover:bg-black/80">
+                      <Button type="submit" className="w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80">
                         <MessageSquare className="mr-2 h-4 w-4" />
                         Отправить
                       </Button>

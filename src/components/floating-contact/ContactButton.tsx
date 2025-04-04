@@ -15,7 +15,7 @@ const ContactButton = ({ isOpen, onClick, isPulsing, children }: ContactButtonPr
     <motion.div
       animate={{
         scale: isPulsing ? [1, 1.1, 1] : 1,
-        boxShadow: isPulsing ? "0px 0px 8px 4px rgba(155, 135, 245, 0.6)" : "0px 0px 0px 0px rgba(155, 135, 245, 0)"
+        boxShadow: isPulsing ? "0px 0px 8px 4px rgba(229, 219, 183, 0.6)" : "0px 0px 0px 0px rgba(229, 219, 183, 0)"
       }}
       transition={{
         scale: { duration: 0.6, ease: "easeInOut" },
@@ -27,7 +27,7 @@ const ContactButton = ({ isOpen, onClick, isPulsing, children }: ContactButtonPr
         className={`rounded-full shadow-lg transition-colors ${
           isOpen 
             ? "bg-accent text-accent-foreground" 
-            : "bg-[#9b87f5] text-white hover:bg-[#8a70fa]"
+            : "bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/90"
         } hover:scale-110 transition-transform transform relative`}
         onClick={onClick}
       >

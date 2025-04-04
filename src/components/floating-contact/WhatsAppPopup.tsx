@@ -31,7 +31,7 @@ const WhatsAppPopup = ({ isVisible, onClose, onClick }: WhatsAppPopupProps) => {
       <p className="text-sm mb-3">Напишите нам в WhatsApp для быстрой связи</p>
       <Button 
         onClick={onClick}
-        className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white"
+        className="w-full bg-[#fbf6f0] hover:bg-[#fbf6f0]/80 text-black border border-gray-200"
       >
         <MessageCircle className="mr-2 h-4 w-4" />
         Написать в WhatsApp
