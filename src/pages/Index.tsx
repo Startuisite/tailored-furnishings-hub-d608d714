@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -44,7 +45,7 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
             {subtitle}
           </Badge>
         </div>
-        <CardContent className="flex items-center justify-between p-3 bg-npm-light">
+        <CardContent className="flex items-center justify-between p-3 bg-[#fbf6f0]">
           <div className="flex items-center space-x-2">
             <h3 className="text-lg font-medium">{title}</h3>
           </div>
@@ -69,66 +70,66 @@ const Index = () => {
     "https://i.postimg.cc/sfqgCLq0/hbi6-LHogp-Q.png"  // Спальня/кабинет
   ];
 
-  const [categories] = useState<CategoryProps[]>([
+  const [categoriesData] = useState<CategoryProps[]>([
     {
       title: "Прихожая",
       image: "https://i.postimg.cc/sXRBKY6D/2-P5-Z3-R2o0t.png", 
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Гостиная",
       image: "https://i.postimg.cc/2j1tDn2S/w-XOps33y-Lh.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Кухня",
       image: "https://i.postimg.cc/DyXGPN0K/bfl8-HSy-URY.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Детская",
       image: "https://i.postimg.cc/SQXDYk0S/c-COii-RTOMr.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Спальня",
       image: "https://i.postimg.cc/FRZBHxwY/hbi6-LHogp-Q.png", 
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Гардероб",
       image: "https://i.postimg.cc/CMf9Tjxs/k3u1-F9-Odg0.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Шкафы",
       image: "https://i.postimg.cc/W457YmfV/1b-F5-JIOCs-V-1.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Ванна", 
       image: "https://i.postimg.cc/G3kT55GP/0-T2p-Iwn3-Cf.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Мягкая мебель",
       image: "https://i.postimg.cc/fyPz8PYd/AErw-XCs-HOn.png", 
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Отели",
       image: "https://i.postimg.cc/x8BWBV8K/4-KM0-OH6-Myn.png", 
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
     {
       title: "Перегородки из мебели", 
       image: "https://i.postimg.cc/wB8HrJZ1/3-DZ5-Nk948-L.png",
-      subtitle: "под заказ" 
+      subtitle: "на заказ" 
     },
     {
       title: "Комплексная меблировка",
       image: "https://i.postimg.cc/V6tKV0yk/aeog-UZSa-Uz.png",
-      subtitle: "под заказ"
+      subtitle: "на заказ"
     },
   ]);
 
@@ -469,7 +470,7 @@ const Index = () => {
               {orderSteps.map((step) => (
                 <div 
                   key={step.number}
-                  onClick={()={() => handleStepSelect(step.number)}
+                  onClick={() => handleStepSelect(step.number)}
                   className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all ${
                     activeStep === step.number 
                       ? "bg-white shadow-md" 
