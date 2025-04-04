@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,6 +18,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useQuery } from "@tanstack/react-query";
 
 type CategoryProps = {
   title: string;
@@ -44,7 +44,7 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
             {subtitle}
           </Badge>
         </div>
-        <CardContent className="flex items-center justify-between p-4 bg-npm-beige">
+        <CardContent className="flex items-center justify-between p-3 bg-npm-light">
           <div className="flex items-center space-x-2">
             <h3 className="text-lg font-medium">{title}</h3>
           </div>
@@ -131,6 +131,23 @@ const Index = () => {
       subtitle: "под заказ"
     },
   ]);
+
+  // Replace the static categories with data from Supabase
+  const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
+    queryKey: ['catalog'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('Catalog')
+        .select('*');
+      
+      if (error) {
+        console.error('Ошибка при загрузке каталога:', error);
+        throw error;
+      }
+      
+      return data || [];
+    },
+  });
 
   // Order steps data with updated titles to match step details
   const orderSteps = [
@@ -323,17 +340,23 @@ const Index = () => {
       {/* Catalog section - идентификатор для навигации */}
       <section id="catalog" className="catalog-section py-16 bg-npm-light/30">
         <div className="container-custom">
-          <h1 className="section-title mb-10 text-center">Каталог</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {categories.map((category, index) => (
-              <CategoryCard
-                key={index}
-                title={category.title}
-                image={category.image}
-                subtitle={category.subtitle}
-              />
-            ))}
-          </div>
+          <h1 className="section-title mb-10 text-left">Каталог</h1>
+          {isLoadingCategories ? (
+            <div className="flex justify-center items-center min-h-[200px]">
+              <p className="text-lg">Загрузка каталога...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.map((category, index) => (
+                <CategoryCard
+                  key={index}
+                  title={category["Название карточки"] || ""}
+                  image={category["Фото в каталоге"] || ""}
+                  subtitle="на заказ"
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
       
@@ -446,7 +469,7 @@ const Index = () => {
               {orderSteps.map((step) => (
                 <div 
                   key={step.number}
-                  onClick={() => handleStepSelect(step.number)}
+                  onClick={()={() => handleStepSelect(step.number)}
                   className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all ${
                     activeStep === step.number 
                       ? "bg-white shadow-md" 
