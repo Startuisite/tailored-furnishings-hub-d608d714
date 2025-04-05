@@ -187,7 +187,7 @@ const ContactForm = ({
           
           <Button 
             type="submit" 
-            className={`w-full ${customButtonClass || ''}`} 
+            className={`w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80 ${customButtonClass || ''}`} 
             disabled={isSubmitting}
           >
             {isSubmitting ? "Отправка..." : "Заказать звонок"}
@@ -199,8 +199,8 @@ const ContactForm = ({
 
   return (
     <Form {...fullForm}>
-      <form onSubmit={fullForm.handleSubmit(onSubmit)} className="space-y-4 h-full flex flex-col">
-        <div className="space-y-4 flex-grow">
+      <form onSubmit={fullForm.handleSubmit(onSubmit)} className="space-y-3 h-full flex flex-col">
+        <div className="space-y-3 flex-grow">
           <FormField
             control={fullForm.control}
             name="name"
@@ -290,7 +290,7 @@ const ContactForm = ({
             control={fullForm.control}
             name="consent"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 mb-2">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
@@ -310,7 +310,7 @@ const ContactForm = ({
         
         <Button 
           type="submit" 
-          className={`w-full ${customButtonClass || ''}`} 
+          className={`w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80 ${customButtonClass || ''}`} 
           disabled={isSubmitting}
         >
           {isSubmitting ? "Отправка..." : "Отправить заявку"}

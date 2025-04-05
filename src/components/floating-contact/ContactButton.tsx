@@ -24,7 +24,7 @@ const ContactButton = ({
       size="icon"
       onClick={onClick}
       className={cn(
-        "relative rounded-full shadow-lg z-10",
+        "relative rounded-full shadow-lg z-10 bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80",
         isPulsing && !isOpen ? "animate-pulse" : "",
         className
       )}
