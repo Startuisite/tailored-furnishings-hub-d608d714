@@ -381,12 +381,12 @@ const Index = () => {
           </div>
         </section>
 
-        {/* About Us Section - Updated to remove the Corporate Clients block and add image */}
+        {/* About Us Section - Updated to ensure equal heights */}
         <section className="mb-16 container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch h-full">
+            <div className="flex flex-col h-full">
               <h2 className="section-title mb-6">О нас</h2>
-              <div className="space-y-4 text-lg">
+              <div className="space-y-4 text-lg flex-grow">
                 <p>
                   Наша компания специализируется на производстве высококачественной 
                   мебели на заказ для вашего дома и офиса. Мы используем только 
@@ -415,13 +415,15 @@ const Index = () => {
                 </ul>
               </div>
             </div>
-            <div>
-              {/* Replace corporate clients card with image */}
-              <img 
-                src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
-                alt="О нас" 
-                className="w-full h-auto rounded-lg shadow-md"
-              />
+            <div className="h-full flex items-center">
+              {/* Update image container to fill the height */}
+              <div className="h-full w-full">
+                <img 
+                  src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
+                  alt="О нас" 
+                  className="w-full h-full object-cover rounded-lg shadow-md"
+                />
+              </div>
             </div>
           </div>
         </section>
