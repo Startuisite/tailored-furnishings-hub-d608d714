@@ -383,8 +383,8 @@ const Index = () => {
 
         {/* About Us Section - Updated to fix equal heights between text and image */}
         <section className="mb-16 container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:h-[600px]">
-            <div className="flex flex-col h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex flex-col md:h-[450px]">
               <h2 className="section-title mb-6">О нас</h2>
               <div className="space-y-4 text-lg flex-grow">
                 <p>
@@ -415,7 +415,7 @@ const Index = () => {
                 </ul>
               </div>
             </div>
-            <div className="h-full">
+            <div className="md:h-[450px]">
               <img 
                 src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
                 alt="О нас" 
