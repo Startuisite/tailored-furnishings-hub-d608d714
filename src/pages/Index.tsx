@@ -519,7 +519,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact Form for Customers - Updated to prevent image cropping */}
+        {/* Contact Form for Customers - Updated to show the top of the image */}
         <section className="mb-16 container-custom">
           <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -527,11 +527,11 @@ const Index = () => {
               <ContactForm sourcePageType="customers" />
             </div>
             <div className="h-auto">
-              <div className="w-full h-full max-h-[600px] relative overflow-hidden rounded-lg shadow-md">
+              <div className="w-full h-full max-h-[600px] relative rounded-lg shadow-md">
                 <img 
                   src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
                   alt="Связаться с нами" 
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
