@@ -381,9 +381,9 @@ const Index = () => {
           </div>
         </section>
 
-        {/* About Us Section - Updated to ensure equal heights */}
+        {/* About Us Section - Updated to fix equal heights between text and image */}
         <section className="mb-16 container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:h-[600px]">
             <div className="flex flex-col h-full">
               <h2 className="section-title mb-6">О нас</h2>
               <div className="space-y-4 text-lg flex-grow">
@@ -415,20 +415,17 @@ const Index = () => {
                 </ul>
               </div>
             </div>
-            <div className="h-full flex items-center">
-              {/* Update image container to fill the height */}
-              <div className="h-full w-full">
-                <img 
-                  src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
-                  alt="О нас" 
-                  className="w-full h-full object-cover rounded-lg shadow-md"
-                />
-              </div>
+            <div className="h-full">
+              <img 
+                src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
+                alt="О нас" 
+                className="w-full h-full object-cover rounded-lg shadow-md"
+              />
             </div>
           </div>
         </section>
 
-        {/* Interactive Order Schema Section - Updated to remove blue circles from numbers and add them to arrows */}
+        {/* Interactive Order Schema Section */}
         <section id="order-schema" className="mb-16 container-custom">
           <h2 className="section-title text-center mb-8">Удобная схема заказа</h2>
           <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
@@ -522,25 +519,25 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact Form for Customers - Updated to add image to the right */}
+        {/* Contact Form for Customers - Updated to fix form height not stretching with image */}
         <section className="mb-16 container-custom">
           <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white shadow-md rounded-xl p-6">
               <ContactForm sourcePageType="customers" />
             </div>
-            <div className="flex items-center justify-center">
+            <div className="md:h-[480px]">
               <img 
                 src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
                 alt="Связаться с нами" 
-                className="w-full h-auto rounded-lg shadow-md"
+                className="w-full h-full object-cover rounded-lg shadow-md"
               />
             </div>
           </div>
         </section>
       </div>
 
-      {/* Content from Designers page - Updated FAQ section */}
+      {/* Content from Designers page */}
       <div id="designers" className="designers-section bg-[rgb(252,247,241)]/30 py-16">
         <div className="container-custom">
           {/* Hero Section for Designers */}
@@ -556,13 +553,13 @@ const Index = () => {
               <div className="mt-8">
                 <p className="font-medium mb-2">У вас есть?</p>
                 <div className="flex items-center gap-3 mb-1">
-                  <div className="w-5 h-5 rounded bg-[rgb(242,237,231)] flex items-center justify-center">
+                  <div className="w-5 h-5 rounded bg-[rgb(242,237,243)] flex items-center justify-center">
                     <Check size={16} />
                   </div>
                   <p>Клиенты, которым нужна мебель на заказ</p>
                 </div>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-5 h-5 rounded bg-[rgb(242,237,231)] flex items-center justify-center">
+                  <div className="w-5 h-5 rounded bg-[rgb(242,237,243)] flex items-center justify-center">
                     <Check size={16} />
                   </div>
                   <p>Проекты, требующие качественной реализации</p>
@@ -599,7 +596,7 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               {benefits.map((benefit, index) => (
                 <Card key={index} className="border-0 shadow-md overflow-hidden h-full flex flex-col">
-                  <div className="p-6 bg-[rgb(242,237,231)] flex-1 flex flex-col">
+                  <div className="p-6 bg-[rgb(242,237,243)] flex-1 flex flex-col">
                     <h3 className="text-xl font-medium mb-4">{benefit.title}</h3>
                     <p className="text-gray-700 flex-grow">{benefit.description}</p>
                   </div>
