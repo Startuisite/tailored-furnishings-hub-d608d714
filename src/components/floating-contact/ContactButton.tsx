@@ -1,39 +1,41 @@
 
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface ContactButtonProps {
+  children: ReactNode;
   isOpen: boolean;
   onClick: () => void;
-  isPulsing: boolean;
-  children: ReactNode;
+  isPulsing?: boolean;
+  className?: string;
 }
 
-const ContactButton = ({ isOpen, onClick, isPulsing, children }: ContactButtonProps) => {
+const ContactButton = ({ 
+  children, 
+  isOpen, 
+  onClick, 
+  isPulsing = false,
+  className
+}: ContactButtonProps) => {
   return (
-    <motion.div
-      animate={{
-        scale: isPulsing ? [1, 1.1, 1] : 1,
-        boxShadow: isPulsing ? "0px 0px 8px 4px rgba(229, 219, 183, 0.6)" : "0px 0px 0px 0px rgba(229, 219, 183, 0)"
-      }}
-      transition={{
-        scale: { duration: 0.6, ease: "easeInOut" },
-        boxShadow: { duration: 0.6, ease: "easeInOut" }
-      }}
+    <Button
+      size="icon"
+      onClick={onClick}
+      className={cn(
+        "relative rounded-full shadow-lg z-10",
+        isPulsing && !isOpen ? "animate-pulse" : "",
+        className
+      )}
     >
-      <Button
-        size="lg"
-        className={`rounded-full shadow-lg transition-colors ${
-          isOpen 
-            ? "bg-accent text-accent-foreground" 
-            : "bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/90"
-        } hover:scale-110 transition-transform transform relative`}
-        onClick={onClick}
+      <motion.div
+        animate={{ rotate: isOpen ? 0 : 360 }}
+        transition={{ duration: 0.3 }}
       >
         {children}
-      </Button>
-    </motion.div>
+      </motion.div>
+    </Button>
   );
 };
 

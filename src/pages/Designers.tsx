@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Check, MessageSquare, ChevronRight } from "lucide-react";
 import Header from "../components/Header";
@@ -13,6 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import ContactFormDialog from "@/components/ContactFormDialog";
 
 const Designers = () => {
   const [benefits] = useState([
@@ -121,12 +121,27 @@ const Designers = () => {
                   </div>
                   <p>Клиенты, которым нужна мебель на заказ</p>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 mb-4">
                   <div className="w-5 h-5 rounded bg-[rgb(242,237,231)] flex items-center justify-center">
                     <Check size={16} />
                   </div>
                   <p>Проекты, требующие качественной реализации</p>
                 </div>
+                
+                {/* Add "Да" button with popup form */}
+                <ContactFormDialog
+                  trigger={
+                    <Button
+                      className="bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80 font-medium"
+                    >
+                      Да
+                    </Button>
+                  }
+                  title="Заявка дизайнера"
+                  description="Оставьте свои контактные данные, и мы свяжемся с вами для обсуждения сотрудничества"
+                  showDesignerCheckbox={false}
+                  sourcePageType="designers"
+                />
               </div>
             </div>
             <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">

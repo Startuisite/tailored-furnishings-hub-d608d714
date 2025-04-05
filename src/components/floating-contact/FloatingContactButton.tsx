@@ -33,12 +33,12 @@ const FloatingContactButton = () => {
       <div className="flex flex-col items-end space-y-3">
         {isOpen && (
           <>
-            {/* WhatsApp button */}
+            {/* WhatsApp button - updated color */}
             <ContactOption
               id="whatsapp"
               icon={<MessageCircle size={24} />}
               label="Написать в WhatsApp"
-              color="bg-[#fbf6f0] hover:bg-[#fbf6f0]/80"
+              color="bg-[#fbf6f0] hover:bg-[#fbf6f0]/80" /* Updated color */
               onClick={handleWhatsAppClick}
               isHovered={isHovered}
               setIsHovered={setIsHovered}
@@ -96,11 +96,12 @@ const FloatingContactButton = () => {
           </>
         )}
 
-        {/* Main toggle button with animated icon change */}
+        {/* Main toggle button with color change to #e5dbb7 */}
         <ContactButton 
           isOpen={isOpen} 
           onClick={() => setIsOpen(!isOpen)} 
           isPulsing={isPulsing}
+          className="bg-[#e5dbb7] hover:bg-[#e5dbb7]/80 text-black"
         >
           {isOpen ? <X size={24} /> : contactIcons[currentIcon]}
         </ContactButton>
