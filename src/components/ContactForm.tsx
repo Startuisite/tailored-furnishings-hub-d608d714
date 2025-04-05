@@ -285,12 +285,12 @@ const ContactForm = ({
             />
           )}
           
-          {/* Consent checkbox - always shown */}
+          {/* Consent checkbox - always shown - removing mb-2 class to reduce spacing */}
           <FormField
             control={fullForm.control}
             name="consent"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 mb-2">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
