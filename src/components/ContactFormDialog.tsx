@@ -24,7 +24,7 @@ interface ContactFormDialogProps {
 
 const ContactFormDialog = ({
   trigger,
-  title = "Заказать консультацию",
+  title = "Заказать расчёт",
   description = "Заполните форму, и наш менеджер свяжется с вами в ближайшее время",
   showDesignerCheckbox = true,
   phoneOnly = false,
