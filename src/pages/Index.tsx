@@ -519,19 +519,21 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact Form for Customers - Updated to fix form height not stretching with image */}
+        {/* Contact Form for Customers - Updated to prevent image cropping */}
         <section className="mb-16 container-custom">
           <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white shadow-md rounded-xl p-6">
               <ContactForm sourcePageType="customers" />
             </div>
-            <div className="md:h-[480px]">
-              <img 
-                src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
-                alt="Связаться с нами" 
-                className="w-full h-full object-cover rounded-lg shadow-md"
-              />
+            <div className="h-auto">
+              <div className="w-full h-full max-h-[600px] relative overflow-hidden rounded-lg shadow-md">
+                <img 
+                  src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
+                  alt="Связаться с нами" 
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
             </div>
           </div>
         </section>
