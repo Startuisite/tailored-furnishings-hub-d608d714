@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';

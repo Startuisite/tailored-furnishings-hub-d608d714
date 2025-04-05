@@ -161,11 +161,14 @@ const Designers = () => {
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
                     <AccordionTrigger className="py-4 hover:no-underline font-medium">
-                      <div className="flex items-center gap-2 text-left">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[rgb(242,237,231)] flex items-center justify-center text-xs font-bold">
+                      <div className="flex items-center gap-2 text-left w-full">
+                        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold">
                           {index + 1}
                         </div>
-                        <span>{faq.question}</span>
+                        <span className="flex-grow">{faq.question}</span>
+                        <div className="w-7 h-7 rounded-full bg-[#e5dbb7] flex items-center justify-center ml-2">
+                          <ChevronRight className="h-4 w-4 transition-transform duration-200 transform group-data-[state=open]:rotate-90" />
+                        </div>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="pl-8">
@@ -176,7 +179,7 @@ const Designers = () => {
               </Accordion>
             </div>
             <div>
-              <h2 className="section-title mb-6">Обратная связь</h2>
+              <h2 className="section-title mb-6">Не нашли ответа? Задайте свой вопрос</h2>
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <Form {...form}>
@@ -257,7 +260,7 @@ const Designers = () => {
                         )}
                       />
                       
-                      <Button type="submit" className="w-full bg-black text-white hover:bg-black/80">
+                      <Button type="submit" className="w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80">
                         <MessageSquare className="mr-2 h-4 w-4" />
                         Отправить
                       </Button>
