@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Check, MessageSquare } from "lucide-react";
+import { Check, MessageSquare, ChevronRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
