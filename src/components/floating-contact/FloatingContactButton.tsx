@@ -33,12 +33,12 @@ const FloatingContactButton = () => {
       <div className="flex flex-col items-end space-y-3">
         {isOpen && (
           <>
-            {/* WhatsApp button - updated color */}
+            {/* WhatsApp button */}
             <ContactOption
               id="whatsapp"
               icon={<MessageCircle size={24} />}
               label="Написать в WhatsApp"
-              color="bg-[#fbf6f0] hover:bg-[#fbf6f0]/80" /* Updated color */
+              color="bg-[#fbf6f0] hover:bg-[#fbf6f0]/80"
               onClick={handleWhatsAppClick}
               isHovered={isHovered}
               setIsHovered={setIsHovered}
