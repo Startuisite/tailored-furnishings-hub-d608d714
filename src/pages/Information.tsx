@@ -1,5 +1,5 @@
 
-import { MapPin, Phone, Mail, FileText, Award, Clock, BadgeCheck } from "lucide-react";
+import { MapPin, Phone, Mail, FileText, Award, Clock } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,44 +24,6 @@ const Information = () => {
       icon: <FileText className="h-10 w-10 text-npm-blue" />,
       title: "Документация",
       description: "Вся наша мебель сертифицирована и соответствует российским и международным стандартам качества и безопасности."
-    }
-  ];
-
-  // Testimonials data
-  const testimonials = [
-    {
-      name: "Анна Петрова",
-      position: "Дизайнер интерьера",
-      text: "Уже более 5 лет сотрудничаю с НПМ и могу с уверенностью сказать, что это одни из лучших производителей мебели. Высокое качество, точность исполнения и внимание к деталям отличает их от многих других.",
-      rating: 5
-    },
-    {
-      name: "Сергей Иванов",
-      position: "Клиент",
-      text: "Заказывали кухню и гардеробную. Результат превзошел все ожидания! Отличное качество материалов, идеальная сборка и монтаж. Рекомендую всем, кто ценит функциональность и эстетику.",
-      rating: 5
-    },
-    {
-      name: "Марина Сидорова",
-      position: "Архитектор",
-      text: "Компания НПМ - это надежный партнер для реализации сложных и нестандартных решений. Всегда предлагают оптимальные варианты по соотношению цена-качество. Наше сотрудничество всегда приносит отличные результаты.",
-      rating: 4
-    }
-  ];
-
-  // Certificates data
-  const certificates = [
-    {
-      title: "ISO 9001:2015",
-      description: "Сертификат системы менеджмента качества"
-    },
-    {
-      title: "ГОСТ Р 56599-2015",
-      description: "Соответствие стандартам безопасности мебельной продукции"
-    },
-    {
-      title: "Экологический сертификат",
-      description: "Подтверждение экологичности используемых материалов"
     }
   ];
 
@@ -100,57 +62,6 @@ const Information = () => {
                     </div>
                     <h3 className="text-xl font-medium mb-3 text-center">{card.title}</h3>
                     <p className="text-center text-foreground">{card.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          {/* Testimonials Section */}
-          <section className="mb-16 bg-npm-light p-8 rounded-xl shadow-md">
-            <h2 className="section-title text-center mb-8">Отзывы наших клиентов</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex mb-4 justify-center">
-                      {[...Array(5)].map((_, i) => (
-                        <svg 
-                          key={i} 
-                          className={`h-5 w-5 ${i < testimonial.rating ? 'text-[#FFD700] fill-[#FFD700]' : 'text-muted-foreground'}`}
-                          xmlns="http://www.w3.org/2000/svg" 
-                          viewBox="0 0 24 24" 
-                          fill="currentColor"
-                          stroke="currentColor"
-                          strokeWidth="1"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-foreground italic mb-4 text-center">"{testimonial.text}"</p>
-                    <div className="text-center">
-                      <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.position}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          {/* Certificates Section */}
-          <section className="mb-16 bg-npm-blue p-8 rounded-xl shadow-md">
-            <h2 className="section-title text-center mb-8">Наши сертификаты</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {certificates.map((certificate, index) => (
-                <Card key={index} className="border border-border/40 shadow-sm overflow-hidden bg-white hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="mb-4 flex justify-center bg-npm-light p-3 rounded-full w-16 h-16 mx-auto">
-                      <BadgeCheck className="h-10 w-10 text-npm-blue" />
-                    </div>
-                    <h3 className="text-xl font-medium mb-3 text-center">{certificate.title}</h3>
-                    <p className="text-center text-foreground">{certificate.description}</p>
                   </CardContent>
                 </Card>
               ))}

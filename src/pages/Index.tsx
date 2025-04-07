@@ -326,6 +326,28 @@ const Index = () => {
     }
   ]);
 
+  // Testimonials data
+  const testimonials = [
+    {
+      name: "Анна Петрова",
+      position: "Дизайнер интерьера",
+      text: "Уже более 5 лет сотрудничаю с НПМ и могу с уверенностью сказать, что это одни из лучших производителей мебели. Высокое качество, точность исполнения и внимание к деталям отличает их от многих других.",
+      rating: 5
+    },
+    {
+      name: "Сергей Иванов",
+      position: "Клиент",
+      text: "Заказывали кухню и гардеробную. Результат превзошел все ожидания! Отличное качество материалов, идеальная сборка и монтаж. Рекомендую всем, кто ценит функциональность и эстетику.",
+      rating: 5
+    },
+    {
+      name: "Марина Сидорова",
+      position: "Архитектор",
+      text: "Компания НПМ - это надежный партнер для реализации сложных и нестандартных решений. Всегда предлагают оптимальные варианты по соотношению цена-качество. Наше сотрудничество всегда приносит отличные результаты.",
+      rating: 4
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -692,41 +714,4 @@ const Index = () => {
                       />
                       
                       <FormField
-                        control={designerForm.control}
-                        name="agreement"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox 
-                                checked={field.value} 
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel>
-                                Я согласен на обработку персональных данных
-                              </FormLabel>
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button type="submit" className="w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80">
-                        <MessageSquare className="mr-2 h-4 w-4" />
-                        Отправить
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-        </div>
-      </div>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
+                        control={designerForm
