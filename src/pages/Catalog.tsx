@@ -94,7 +94,7 @@ const Catalog = () => {
         </div>
       </main>
       
-      {/* Added testimonials section */}
+      {/* Add testimonials section */}
       <TestimonialsSection />
       
       <Footer />
