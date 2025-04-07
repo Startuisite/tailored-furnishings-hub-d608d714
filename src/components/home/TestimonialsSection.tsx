@@ -58,9 +58,9 @@ const TestimonialsSection = () => {
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 border border-gray-200">
+                  <Avatar className="h-12 w-12 border border-npm-blue bg-npm-blue/20">
                     <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback className="bg-npm-blue text-white">{testimonial.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
                     <h3 className="font-medium text-lg">{testimonial.name}</h3>
