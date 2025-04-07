@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -16,13 +17,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import ContactFormDialog from '@/components/ContactFormDialog';
-import Testimonials from '@/components/Testimonials';
 
 type CategoryProps = {
   title: string;
@@ -32,146 +30,229 @@ type CategoryProps = {
 
 const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-200">
-      <Link to={`/catalog/${title}`}>
-        <CardContent className="p-0">
-          <AspectRatio ratio={16 / 9}>
-            <img
-              src={image}
-              alt={title}
-              className="object-cover rounded-md"
+    <Link to={`/catalog/${title.toLowerCase()}`}>
+      <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl">
+        <div className="relative h-64 overflow-hidden">
+          <img 
+            src={image} 
+            alt={title} 
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <Badge 
+            variant="outline" 
+            className="absolute bottom-3 left-3 bg-white/80 text-black border border-npm-blue/30 px-2 py-0.5 text-xs font-normal shadow-sm"
+          >
+            <BadgeCheck size={12} className="mr-1" />
+            {subtitle}
+          </Badge>
+        </div>
+        <CardContent className="flex items-center justify-between p-3 bg-[#fbf6f0]">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-lg font-medium">{title}</h3>
+          </div>
+          <div className="bg-npm-light p-2 rounded-full shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-md">
+            <ArrowRight 
+              className="text-black transition-all duration-300 group-hover:translate-x-1" 
+              size={22} 
+              strokeWidth={2.5} 
             />
-          </AspectRatio>
-          <div className="p-4">
-            <h3 className="text-lg font-semibold">{title}</h3>
-            <p className="text-sm text-gray-500">{subtitle}</p>
           </div>
         </CardContent>
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 
 const Index = () => {
+  // Массив изображений для слайдера с внешними ссылками для более быстрой загрузки
   const heroImages = [
-    "https://i.postimg.cc/j291Q480/image.png",
-    "https://i.postimg.cc/j291Q480/image.png",
-    "https://i.postimg.cc/j291Q480/image.png",
+    "https://i.postimg.cc/44DsS9HD/0-T2p-Iwn3-Cf.png", // Ванная комната
+    "https://i.postimg.cc/MTZvXjmP/bfl8-HSy-URY.png", // Кухня
+    "https://i.postimg.cc/sfqgCLq0/hbi6-LHogp-Q.png"  // Спальня/кабинет
   ];
 
-  const categoriesData = [
+  const [categoriesData] = useState<CategoryProps[]>([
     {
-      "Название карточки": "Кухни",
-      "Фото в каталоге": "https://i.postimg.cc/j291Q480/image.png",
-    },
-    {
-      "Название карточки": "Шкафы",
-      "Фото в каталоге": "https://i.postimg.cc/j291Q480/image.png",
+      title: "Прихожая",
+      image: "https://i.postimg.cc/sXRBKY6D/2-P5-Z3-R2o0t.png", 
+      subtitle: "на заказ"
     },
     {
-      "Название карточки": "Гардеробные",
-      "Фото в каталоге": "https://i.postimg.cc/j291Q480/image.png",
+      title: "Гостиная",
+      image: "https://i.postimg.cc/2j1tDn2S/w-XOps33y-Lh.png",
+      subtitle: "на заказ"
     },
     {
-      "Название карточки": "Тумбы",
-      "Фото в каталоге": "https://i.postimg.cc/j291Q480/image.png",
+      title: "Кухня",
+      image: "https://i.postimg.cc/DyXGPN0K/bfl8-HSy-URY.png",
+      subtitle: "на заказ"
     },
     {
-      "Название карточки": "Столы",
-      "Фото в каталоге": "https://i.postimg.cc/j291Q480/image.png",
+      title: "Детская",
+      image: "https://i.postimg.cc/SQXDYk0S/c-COii-RTOMr.png",
+      subtitle: "на заказ"
     },
     {
-      "Название карточки": "Кровати",
-      "Фото в каталоге": "https://i.postimg.cc/j291Q480/image.png",
+      title: "Спальня",
+      image: "https://i.postimg.cc/FRZBHxwY/hbi6-LHogp-Q.png", 
+      subtitle: "на заказ"
     },
-  ];
-
-  const [activeStep, setActiveStep] = useState(1);
-
-  const orderSteps = [
-    { number: 1, title: "Заявка" },
-    { number: 2, title: "Замер" },
-    { number: 3, title: "Дизайн-проект" },
-    { number: 4, title: "Производство" },
-    { number: 5, title: "Доставка" },
-    { number: 6, title: "Установка" },
-  ];
-
-  const stepDetails = {
-    1: {
-      title: "Оставьте заявку",
-      description: "Свяжитесь с нами любым удобным способом: по телефону, через форму на сайте или в социальных сетях. Наш менеджер проконсультирует вас и поможет сформулировать основные требования к проекту.",
-      image: "https://i.postimg.cc/j291Q480/image.png",
+    {
+      title: "Гардероб",
+      image: "https://i.postimg.cc/CMf9Tjxs/k3u1-F9-Odg0.png",
+      subtitle: "на заказ"
     },
-    2: {
-      title: "Бесплатный замер",
-      description: "Наш специалист приедет к вам в удобное время для проведения замеров помещения. Точные измерения — основа идеальной мебели, которая гармонично впишется в ваше пространство.",
-      image: "https://i.postimg.cc/j291Q480/image.png",
+    {
+      title: "Шкафы",
+      image: "https://i.postimg.cc/W457YmfV/1b-F5-JIOCs-V-1.png",
+      subtitle: "на заказ"
     },
-    3: {
-      title: "Дизайн-проект",
-      description: "На основе ваших пожеланий и размеров помещения наши дизайнеры разработают индивидуальный дизайн-проект мебели. Вы сможете увидеть, как будет выглядеть ваша мебель еще до начала производства.",
-      image: "https://i.postimg.cc/j291Q480/image.png",
+    {
+      title: "Ванна", 
+      image: "https://i.postimg.cc/G3kT55GP/0-T2p-Iwn3-Cf.png",
+      subtitle: "на заказ"
     },
-    4: {
-      title: "Производство",
-      description: "Мы используем современное оборудование и качественные материалы, чтобы ваша мебель была не только красивой, но и долговечной. Каждый этап производства контролируется нашими специалистами.",
-      image: "https://i.postimg.cc/j291Q480/image.png",
+    {
+      title: "Мягкая мебель",
+      image: "https://i.postimg.cc/fyPz8PYd/AErw-XCs-HOn.png", 
+      subtitle: "на заказ"
     },
-    5: {
-      title: "Доставка",
-      description: "Мы бережно доставим вашу мебель в удобное для вас время. Наша служба доставки гарантирует сохранность мебели при транспортировке.",
-      image: "https://i.postimg.cc/j291Q480/image.png",
+    {
+      title: "Отели",
+      image: "https://i.postimg.cc/x8BWBV8K/4-KM0-OH6-Myn.png", 
+      subtitle: "на заказ"
     },
-    6: {
-      title: "Профессиональная установка",
-      description: "Наши опытные монтажники быстро и качественно установят мебель в вашем доме или офисе. Мы гарантируем, что мебель будет установлена правильно и прослужит вам долгие годы.",
-      image: "https://i.postimg.cc/j291Q480/image.png",
+    {
+      title: "Перегородки из мебели", 
+      image: "https://i.postimg.cc/wB8HrJZ1/3-DZ5-Nk948-L.png",
+      subtitle: "на заказ" 
     },
-  };
+    {
+      title: "Комплексная меблировка",
+      image: "https://i.postimg.cc/V6tKV0yk/aeog-UZSa-Uz.png",
+      subtitle: "на заказ"
+    },
+  ]);
 
-  const handleStepSelect = (stepNumber: number) => {
-    setActiveStep(stepNumber);
-  };
-
-  const handleNextStep = () => {
-    setActiveStep((prevStep) => Math.min(prevStep + 1, 6));
-  };
-
-  const handlePrevStep = () => {
-    setActiveStep((prevStep) => Math.max(prevStep - 1, 1));
-  };
-
-  const designerFormSchema = z.object({
-    name: z.string().min(2, {
-      message: "Имя должно содержать минимум 2 символа",
-    }),
-    email: z.string().email({
-      message: "Введите корректный email",
-    }),
-    phone: z.string().min(6, {
-      message: "Введите корректный номер телефона",
-    }),
-    message: z.string().optional(),
-    agreement: z.literal(true, {
-      errorMap: () => ({ message: "Необходимо согласие на обработку персональных данных" }),
-    }),
+  // Replace the static categories with data from Supabase
+  const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
+    queryKey: ['catalog'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('Catalog')
+        .select('*');
+      
+      if (error) {
+        console.error('Ошибка при загрузке каталога:', error);
+        throw error;
+      }
+      
+      return data || [];
+    },
   });
 
-  type DesignerFormValues = z.infer<typeof designerFormSchema>;
+  // Order steps data with updated titles to match step details
+  const orderSteps = [
+    {
+      number: 1,
+      title: "Знакомство",
+      description: "Обсуждение ваших пожеланий и требований к мебели"
+    },
+    {
+      number: 2,
+      title: "Предварительный расчет",
+      description: "Выезд специалиста для точных замеров помещения"
+    },
+    {
+      number: 3,
+      title: "Обмерный план",
+      description: "Создание 3D-макета и согласование всех деталей"
+    },
+    {
+      number: 4,
+      title: "Дизайн проект",
+      description: "Подписание договора и внесение предоплаты"
+    },
+    {
+      number: 5,
+      title: "Изготовление мебели",
+      description: "Изготовление мебели на нашем производстве"
+    },
+    {
+      number: 6,
+      title: "Монтаж под ключ",
+      description: "Доставка и профессиональная сборка мебели у вас дома"
+    }
+  ];
+  
+  // State for the active step in the order schema
+  const [activeStep, setActiveStep] = useState(1);
 
-  const designerForm = useForm<DesignerFormValues>({
-    resolver: zodResolver(designerFormSchema),
+  // Detailed information for each step with updated external image links
+  const stepDetails = {
+    1: {
+      title: "Знакомство",
+      description: "На этом шаге мы изучаем ваши задачи и пожелания, понимаем параметры помещения, количество и возраст детей. Продумываем зонирование, расположение мебели в комнате и предлагаем концепт решения.",
+      image: "https://i.postimg.cc/PxXf4pJg/image.png"
+    },
+    2: {
+      title: "Предварительный расчет",
+      description: "Делаем предварительную оценку стоимости проекта, учитывая выбранные материалы, фурнитуру и особенности конструкции. Обсуждаем возможные варианты оптимизации бюджета.",
+      image: "https://i.postimg.cc/7LxMg91w/image.png"
+    },
+    3: {
+      title: "Обмерный план",
+      description: "Специалист выезжает к вам для проведения точных замеров помещения. Учитываются все нюансы: розетки, вентиляция, радиаторы и другие особенности, которые могут влиять на проект.",
+      image: "https://i.postimg.cc/cLdXmdZp/image.png"
+    },
+    4: {
+      title: "Дизайн проект",
+      description: "Создаем 3D-визуализацию вашей будущей мебели, согласовываем все детали, цвета, материалы и фурнитуру. Вы получаете полное представление о конечном результате.",
+      image: "/lovable-uploads/b1395111-88e3-4e79-9f7c-5de9323a0d02.png"
+    },
+    5: {
+      title: "Изготовление мебели",
+      description: "Производим мебель на собственном производстве, используя современное оборудование и качественные материалы. Контролируем каждый этап производства для гарантии качества.",
+      image: "https://i.postimg.cc/CMNZ80PB/image.png"
+    },
+    6: {
+      title: "Монтаж под ключ",
+      description: "Осуществляем доставку и профессиональная сборка мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
+      image: "https://i.postimg.cc/4d4GkDzq/image.png"
+    },
+  };
+
+  // Handle next step
+  const handleNextStep = () => {
+    if (activeStep < 6) {
+      setActiveStep(prev => prev + 1);
+    }
+  };
+
+  // Handle previous step
+  const handlePrevStep = () => {
+    if (activeStep > 1) {
+      setActiveStep(prev => prev - 1);
+    }
+  };
+
+  // Handle step selection
+  const handleStepSelect = (step: number) => {
+    setActiveStep(step);
+  };
+  
+  // Designer form state and handler
+  const designerForm = useForm({
     defaultValues: {
       name: "",
       email: "",
       phone: "",
       message: "",
-      agreement: true,
+      agreement: false,
     },
   });
 
-  const onDesignerSubmit = async (data: DesignerFormValues) => {
+  const onDesignerSubmit = async (data: any) => {
     try {
       console.log(data);
       
@@ -185,7 +266,7 @@ const Index = () => {
         "Статус": "Новая"
       };
       
-      // Insert data into Supabase
+      // Insert data into Supabase - исправляем название таблицы на client_requests
       const { error } = await supabase
         .from("client_requests")
         .insert(formData);
@@ -203,46 +284,69 @@ const Index = () => {
     }
   };
 
-  const benefits = [
-    {
-      title: "Индивидуальный дизайн",
-      description: "Разрабатываем уникальные проекты, учитывая все ваши пожелания и особенности помещения.",
-    },
+  // Designer benefits state
+  const [benefits] = useState([
     {
       title: "Качественные материалы",
-      description: "Используем только проверенные и экологически чистые материалы от надежных поставщиков.",
+      description: "Мы используем только высококачественные материалы от проверенных поставщиков, что гарантирует долговечность и надежность нашей мебели.",
+      icon: "/lovable-uploads/79705624-800c-45dd-aa32-96cd9357b606.png"
     },
     {
-      title: "Современное оборудование",
-      description: "Применяем передовые технологии и оборудование для производства мебели высокого качества.",
+      title: "Доставка и сборка",
+      description: "Мы обеспечиваем доставку и профессиональную сборку мебели, чтобы гарантировать правильную установку и удовлетворение клиента.",
+      icon: "/lovable-uploads/79705624-800c-45dd-aa32-96cd9357b606.png"
     },
     {
-      title: "Профессиональная установка",
-      description: "Наши опытные монтажники гарантируют быструю и качественную установку мебели.",
-    },
-  ];
+      title: "Гарантия",
+      description: "На всю нашу мебель предоставляется гарантия, подтверждающая уверенность в ее качестве и долговечности.",
+      icon: "/lovable-uploads/79705624-800c-45dd-aa32-96cd9357b606.png"
+    }
+  ]);
 
-  const faqs = [
+  // Designer FAQs state
+  const [faqs] = useState([
     {
-      question: "Какие материалы вы используете для изготовления мебели?",
-      answer: "Мы используем широкий спектр материалов, включая массив дерева, МДФ, ЛДСП, шпон, пластик и стекло. Все материалы сертифицированы и соответствуют высоким стандартам качества.",
+      question: "Какие размеры мебели мы делаем?",
+      answer: "Каждая комната индивидуальна, поэтому мы не ограничиваемся стандартными размерами мебели. Мы делаем любые размеры кроватей и матрасов к ним. Адаптируем мебель под ваш размер комнаты и высоту потолка. Учитываем высоту плинтуса, расположение батарей, розеток и выключателей."
     },
     {
-      question: "Сколько времени занимает изготовление мебели на заказ?",
-      answer: "Сроки изготовления зависят от сложности проекта и выбранных материалов. В среднем, процесс занимает от 2 до 6 недель.",
+      question: "Какие сроки изготовления?",
+      answer: "Срок изготовления зависит от количества и стоимости мебели. В среднем изготовление занимает от 30 до 60 рабочих дней. Точные сроки на данный момент можно уточнить у наших менеджеров. Предварительный этап от проектирования занимает от 7 дней, до согласования проекта. Сложные проекты с нестандартными решениями, подсветкой, подбором цвета всегда требуют больше времени на согласование. Мы рекомендуем закладывать несколько месяцев на все циклы: от дизайн проекта до монтажа мебели."
     },
     {
-      question: "Предоставляете ли вы гарантию на мебель?",
-      answer: "Да, на всю нашу мебель предоставляется гарантия от 12 до 24 месяцев. В случае обнаружения дефектов мы бесплатно устраним их или заменим дефектные элементы.",
+      question: "Какие материалы и фурнитура используются?",
+      answer: "Мы используем эколологические чистые материалы. Это массив дерева, фанера, мдф. В редких случаях мы используем ЛДСП Еггер, но следим за тем что бы все кромки включая задние были заклеены и толщина плит была не менее 18 мм. Устанавливаем качественную фурнитуру мировых производителей. Так же вы можете сделать заказ с фурнитурой премиум класса, BLUM и Hettich. Мы разработали собственную коллекцию зацепок для скаладромов, адаптированную под детские руки."
     },
     {
-      question: "Как происходит процесс оплаты?",
-      answer: "Мы работаем по предоплате в размере 70% от стоимости заказа. Оставшиеся 30% оплачиваются после установки мебели.",
+      question: "Чем покрывается мебель?",
+      answer: "Мы используем многослойные профессиональные системы покрытия мебели на полиуретановой основе из итальянских составляющих, и натуральные масла OSMO. В нашей стандартной палитре более 30 цветов и оттенков, которые хорошо сочетаются друг с другом. Так же мы колеруем эмаль в любой цвет по палитре RAL, WCP и NCSS."
     },
     {
-      question: "Выезжает ли дизайнер на замер помещения?",
-      answer: "Да, выезд дизайнера на замер помещения осуществляется бесплатно. Наш специалист поможет вам определиться с размерами и конфигурацией будущей мебели.",
+      question: "Есть ли у вас доставка в другие города?",
+      answer: "ОТПРАВЛЯЕМ МЕБЕЛЬ ПО ВСЕЙ РОССИИ. Мы отправляем мебель в другие города через транспортные компании. Всю мебель мы предварительно собираем, делаем фото отчет, пакуем в дополнительную упаковку и отвозим в транспортную компанию. Стоимость услуги 5% от стоимости мебели. Минимальная стоимость услуги 5000 руб."
+    }
+  ]);
+
+  // Testimonials data
+  const testimonials = [
+    {
+      name: "Анна Петрова",
+      position: "Дизайнер интерьера",
+      text: "Уже более 5 лет сотрудничаю с НПМ и могу с уверенностью сказать, что это одни из лучших производителей мебели. Высокое качество, точность исполнения и внимание к деталям отличает их от многих других.",
+      rating: 5
     },
+    {
+      name: "Сергей Иванов",
+      position: "Клиент",
+      text: "Заказывали кухню и гардеробную. Результат превзошел все ожидания! Отличное качество материалов, идеальная сборка и монтаж. Рекомендую всем, кто ценит функциональность и эстетику.",
+      rating: 5
+    },
+    {
+      name: "Марина Сидорова",
+      position: "Архитектор",
+      text: "Компания НПМ - это надежный партнер для реализации сложных и нестандартных решений. Всегда предлагают оптимальные варианты по соотношению цена-качество. Наше сотрудничество всегда приносит отличные результаты.",
+      rating: 4
+    }
   ];
 
   return (
@@ -261,9 +365,13 @@ const Index = () => {
       <section id="catalog" className="catalog-section py-16 bg-npm-light/30">
         <div className="container-custom">
           <h1 className="section-title mb-10 text-left">Каталог</h1>
-          {categoriesData ? (
+          {isLoadingCategories ? (
+            <div className="flex justify-center items-center min-h-[200px]">
+              <p className="text-lg">Загрузка каталога...</p>
+            </div>
+          ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categoriesData.map((category, index) => (
+              {categories.map((category, index) => (
                 <CategoryCard
                   key={index}
                   title={category["Название карточки"] || ""}
@@ -271,10 +379,6 @@ const Index = () => {
                   subtitle="на заказ"
                 />
               ))}
-            </div>
-          ) : (
-            <div className="flex justify-center items-center min-h-[200px]">
-              <p className="text-lg">Загрузка каталога...</p>
             </div>
           )}
         </div>
@@ -535,9 +639,6 @@ const Index = () => {
             </div>
           </section>
 
-          {/* Add Testimonials section here before the FAQ */}
-          <Testimonials className="mb-20" />
-
           {/* FAQ Section - Updated styling for numbers and arrow */}
           <section className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
@@ -615,7 +716,7 @@ const Index = () => {
                           <FormItem>
                             <FormLabel>Сообщение</FormLabel>
                             <FormControl>
-                              <Textarea placeholder="Введите ваше сообщение" {...field} />
+                              <Textarea placeholder="Ваше сообщение" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -626,7 +727,7 @@ const Index = () => {
                         control={designerForm.control}
                         name="agreement"
                         render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                             <FormControl>
                               <Checkbox
                                 checked={field.value}
@@ -635,17 +736,14 @@ const Index = () => {
                             </FormControl>
                             <div className="space-y-1 leading-none">
                               <FormLabel>
-                                Согласие на обработку персональных данных
+                                Я согласен с политикой конфиденциальности
                               </FormLabel>
                             </div>
                           </FormItem>
                         )}
                       />
                       
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80"
-                      >
+                      <Button type="submit" className="w-full bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80">
                         Отправить
                       </Button>
                     </form>
@@ -656,7 +754,7 @@ const Index = () => {
           </section>
         </div>
       </div>
-
+      
       <Footer />
     </div>
   );
