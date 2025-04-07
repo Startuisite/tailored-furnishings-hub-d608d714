@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -21,6 +20,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import ContactFormDialog from '@/components/ContactFormDialog';
+import Testimonials from '@/components/Testimonials';
 
 type CategoryProps = {
   title: string;
@@ -710,54 +710,4 @@ const Index = () => {
                       />
                       
                       <FormField
-                        control={designerForm.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Сообщение</FormLabel>
-                            <FormControl>
-                              <Textarea placeholder="Ваше сообщение" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={designerForm.control}
-                        name="agreement"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel>
-                                Я согласен с политикой конфиденциальности
-                              </FormLabel>
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button type="submit" className="w-full bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80">
-                        Отправить
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-        </div>
-      </div>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
+                        control={designer
