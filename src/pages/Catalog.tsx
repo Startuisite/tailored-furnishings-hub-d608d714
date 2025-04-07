@@ -1,38 +1,71 @@
 
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Card, CardContent } from "@/components/ui/card";
+import { Link } from 'react-router-dom';
 import { supabase } from "@/integrations/supabase/client";
-import TestimonialsSection from '../components/home/TestimonialsSection';
-import CategoryCard from '../components/home/CategoryCard';
+import { Badge } from "@/components/ui/badge";
+import { BadgeCheck } from 'lucide-react';
 
-type CatalogItem = {
-  "Название карточки": string;
-  "Фото в каталоге": string;
-  id: number;
+type CategoryProps = {
+  title: string;
+  image: string;
+  subtitle?: string;
+};
+
+const CategoryCard = ({ title, image, subtitle = "под заказ" }: CategoryProps) => {
+  return (
+    <Link to={`/catalog/${title.toLowerCase()}`}>
+      <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl">
+        <div className="relative h-64 overflow-hidden">
+          <img 
+            src={image} 
+            alt={title} 
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <Badge 
+            variant="outline" 
+            className="absolute bottom-3 left-3 bg-white/80 text-black border border-npm-blue/30 px-2 py-0.5 text-xs font-normal shadow-sm"
+          >
+            <BadgeCheck size={12} className="mr-1" />
+            {subtitle}
+          </Badge>
+        </div>
+        <CardContent className="flex items-center justify-between p-4 bg-npm-beige">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-lg font-medium">{title}</h3>
+          </div>
+          <div className="bg-npm-light p-2 rounded-full shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-md">
+            <ArrowRight 
+              className="text-black transition-all duration-300 group-hover:translate-x-1" 
+              size={22} 
+              strokeWidth={2.5} 
+            />
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
 };
 
 const Catalog = () => {
-  // Use a more type-safe approach for the query
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ['catalog'],
     queryFn: async () => {
-      try {
-        const { data, error } = await supabase
-          .from('Catalog')
-          .select('*');
-        
-        if (error) {
-          console.error('Ошибка при загрузке каталога:', error);
-          throw error;
-        }
-        
-        return data as CatalogItem[] || [];
-      } catch (err) {
-        console.error('Error fetching catalog data:', err);
-        return [] as CatalogItem[];
+      // Use generic query to avoid type issues - we know this table exists
+      const { data, error } = await supabase
+        .from('Catalog')
+        .select('*');
+      
+      if (error) {
+        console.error('Ошибка при загрузке каталога:', error);
+        throw error;
       }
+      
+      return data || [];
     },
   });
 
@@ -60,10 +93,6 @@ const Catalog = () => {
           )}
         </div>
       </main>
-      
-      {/* Add testimonials section before the footer */}
-      <TestimonialsSection />
-      
       <Footer />
     </div>
   );
