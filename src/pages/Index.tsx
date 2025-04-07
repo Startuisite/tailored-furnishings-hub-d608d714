@@ -16,6 +16,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
@@ -170,8 +172,35 @@ const Index = () => {
   });
 
   const onDesignerSubmit = async (data: DesignerFormValues) => {
-    toast.success("Ваша заявка успешно отправлена!");
-    designerForm.reset();
+    try {
+      console.log(data);
+      
+      // Prepare data for Supabase
+      const formData = {
+        "Имя": data.name,
+        "Телефон": data.phone,
+        "Email": data.email,
+        "Сообщение": data.message,
+        "Тип клиента": "Дизайнер", // Fixed value since this is the Designers page
+        "Статус": "Новая"
+      };
+      
+      // Insert data into Supabase
+      const { error } = await supabase
+        .from("client_requests")
+        .insert(formData);
+      
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+      
+      toast.success("Ваша заявка успешно отправлена!");
+      designerForm.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Ошибка при отправке. Пожалуйста, попробуйте позже.");
+    }
   };
 
   const benefits = [
