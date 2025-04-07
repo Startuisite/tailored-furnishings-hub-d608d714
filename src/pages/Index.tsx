@@ -614,10 +614,20 @@ const Index = () => {
             </div>
           </section>
 
-          {/* Quality Statement - обновлено в соответствии с новым макетом */}
+          {/* Quality Statement - Updated to match the sketch with image on left and text on right */}
           <section className="mb-20">
             <h2 className="section-title text-center mb-10">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
             
+            {/* Main image above text as requested */}
+            <div className="mb-8">
+              <img 
+                src="https://i.postimg.cc/QxZ8Cyfb/hq2mc91i1-M.png"
+                alt="Качество без компромиссов"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
+              />
+            </div>
+            
+            {/* Grid layout with image on left and text on right as per sketch */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <img 
@@ -686,23 +696,4 @@ const Index = () => {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              <Input placeholder="Введите ваш email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={designerForm.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Телефон</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Введите ваш телефон" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                              <Input placeholder="Введите ваш email
