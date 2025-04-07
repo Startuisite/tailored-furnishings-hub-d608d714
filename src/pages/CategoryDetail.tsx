@@ -1,3 +1,4 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +15,12 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import ContactForm from "@/components/ContactForm";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Badge } from "@/components/ui/badge";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useForm } from "react-hook-form";
 
 const CategoryDetail = () => {
   const { category } = useParams();
@@ -92,24 +99,83 @@ const CategoryDetail = () => {
   // Designer FAQs state
   const faqs = [
     {
-      question: "Как начать сотрудничество с вашей компанией?",
-      answer: "Для начала сотрудничества отправьте заявку через форму на нашем сайте или свяжитесь с нами по телефону. Наш менеджер свяжется с вами для обсуждения деталей."
+      question: "Какие размеры мебели мы делаем?",
+      answer: "Каждая комната индивидуальна, поэтому мы не ограничиваемся стандартными размерами мебели. Мы делаем любые размеры кроватей и матрасов к ним. Адаптируем мебель под ваш размер комнаты и высоту потолка. Учитываем высоту плинтуса, расположение батарей, розеток и выключателей."
     },
     {
-      question: "Какие материалы вы используете для производства мебели?",
-      answer: "Мы используем различные высококачественные материалы, включая натуральное дерево, МДФ, ДСП премиум-класса, качественную фурнитуру и комплектующие от проверенных производителей."
+      question: "Какие сроки изготовления?",
+      answer: "Срок изготовления зависит от количества и стоимости мебели. В среднем изготовление занимает от 30 до 60 рабочих дней. Точные сроки на данный момент можно уточнить у наших менеджеров. Предварительный этап от проектирования занимает от 7 дней, до согласования проекта. Сложные проекты с нестандартными решениями, подсветкой, подбором цвета всегда требуют больше времени на согласование. Мы рекомендуем закладывать несколько месяцев на все циклы: от дизайн проекта до монтажа мебели."
     },
     {
-      question: "Какие сроки изготовления мебели на заказ?",
-      answer: "Сроки зависят от сложности проекта и загруженности производства. Обычно от 2 до 6 недель. Точные сроки обсуждаются индивидуально при оформлении заказа."
+      question: "Какие материалы и фурнитура используются?",
+      answer: "Мы используем эколологические чистые материалы. Это массив дерева, фанера, мдф. В редких случаях мы используем ЛДСП Еггер, но следим за тем что бы все кромки включая задние были заклеены и толщина плит была не менее 18 мм. Устанавливаем качественную фурнитуру мировых производителей. Так же вы можете сделать заказ с фурнитурой премиум класса, BLUM и Hettich. Мы разработали собственную коллекцию зацепок для скаладромов, адаптированную под детские руки."
     },
     {
-      question: "Предоставляете ли вы техническую документацию для дизайнеров?",
-      answer: "Да, мы предоставляем всю необходимую техническую документацию, включая чертежи, спецификации и инструкции по монтажу."
+      question: "Чем покрывается мебель?",
+      answer: "Мы используем многослойные профессиональные системы покрытия мебели на полиуретановой основе из итальянских составляющих, и натуральные масла OSMO. В нашей стандартной палитре более 30 цветов и оттенков, которые хорошо сочетаются друг с другом. Так же мы колеруем эмаль в любой цвет по палитре RAL, WCP и NCSS."
     },
     {
-      question: "Есть ли у вас партнерская программа для дизайнеров?",
-      answer: "Да, у нас есть выгодная партнерская программа для дизайнеров. Мы предлагаем специальные условия, комиссионные выплаты и информационную поддержку для наших партнеров."
+      question: "Есть ли у вас доставка в другие города?",
+      answer: "ОТПРАВЛЯЕМ МЕБЕЛЬ ПО ВСЕЙ РОССИИ. Мы отправляем мебель в другие города через транспортные компании. Всю мебель мы предварительно собираем, делаем фото отчет, пакуем в дополнительную упаковку и отвозим в транспортную компанию. Стоимость услуги 5% от стоимости мебели. Минимальная стоимость услуги 5000 руб."
+    }
+  ];
+
+  // Designer form state and handler
+  const designerForm = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      agreement: false,
+    },
+  });
+
+  const onDesignerSubmit = async (data: any) => {
+    try {
+      console.log(data);
+      
+      // Prepare data for Supabase
+      const formData = {
+        "Имя": data.name,
+        "Телефон": data.phone,
+        "Email": data.email,
+        "Сообщение": data.message,
+        "Тип клиента": "Обычный", 
+        "Статус": "Новая"
+      };
+      
+      // Insert data into Supabase
+      const { error } = await supabase
+        .from("client_requests")
+        .insert(formData);
+      
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+      
+      toast.success("Ваша заявка успешно отправлена!");
+      designerForm.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Ошибка при отправке. Пожалуйста, попробуйте позже.");
+    }
+  };
+
+  // Benefits data
+  const benefits = [
+    {
+      title: "Качественные материалы",
+      description: "Мы используем только высококачественные материалы от проверенных поставщиков, что гарантирует долговечность и надежность нашей мебели."
+    },
+    {
+      title: "Доставка и сборка",
+      description: "Мы обеспечиваем доставку и профессиональную сборку мебели, чтобы гарантировать правильную установку и удовлетворение клиента."
+    },
+    {
+      title: "Гарантия",
+      description: "На всю нашу мебель предоставляется гарантия, подтверждающая уверенность в ее качестве и долговечности."
     }
   ];
 
@@ -367,43 +433,11 @@ const CategoryDetail = () => {
                 </div>
               </div>
               <div>
-                <Card className="border-0 shadow-md h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-medium mb-4">Корпоративным клиентам</h3>
-                    <p className="text-lg mb-4">
-                      Мы предлагаем особые условия для корпоративных клиентов:
-                    </p>
-                    <ul className="space-y-4">
-                      <li className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                          <ShieldCheck className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Расширенная гарантия</h4>
-                          <p>Специальные условия обслуживания для бизнеса</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                          <Truck className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Быстрая доставка</h4>
-                          <p>Приоритетная доставка для корпоративных заказов</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                          <ClipboardCheck className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Специальные условия</h4>
-                          <p>Гибкие системы оплаты и индивидуальные предложения</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                <img 
+                  src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
+                  alt="О нас" 
+                  className="w-full h-full object-cover rounded-lg shadow-md"
+                />
               </div>
             </div>
           </section>
@@ -428,15 +462,15 @@ const CategoryDetail = () => {
                         : "bg-[rgb(245,245,245)] hover:bg-[rgb(240,240,240)]"
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#b3c9dd] flex items-center justify-center flex-shrink-0">
-                      <span className="font-bold">{step.number}</span>
+                    <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">
+                      {step.number}
                     </div>
                     <div className="flex-grow">
                       <h3 className="font-medium">{step.title}</h3>
                     </div>
-                    <ChevronRight className={`h-5 w-5 transition-colors ${
-                      activeStep === step.number ? "text-[rgb(0,0,0)]" : "text-[rgb(180,180,180)]"
-                    }`} />
+                    <div className={`w-7 h-7 rounded-full ${activeStep === step.number ? "bg-[#b3c9dd]" : "bg-gray-200"} flex items-center justify-center`}>
+                      <ChevronRight className={`h-5 w-5 transition-colors text-white`} />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -505,25 +539,21 @@ const CategoryDetail = () => {
           {/* Quality Statement */}
           <section className="mb-20">
             <h2 className="section-title text-center mb-4">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <Card className="border-0 shadow-md overflow-hidden h-full flex flex-col">
-                <div className="p-6 bg-[rgb(242,237,231)] flex-1 flex flex-col">
-                  <h3 className="text-xl font-medium mb-4">Качественные материалы</h3>
-                  <p className="text-gray-700 flex-grow">Мы используем только высококачественные материалы от проверенных поставщиков, что гарантирует долговечность и надежность нашей мебели.</p>
+            <div className="mb-8">
+              <img 
+                src="https://i.postimg.cc/HLFPRmf1/rw-WKn-NH7q-X.jpg"
+                alt="Качество без компромиссов"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
+              />
+            </div>
+            
+            <div className="bg-[#b3c9dd] p-8 rounded-lg shadow-md flex flex-col justify-center space-y-6">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="space-y-2">
+                  <h3 className="text-xl font-medium">{benefit.title}</h3>
+                  <p className="text-gray-700">{benefit.description}</p>
                 </div>
-              </Card>
-              <Card className="border-0 shadow-md overflow-hidden h-full flex flex-col">
-                <div className="p-6 bg-[rgb(242,237,231)] flex-1 flex flex-col">
-                  <h3 className="text-xl font-medium mb-4">Доставка и сборка</h3>
-                  <p className="text-gray-700 flex-grow">Мы обеспечиваем доставку и профессиональную сборку мебели, чтобы гарантировать правильную установку и удовлетворение клиента.</p>
-                </div>
-              </Card>
-              <Card className="border-0 shadow-md overflow-hidden h-full flex flex-col">
-                <div className="p-6 bg-[rgb(242,237,231)] flex-1 flex flex-col">
-                  <h3 className="text-xl font-medium mb-4">Гарантия</h3>
-                  <p className="text-gray-700 flex-grow">На всю нашу мебель предоставляется гарантия, подтверждающая уверенность в ее качестве и долговечности.</p>
-                </div>
-              </Card>
+              ))}
             </div>
           </section>
 
@@ -556,7 +586,89 @@ const CategoryDetail = () => {
                 <h2 className="section-title mb-6">Свяжитесь с нами</h2>
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-6">
-                    <ContactForm sourcePageType="customers" />
+                    <Form {...designerForm}>
+                      <form onSubmit={designerForm.handleSubmit(onDesignerSubmit)} className="space-y-4">
+                        <FormField
+                          control={designerForm.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Имя</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Введите ваше имя" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={designerForm.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Введите ваш email" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={designerForm.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Телефон</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Введите ваш телефон" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={designerForm.control}
+                          name="message"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Сообщение</FormLabel>
+                              <FormControl>
+                                <Textarea placeholder="Ваше сообщение" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={designerForm.control}
+                          name="agreement"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                              <FormControl>
+                                <Checkbox
+                                  checked={field.value}
+                                  onCheckedChange={field.onChange}
+                                />
+                              </FormControl>
+                              <div className="space-y-1 leading-none">
+                                <FormLabel>
+                                  Я согласен с политикой конфиденциальности
+                                </FormLabel>
+                              </div>
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <Button type="submit" className="w-full bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80">
+                          Отправить
+                        </Button>
+                      </form>
+                    </Form>
                   </CardContent>
                 </Card>
               </div>
