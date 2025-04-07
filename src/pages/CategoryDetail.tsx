@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 const CategoryDetail = () => {
   const { category } = useParams();
@@ -673,6 +674,11 @@ const CategoryDetail = () => {
                 </Card>
               </div>
             </div>
+          </section>
+
+          {/* Testimonials Section */}
+          <section className="mb-20">
+            <TestimonialsSection />
           </section>
         </div>
       </main>
