@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -615,18 +614,26 @@ const Index = () => {
             </div>
           </section>
 
-          {/* Quality Statement */}
+          {/* Quality Statement - обновлено в соответствии с новым макетом */}
           <section className="mb-20">
-            <h2 className="section-title text-center mb-4">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              {benefits.map((benefit, index) => (
-                <Card key={index} className="border-0 shadow-md overflow-hidden h-full flex flex-col">
-                  <div className="p-6 bg-[rgb(242,237,243)] flex-1 flex flex-col">
-                    <h3 className="text-xl font-medium mb-4">{benefit.title}</h3>
-                    <p className="text-gray-700 flex-grow">{benefit.description}</p>
+            <h2 className="section-title text-center mb-10">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <img 
+                  src="/lovable-uploads/5fd3208e-b94f-47ea-b414-fe110b6f5447.png"
+                  alt="Качество без компромиссов"
+                  className="w-full h-64 object-cover"
+                />
+              </div>
+              <div className="bg-[rgb(242,237,243)] p-8 rounded-lg shadow-md flex flex-col justify-center space-y-6">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="space-y-2">
+                    <h3 className="text-xl font-medium">{benefit.title}</h3>
+                    <p className="text-gray-700">{benefit.description}</p>
                   </div>
-                </Card>
-              ))}
+                ))}
+              </div>
             </div>
           </section>
 
@@ -699,84 +706,3 @@ const Index = () => {
                           </FormItem>
                         )}
                       />
-                      
-                      <FormField
-                        control={designerForm.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Сообщение</FormLabel>
-                            <FormControl>
-                              <Textarea placeholder="Опишите ваш запрос" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={designerForm.control}
-                        name="agreement"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="leading-none">
-                              <FormLabel>
-                                Я согласен с обработкой персональных данных
-                              </FormLabel>
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/90"
-                      >
-                        Отправить запрос
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-        </div>
-      </div>
-      
-      {/* Testimonials section */}
-      <section className="mb-16 py-12 bg-npm-light/50">
-        <div className="container-custom">
-          <h2 className="section-title text-center mb-12">Отзывы наших клиентов</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="h-full border-0 shadow-md">
-                <CardContent className="p-6 flex flex-col h-full">
-                  <div className="mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className={`text-2xl ${i < testimonial.rating ? 'text-[#e5dbb7]' : 'text-gray-300'}`}>★</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-6 flex-grow">{testimonial.text}</p>
-                  <div className="mt-auto">
-                    <p className="font-medium">{testimonial.name}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.position}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
