@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -714,4 +715,68 @@ const Index = () => {
                       />
                       
                       <FormField
-                        control={designerForm
+                        control={designerForm.control}
+                        name="agreement"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <div className="leading-none">
+                              <FormLabel>
+                                Я согласен с обработкой персональных данных
+                              </FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/90"
+                      >
+                        Отправить запрос
+                      </Button>
+                    </form>
+                  </Form>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+        </div>
+      </div>
+      
+      {/* Testimonials section */}
+      <section className="mb-16 py-12 bg-npm-light/50">
+        <div className="container-custom">
+          <h2 className="section-title text-center mb-12">Отзывы наших клиентов</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="h-full border-0 shadow-md">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className={`text-2xl ${i < testimonial.rating ? 'text-[#e5dbb7]' : 'text-gray-300'}`}>★</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-6 flex-grow">{testimonial.text}</p>
+                  <div className="mt-auto">
+                    <p className="font-medium">{testimonial.name}</p>
+                    <p className="text-gray-500 text-sm">{testimonial.position}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
