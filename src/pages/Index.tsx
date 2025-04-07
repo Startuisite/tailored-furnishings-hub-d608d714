@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ClipboardCheck, Truck, ShieldCheck, CheckCircle2, MessageCircle, ChevronRight, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { ArrowRight as ArrowRightIcon, BadgeCheck } from 'lucide-react';
@@ -615,36 +614,27 @@ const Index = () => {
             </div>
           </section>
 
-          {/* Quality Statement - Updated to match the sketch with image on left and text on right */}
+          {/* Quality Statement - Updated with new styling and image */}
           <section className="mb-20">
             <h2 className="section-title text-center mb-10">Качество без компромиссов, а так же сервис высокого уровня - это про нас</h2>
             
-            {/* Main image above text as requested */}
+            {/* Main image above text with updated URL */}
             <div className="mb-8">
               <img 
-                src="https://i.postimg.cc/QxZ8Cyfb/hq2mc91i1-M.png"
+                src="https://i.postimg.cc/HLFPRmf1/rw-WKn-NH7q-X.jpg"
                 alt="Качество без компромиссов"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
             
-            {/* Grid layout with image on left and text on right as per sketch */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img 
-                  src="/lovable-uploads/5fd3208e-b94f-47ea-b414-fe110b6f5447.png"
-                  alt="Качество без компромиссов"
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div className="bg-[rgb(242,237,243)] p-8 rounded-lg shadow-md flex flex-col justify-center space-y-6">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="space-y-2">
-                    <h3 className="text-xl font-medium">{benefit.title}</h3>
-                    <p className="text-gray-700">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
+            {/* Updated to remove the left image and make the text container full width with new color */}
+            <div className="bg-[#b3c9dd] p-8 rounded-lg shadow-md flex flex-col justify-center space-y-6">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="space-y-2">
+                  <h3 className="text-xl font-medium">{benefit.title}</h3>
+                  <p className="text-gray-700">{benefit.description}</p>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -721,93 +711,3 @@ const Index = () => {
                       <FormField
                         control={designerForm.control}
                         name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Сообщение</FormLabel>
-                            <FormControl>
-                              <Textarea placeholder="Опишите ваш запрос" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={designerForm.control}
-                        name="agreement"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel>
-                                Я согласен на обработку персональных данных
-                              </FormLabel>
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80"
-                      >
-                        Отправить
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-          
-          {/* Testimonials Section */}
-          <section className="mb-16">
-            <h2 className="section-title text-center mb-10">Отзывы</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="border-0 shadow-md">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="mr-4">
-                        <div className="w-12 h-12 bg-[#e5dbb7]/40 rounded-full flex items-center justify-center">
-                          <MessageSquare className="h-6 w-6 text-[#e5dbb7]" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="font-medium">{testimonial.name}</h3>
-                        <p className="text-sm text-gray-500">{testimonial.position}</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700">{testimonial.text}</p>
-                    <div className="mt-4 flex">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className={`w-5 h-5 ${
-                            i < testimonial.rating ? "text-yellow-400" : "text-gray-300"
-                          }`}
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-        </div>
-      </div>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default Index;
