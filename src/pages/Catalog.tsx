@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -9,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { BadgeCheck } from 'lucide-react';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
 
 type CategoryProps = {
   title: string;
@@ -93,6 +93,10 @@ const Catalog = () => {
           )}
         </div>
       </main>
+      
+      {/* Added testimonials section */}
+      <TestimonialsSection />
+      
       <Footer />
     </div>
   );
