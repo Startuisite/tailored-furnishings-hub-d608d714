@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -32,36 +33,22 @@ const CategoryDetail = () => {
     enabled: !!category,
   });
 
-  // Fetch products for this category
+  // Generate dummy products for this category
   useEffect(() => {
-    const fetchProducts = async () => {
+    const generateDummyProducts = () => {
       setLoading(true);
       try {
-        // This is a placeholder - in a real app, you would fetch products 
-        // related to this category from your database
-        const { data, error } = await supabase
-          .from('Products')
-          .select('*')
-          .eq('category', category);
-        
-        if (error) throw error;
-        
-        // If no products found, use dummy data
-        if (!data || data.length === 0) {
-          // Generate some dummy products for demonstration
-          const dummyProducts = Array.from({ length: 6 }, (_, i) => ({
-            id: i + 1,
-            name: `${category} ${i + 1}`,
-            description: `Описание ${category} ${i + 1}`,
-            price: Math.floor(Math.random() * 50000) + 10000,
-            image: `https://source.unsplash.com/random/300x200?furniture&sig=${i}`
-          }));
-          setProducts(dummyProducts);
-        } else {
-          setProducts(data);
-        }
+        // Generate some dummy products for demonstration
+        const dummyProducts = Array.from({ length: 6 }, (_, i) => ({
+          id: i + 1,
+          name: `${category} ${i + 1}`,
+          description: `Описание ${category} ${i + 1}`,
+          price: Math.floor(Math.random() * 50000) + 10000,
+          image: `https://source.unsplash.com/random/300x200?furniture&sig=${i}`
+        }));
+        setProducts(dummyProducts);
       } catch (err) {
-        console.error('Error fetching products:', err);
+        console.error('Error generating products:', err);
         setError('Не удалось загрузить товары. Пожалуйста, попробуйте позже.');
       } finally {
         setLoading(false);
@@ -69,7 +56,7 @@ const CategoryDetail = () => {
     };
 
     if (category) {
-      fetchProducts();
+      generateDummyProducts();
     }
   }, [category]);
 
