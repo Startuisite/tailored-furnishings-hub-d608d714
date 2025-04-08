@@ -88,6 +88,25 @@ const ContactForm = ({
     },
   });
 
+  // New function to send email notification
+  const sendEmailNotification = async (formData: any) => {
+    try {
+      const { error } = await supabase.functions.invoke('send-email-notification', {
+        body: formData
+      });
+      
+      if (error) {
+        console.error("Error sending email notification:", error);
+        return false;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error("Error invoking send-email-notification function:", error);
+      return false;
+    }
+  };
+
   const onSubmit = async (data: FormValues | PhoneOnlyFormValues) => {
     setIsSubmitting(true);
     
@@ -115,7 +134,7 @@ const ContactForm = ({
       
       console.log("Sending to Supabase:", formData);
       
-      // Insert data into Supabase - используем правильное название таблицы из types.ts
+      // Insert data into Supabase
       const { error } = await supabase
         .from("client_requests")
         .insert(formData);
@@ -124,6 +143,9 @@ const ContactForm = ({
         console.error("Supabase error:", error);
         throw error;
       }
+      
+      // Send email notification
+      await sendEmailNotification(formData);
       
       toast.success("Ваша заявка успешно отправлена!");
       

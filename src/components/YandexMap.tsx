@@ -20,15 +20,15 @@ const YandexMap = () => {
   const initMap = () => {
     if (mapRef.current && window.ymaps) {
       window.ymaps.ready(() => {
-        // Coordinates for г. Анапа, ул. Гребенская, д. 92
-        const anapa = [44.898427, 37.317853];
+        // Fixed TypeScript error by explicitly defining as tuple [number, number]
+        const anapa: [number, number] = [44.898427, 37.317853];
         
         const map = new window.ymaps.Map(mapRef.current, {
           center: anapa,
           zoom: 16
         });
 
-        // Add placemark
+        // Add placemark with correct typing
         const placemark = new window.ymaps.Placemark(anapa, {
           balloonContent: 'НПМ Мебель, г. Анапа, ул. Гребенская, д. 92'
         }, {
