@@ -1,6 +1,12 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,6 +60,26 @@ const Header = () => {
     }
   };
 
+  // Функция для плавной прокрутки к разделу "О нас"
+  const scrollToAboutUs = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      window.location.href = '/';
+      // Добавляем небольшую задержку перед скроллом, чтобы страница успела загрузиться
+      setTimeout(() => {
+        const aboutUsSection = document.querySelector('.about-us-section');
+        if (aboutUsSection) {
+          aboutUsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    } else {
+      const aboutUsSection = document.querySelector('.about-us-section');
+      if (aboutUsSection) {
+        aboutUsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <header 
       className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
@@ -89,12 +115,38 @@ const Header = () => {
           >
             Дизайнерам
           </a>
-          <Link 
-            to="/information" 
-            className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/information' ? 'after:w-2/3' : ''}`}
-          >
-            Информация
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/information' || location.pathname === '/blog' ? 'after:w-2/3' : ''}`}>
+              Информация
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white border border-npm-blue/20 shadow-md mt-2">
+              <DropdownMenuItem asChild>
+                <a 
+                  href="#about-us" 
+                  onClick={scrollToAboutUs}
+                  className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
+                >
+                  О нас
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link 
+                  to="/blog"
+                  className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
+                >
+                  Блог
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link 
+                  to="/information"
+                  className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
+                >
+                  Контакты
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
         
         <button className="md:hidden text-black">
