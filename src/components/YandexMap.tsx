@@ -20,14 +20,17 @@ const YandexMap = () => {
   const initMap = () => {
     if (mapRef.current && window.ymaps) {
       window.ymaps.ready(() => {
+        // Coordinates for г. Анапа, ул. Гребенская, д. 92
+        const anapa = [44.898427, 37.317853];
+        
         const map = new window.ymaps.Map(mapRef.current, {
-          center: [55.76, 37.64], // Moscow coordinates
-          zoom: 15
+          center: anapa,
+          zoom: 16
         });
 
         // Add placemark
-        const placemark = new window.ymaps.Placemark([55.76, 37.64], {
-          balloonContent: 'НПМ Мебель'
+        const placemark = new window.ymaps.Placemark(anapa, {
+          balloonContent: 'НПМ Мебель, г. Анапа, ул. Гребенская, д. 92'
         }, {
           preset: 'islands#redDotIcon'
         });
