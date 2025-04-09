@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { useForm } from "react-hook-form";
@@ -75,17 +74,17 @@ const DesignerSection = () => {
     {
       title: "Качественные материалы",
       description: "Мы используем только высококачественные материалы от проверенных поставщиков, что гарантирует долговечность и надежность нашей мебели.",
-      icon: "/lovable-uploads/79705624-800c-45dd-aa32-96cd9357b606.png"
+      icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
     },
     {
       title: "Доставка и сборка",
       description: "Мы обеспечиваем доставку и профессиональную сборку мебели, чтобы гарантировать правильную установку и удовлетворение клиента.",
-      icon: "/lovable-uploads/79705624-800c-45dd-aa32-96cd9357b606.png"
+      icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
     },
     {
       title: "Гарантия",
       description: "На всю нашу мебель предоставляется гарантия, подтверждающая уверенность в ее качестве и долговечности.",
-      icon: "/lovable-uploads/79705624-800c-45dd-aa32-96cd9357b606.png"
+      icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
     }
   ]);
 
