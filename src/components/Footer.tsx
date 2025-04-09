@@ -21,7 +21,7 @@ const Footer = () => {
     } else {
       // Если мы не на главной странице, переходим на главную
       // и задаем функцию для выполнения после загрузки страницы
-      navigate('/', { state: { scrollTo: sectionId.replace('#', '') } });
+      navigate('/', { state: { scrollTo: sectionId.replace('#', '.').replace('.', '') } });
     }
   };
 
@@ -59,7 +59,7 @@ const Footer = () => {
               <li>
                 <a 
                   href="#warranty"
-                  onClick={(e) => scrollToSection('#warranty', e)}
+                  onClick={(e) => scrollToSection('.warranty-section', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Гарантия
@@ -68,7 +68,7 @@ const Footer = () => {
               <li>
                 <a 
                   href="#faq"
-                  onClick={(e) => scrollToSection('#faq', e)}
+                  onClick={(e) => scrollToSection('.faq-section', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Часто задаваемые вопросы
