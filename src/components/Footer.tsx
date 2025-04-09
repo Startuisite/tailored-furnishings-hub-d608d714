@@ -125,13 +125,7 @@ const Footer = () => {
           <p className="text-gray-700 text-sm">© 2025 NPM. Все права защищены</p>
           <div className="mt-4 md:mt-0">
             <Link to="/information" className="text-gray-700 hover:text-black text-sm mr-4 transition-colors">Политика конфиденциальности</Link>
-            <a 
-              href="#about-us"
-              onClick={(e) => scrollToSection('.customers-section', e)}
-              className="text-gray-700 hover:text-black text-sm transition-colors"
-            >
-              О нас
-            </a>
+            <Link to="/information" className="text-gray-700 hover:text-black text-sm transition-colors">Публичная оферта</Link>
           </div>
         </div>
         
