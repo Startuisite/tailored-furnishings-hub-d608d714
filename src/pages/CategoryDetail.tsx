@@ -1,5 +1,4 @@
-
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useEffect } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck, MessageCircle, ShieldCheck, Truck, ChevronRight, Check } from "lucide-react";
@@ -28,6 +27,11 @@ const CategoryDetail = () => {
   const navigate = useNavigate();
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
+
+  // Add useEffect to scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Order steps data with updated titles to match step details
   const orderSteps = [

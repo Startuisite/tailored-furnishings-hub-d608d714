@@ -12,7 +12,10 @@ type CategoryProps = {
 
 const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
   return (
-    <Link to={`/catalog/${title.toLowerCase()}`}>
+    <Link 
+      to={`/catalog/${title.toLowerCase()}`}
+      onClick={() => window.scrollTo(0, 0)}
+    >
       <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl">
         <div className="relative h-64 overflow-hidden">
           <img 
