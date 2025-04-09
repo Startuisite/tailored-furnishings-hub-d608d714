@@ -45,6 +45,13 @@ const Header = () => {
     }
   };
 
+  // Функция для навигации на страницы с прокруткой наверх
+  const navigateToPage = (path: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <header 
       className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
@@ -95,20 +102,22 @@ const Header = () => {
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link 
-                  to="/blog"
+                <a 
+                  href="/blog"
+                  onClick={(e) => navigateToPage('/blog', e)}
                   className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
                 >
                   Блог
-                </Link>
+                </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link 
-                  to="/information"
+                <a 
+                  href="/information"
+                  onClick={(e) => navigateToPage('/information', e)}
                   className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
                 >
                   Контакты
-                </Link>
+                </a>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
