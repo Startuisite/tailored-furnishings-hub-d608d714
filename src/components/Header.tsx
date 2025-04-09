@@ -95,7 +95,7 @@ const Header = () => {
               <DropdownMenuItem asChild>
                 <a 
                   href="#about-us" 
-                  onClick={(e) => scrollToSection('about-us-section', e)}
+                  onClick={(e) => scrollToSection('customers-section', e)}
                   className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
                 >
                   О нас
