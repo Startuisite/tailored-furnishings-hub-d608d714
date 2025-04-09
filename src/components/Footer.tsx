@@ -1,10 +1,30 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Универсальная функция для навигации к разделам
+  const scrollToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Если мы уже на главной странице
+    if (location.pathname === '/') {
+      const section = document.querySelector(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Если мы не на главной странице, переходим на главную
+      // и задаем функцию для выполнения после загрузки страницы
+      navigate('/', { state: { scrollTo: sectionId.replace('#', '') } });
+    }
+  };
+
   return (
     <footer className="bg-npm-blue text-black py-12 rounded-t-2xl shadow-lg mt-8">
       <div className="container-custom">
@@ -13,23 +33,13 @@ const Footer = () => {
             <h3 className="text-xl mb-4 font-medium">Каталог</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  to="/" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (window.location.pathname === '/') {
-                      // If already on the main page, scroll to catalog section
-                      const catalogSection = document.querySelector('.catalog-section');
-                      catalogSection?.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      // If on another page, navigate to main page and add #catalog hash
-                      window.location.href = '/#catalog';
-                    }
-                  }}
+                <a 
+                  href="#catalog"
+                  onClick={(e) => scrollToSection('.catalog-section', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Каталог
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -38,55 +48,31 @@ const Footer = () => {
             <h3 className="text-xl mb-4 font-medium">Покупателям</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  to="/" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (window.location.pathname === '/') {
-                      const orderSchemaSection = document.querySelector('#order-schema');
-                      orderSchemaSection?.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      window.location.href = '/#order-schema';
-                    }
-                  }}
+                <a 
+                  href="#order-schema"
+                  onClick={(e) => scrollToSection('#order-schema', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Схема заказа
-                </Link>
+                </a>
               </li>
               <li>
-                <Link 
-                  to="/" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (window.location.pathname === '/') {
-                      const warrantySection = document.querySelector('#warranty');
-                      warrantySection?.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      window.location.href = '/#warranty';
-                    }
-                  }}
+                <a 
+                  href="#warranty"
+                  onClick={(e) => scrollToSection('#warranty', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Гарантия
-                </Link>
+                </a>
               </li>
               <li>
-                <Link 
-                  to="/" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (window.location.pathname === '/') {
-                      const faqSection = document.querySelector('#faq');
-                      faqSection?.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      window.location.href = '/#faq';
-                    }
-                  }}
+                <a 
+                  href="#faq"
+                  onClick={(e) => scrollToSection('#faq', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Часто задаваемые вопросы
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -94,7 +80,15 @@ const Footer = () => {
           <div>
             <h3 className="text-xl mb-4 font-medium">Дизайнерам</h3>
             <ul className="space-y-2">
-              <li><Link to="/#designers" className="text-gray-700 hover:text-black transition-colors">Сотрудничество</Link></li>
+              <li>
+                <a 
+                  href="#designers"
+                  onClick={(e) => scrollToSection('.designers-section', e)}
+                  className="text-gray-700 hover:text-black transition-colors"
+                >
+                  Сотрудничество
+                </a>
+              </li>
             </ul>
           </div>
           

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +11,7 @@ import {
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -27,56 +28,20 @@ const Header = () => {
     };
   }, []);
 
-  // Функция для плавной прокрутки к разделу каталога
-  const scrollToCatalog = (e: React.MouseEvent) => {
+  // Универсальная функция для навигации к разделам
+  const scrollToSection = (sectionClass: string, e: React.MouseEvent) => {
     e.preventDefault();
-    const catalogSection = document.querySelector('.catalog-section');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    } else if (location.pathname !== '/') {
-      window.location.href = '/';
-    }
-  };
-
-  // Функция для плавной прокрутки к разделу "Покупателям"
-  const scrollToCustomers = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const customersSection = document.querySelector('.customers-section');
-    if (customersSection) {
-      customersSection.scrollIntoView({ behavior: 'smooth' });
-    } else if (location.pathname !== '/') {
-      window.location.href = '/';
-    }
-  };
-  
-  // Функция для плавной прокрутки к разделу "Дизайнерам"
-  const scrollToDesigners = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const designersSection = document.querySelector('.designers-section');
-    if (designersSection) {
-      designersSection.scrollIntoView({ behavior: 'smooth' });
-    } else if (location.pathname !== '/') {
-      window.location.href = '/';
-    }
-  };
-
-  // Функция для плавной прокрутки к разделу "О нас"
-  const scrollToAboutUs = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (location.pathname !== '/') {
-      window.location.href = '/';
-      // Добавляем небольшую задержку перед скроллом, чтобы страница успела загрузиться
-      setTimeout(() => {
-        const aboutUsSection = document.querySelector('.about-us-section');
-        if (aboutUsSection) {
-          aboutUsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 500);
-    } else {
-      const aboutUsSection = document.querySelector('.about-us-section');
-      if (aboutUsSection) {
-        aboutUsSection.scrollIntoView({ behavior: 'smooth' });
+    
+    // Если мы уже на главной странице
+    if (location.pathname === '/') {
+      const section = document.querySelector(`.${sectionClass}`);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      // Если мы не на главной странице, переходим на главную
+      // и задаем функцию для выполнения после загрузки страницы
+      navigate('/', { state: { scrollTo: sectionClass } });
     }
   };
 
@@ -96,21 +61,21 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-1">
           <a 
             href="#catalog" 
-            onClick={scrollToCatalog}
+            onClick={(e) => scrollToSection('catalog-section', e)}
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/catalog' ? 'after:w-2/3' : ''}`}
           >
             Каталог
           </a>
           <a 
             href="#customers" 
-            onClick={scrollToCustomers}
+            onClick={(e) => scrollToSection('customers-section', e)}
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/customers' ? 'after:w-2/3' : ''}`}
           >
             Покупателям
           </a>
           <a 
             href="#designers" 
-            onClick={scrollToDesigners}
+            onClick={(e) => scrollToSection('designers-section', e)}
             className={`nav-link relative px-4 py-2 text-black hover:text-black/90 transition-colors ${location.pathname === '/designers' ? 'after:w-2/3' : ''}`}
           >
             Дизайнерам
@@ -123,7 +88,7 @@ const Header = () => {
               <DropdownMenuItem asChild>
                 <a 
                   href="#about-us" 
-                  onClick={scrollToAboutUs}
+                  onClick={(e) => scrollToSection('about-us-section', e)}
                   className="flex px-4 py-2 hover:bg-npm-light cursor-pointer text-black"
                 >
                   О нас
