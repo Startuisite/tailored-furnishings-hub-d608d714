@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
@@ -8,7 +9,6 @@ import OrderSteps from '@/components/home/OrderSteps';
 import CustomerSection from '@/components/home/CustomerSection';
 import DesignerSection from '@/components/home/DesignerSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
-import FAQSection from '@/components/home/FAQSection';
 
 const Index = () => {
   const location = useLocation();
@@ -67,9 +67,6 @@ const Index = () => {
       
       {/* Customer section */}
       <CustomerSection />
-
-      {/* FAQ section */}
-      <FAQSection />
 
       {/* Order Steps section */}
       <OrderSteps />
