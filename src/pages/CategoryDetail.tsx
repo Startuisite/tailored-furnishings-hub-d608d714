@@ -1,5 +1,6 @@
-import { useParams, useNavigate, useEffect } from "react-router-dom";
-import { useState } from "react";
+
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck, MessageCircle, ShieldCheck, Truck, ChevronRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
