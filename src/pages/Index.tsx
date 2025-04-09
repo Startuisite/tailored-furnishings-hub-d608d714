@@ -35,7 +35,9 @@ const Index = () => {
           if (scrollToId === 'catalog-section' || 
               scrollToId === 'customers-section' || 
               scrollToId === 'designers-section' || 
-              scrollToId === 'about-us-section') {
+              scrollToId === 'about-us-section' ||
+              scrollToId === 'warranty-section' ||
+              scrollToId === 'faq-section') {
             selector = `.${scrollToId}`;
           } else {
             selector = `#${scrollToId}`;
@@ -71,11 +73,29 @@ const Index = () => {
       {/* Order Steps section */}
       <OrderSteps />
       
+      {/* Warranty section - добавляем секцию с гарантией */}
+      <div id="warranty" className="warranty-section bg-npm-blue/10 py-16">
+        <div className="container-custom">
+          <h2 className="text-3xl md:text-4xl font-playfair text-center mb-8">Гарантия качества</h2>
+          <div className="bg-white p-6 rounded-lg shadow-md border border-npm-blue/20">
+            <p className="text-lg mb-4">
+              Мы уверены в качестве нашей мебели и предоставляем гарантию 24 месяца на всю продукцию.
+            </p>
+            <p className="text-lg">
+              Гарантия распространяется на все элементы мебели при соблюдении правил эксплуатации.
+              В случае обнаружения производственного дефекта, мы произведем бесплатный ремонт или замену изделия.
+            </p>
+          </div>
+        </div>
+      </div>
+      
       {/* Designer section */}
       <DesignerSection />
       
-      {/* Testimonials section */}
-      <TestimonialsSection />
+      {/* Testimonials section - добавляем id для секции с вопросами */}
+      <div id="faq" className="faq-section">
+        <TestimonialsSection />
+      </div>
       
       <Footer />
     </div>
