@@ -58,15 +58,6 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="#warranty"
-                  onClick={(e) => scrollToSection('#warranty', e)}
-                  className="text-gray-700 hover:text-black transition-colors"
-                >
-                  Гарантия
-                </a>
-              </li>
-              <li>
-                <a 
                   href="#faq"
                   onClick={(e) => scrollToSection('#faq', e)}
                   className="text-gray-700 hover:text-black transition-colors"
