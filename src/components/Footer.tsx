@@ -128,6 +128,18 @@ const Footer = () => {
             <Link to="/information" className="text-gray-700 hover:text-black text-sm transition-colors">Публичная оферта</Link>
           </div>
         </div>
+        
+        {/* Добавляем подпись о создании сайта */}
+        <div className="text-center mt-6 text-gray-600 text-xs">
+          <a 
+            href="https://startui.site" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-black transition-colors"
+          >
+            Создание сайта — startui.site
+          </a>
+        </div>
       </div>
     </footer>
   );
