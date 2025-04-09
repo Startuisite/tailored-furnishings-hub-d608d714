@@ -21,7 +21,7 @@ const Footer = () => {
     } else {
       // Если мы не на главной странице, переходим на главную
       // и задаем функцию для выполнения после загрузки страницы
-      navigate('/', { state: { scrollTo: sectionId.replace(/[#.]/g, '') } });
+      navigate('/', { state: { scrollTo: sectionId.replace('#', '') } });
     }
   };
 
