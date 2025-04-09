@@ -59,7 +59,7 @@ const Footer = () => {
               <li>
                 <a 
                   href="#faq"
-                  onClick={(e) => scrollToSection('.faq-section', e)}
+                  onClick={(e) => scrollToSection('#faq', e)}
                   className="text-gray-700 hover:text-black transition-colors"
                 >
                   Часто задаваемые вопросы

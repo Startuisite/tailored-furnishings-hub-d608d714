@@ -35,8 +35,7 @@ const Index = () => {
           if (scrollToId === 'catalog-section' || 
               scrollToId === 'customers-section' || 
               scrollToId === 'designers-section' || 
-              scrollToId === 'about-us-section' ||
-              scrollToId === 'faq-section') {
+              scrollToId === 'about-us-section') {
             selector = `.${scrollToId}`;
           } else {
             selector = `#${scrollToId}`;
@@ -74,31 +73,6 @@ const Index = () => {
       
       {/* Designer section */}
       <DesignerSection />
-      
-      {/* FAQ section */}
-      <section className="py-16 bg-white faq-section">
-        <div className="container-custom">
-          <h2 className="text-3xl md:text-4xl font-playfair mb-10">Ответы на частые вопросы</h2>
-          
-          <div className="space-y-6">
-            {/* Example FAQ items - will be replaced by real content */}
-            <div className="border-b pb-6">
-              <h3 className="text-xl font-medium mb-2">Какие размеры мебели мы делаем?</h3>
-              <p className="text-gray-700">Мы производим мебель любых размеров по индивидуальным заказам.</p>
-            </div>
-            
-            <div className="border-b pb-6">
-              <h3 className="text-xl font-medium mb-2">Какие сроки изготовления?</h3>
-              <p className="text-gray-700">Сроки изготовления зависят от сложности проекта и обычно составляют от 2 до 4 недель.</p>
-            </div>
-            
-            <div className="border-b pb-6">
-              <h3 className="text-xl font-medium mb-2">Какие материалы и фурнитура используются?</h3>
-              <p className="text-gray-700">Мы используем только качественные материалы и фурнитуру от проверенных поставщиков.</p>
-            </div>
-          </div>
-        </div>
-      </section>
       
       {/* Testimonials section */}
       <TestimonialsSection />
