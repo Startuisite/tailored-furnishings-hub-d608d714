@@ -59,7 +59,7 @@ const Header = () => {
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
         <Link to="/" className="z-10 flex items-center gap-2 text-black">
           <img 
-            src="https://i.postimg.cc/vmJS9BL5/1.png" 
+            src="https://i.postimg.cc/59Dk5FwG/4.png" 
             alt="НПМ Логотип" 
             className="h-10 w-auto"
           />
