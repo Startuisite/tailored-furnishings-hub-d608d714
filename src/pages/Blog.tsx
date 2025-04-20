@@ -39,26 +39,6 @@ const Blog = () => {
     }
   ];
 
-  // Полезные ссылки для мебельной тематики
-  const usefulLinks = [
-    {
-      title: "Руководство по уходу за деревянной мебелью",
-      url: "https://www.example.com"
-    },
-    {
-      title: "Калькулятор расчета материалов для мебели",
-      url: "https://www.example.com"
-    },
-    {
-      title: "Экологичные материалы в производстве мебели",
-      url: "https://www.example.com"
-    },
-    {
-      title: "Как самостоятельно обновить старую мебель",
-      url: "https://www.example.com"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-npm-blue to-npm-light">
       <Header />
@@ -94,25 +74,6 @@ const Blog = () => {
                     </Button>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </section>
-
-          {/* Useful Links Section - Removed border and background */}
-          <section className="mb-16">
-            <h2 className="section-title mb-8">Полезные ссылки</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {usefulLinks.map((link, index) => (
-                <a 
-                  key={index} 
-                  href={link.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-4 hover:bg-npm-light/50 transition-colors duration-200 flex items-center"
-                >
-                  <span className="text-npm-blue mr-2">→</span>
-                  <span>{link.title}</span>
-                </a>
               ))}
             </div>
           </section>
