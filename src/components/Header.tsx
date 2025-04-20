@@ -6,6 +6,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -66,6 +73,15 @@ const Header = () => {
     navigate(path);
     window.scrollTo(0, 0);
   };
+
+  const mobileMenuItems = [
+    { title: "Каталог", action: (e: React.MouseEvent) => scrollToSection('catalog-section', e) },
+    { title: "Покупателям", action: (e: React.MouseEvent) => scrollToSection('customers-section', e) },
+    { title: "Дизайнерам", action: (e: React.MouseEvent) => scrollToSection('designers-section', e) },
+    { title: "О нас", action: (e: React.MouseEvent) => scrollToSection('customers-section', e) },
+    { title: "Блог", action: (e: React.MouseEvent) => navigateToPage('/blog', e) },
+    { title: "Контакты", action: (e: React.MouseEvent) => navigateToPage('/information', e) },
+  ];
 
   return (
     <header 
@@ -140,11 +156,36 @@ const Header = () => {
           </DropdownMenu>
         </nav>
         
-        <button className="md:hidden text-black">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
+        <Sheet>
+          <SheetTrigger asChild className="md:hidden">
+            <button className="text-black p-2">
+              <Menu size={24} />
+            </button>
+          </SheetTrigger>
+          <SheetContent className="w-[300px] sm:w-[400px]">
+            <SheetHeader>
+              <div className="px-4 py-6">
+                <img 
+                  src="https://i.postimg.cc/vmJS9BL5/1.png" 
+                  alt="НПМ Логотип" 
+                  className="h-8 w-auto"
+                />
+              </div>
+            </SheetHeader>
+            <nav className="px-4">
+              {mobileMenuItems.map((item) => (
+                <a
+                  key={item.title}
+                  href="#"
+                  onClick={item.action}
+                  className="flex items-center px-4 py-3 text-black hover:bg-npm-light rounded-lg transition-colors"
+                >
+                  {item.title}
+                </a>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );
