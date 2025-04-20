@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -10,23 +9,39 @@ import {
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      const currentScrollY = window.scrollY;
+      
+      // Set scrolled state for background effect
+      if (currentScrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+      
+      // Handle header visibility
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past threshold - hide header
+        setIsVisible(false);
+      } else {
+        // Scrolling up - show header
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
     
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   // Универсальная функция для навигации к разделам
   const scrollToSection = (sectionClass: string, e: React.MouseEvent) => {
@@ -54,7 +69,9 @@ const Header = () => {
 
   return (
     <header 
-      className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm`}
+      className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} 
+        transition-all duration-300 rounded-b-2xl shadow-lg backdrop-blur-sm
+        transform ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
     >
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
         <Link to="/" className="z-10 flex items-center gap-2 text-black">
