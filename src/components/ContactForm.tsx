@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -29,7 +28,7 @@ const formSchema = z.object({
   }),
   email: z.string().email({
     message: "Введите корректный email",
-  }),
+  }).optional(),
   message: z.string().optional(),
   isDesigner: z.boolean().optional(),
   consent: z.literal(true, {

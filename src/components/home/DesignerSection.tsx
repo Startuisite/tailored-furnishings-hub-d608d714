@@ -16,7 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const formSchema = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
-  email: z.string().email("Введите корректный email"),
+  email: z.string().email("Введите корректный email").optional(),
   phone: z.string().min(5, "Телефон должен содержать минимум 5 символов"),
   message: z.string().optional(),
   agreement: z.boolean().refine(val => val === true, {
