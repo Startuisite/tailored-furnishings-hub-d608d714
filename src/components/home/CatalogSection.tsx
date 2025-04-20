@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -68,13 +67,14 @@ const CatalogSection = () => {
     },
   ]);
 
-  // Replace the static categories with data from Supabase
+  // Update the query to include ordering
   const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
     queryKey: ['catalog'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('Catalog')
-        .select('*');
+        .select('*')
+        .order('id', { ascending: true });
       
       if (error) {
         console.error('Ошибка при загрузке каталога:', error);
