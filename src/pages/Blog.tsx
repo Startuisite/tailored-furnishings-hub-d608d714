@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "../components/Header";
@@ -99,8 +98,8 @@ const Blog = () => {
             </div>
           </section>
 
-          {/* Useful Links Section */}
-          <section className="mb-16 bg-white p-8 rounded-xl shadow-md">
+          {/* Useful Links Section - Removed border and background */}
+          <section className="mb-16">
             <h2 className="section-title mb-8">Полезные ссылки</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {usefulLinks.map((link, index) => (
@@ -109,7 +108,7 @@ const Blog = () => {
                   href={link.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-4 border border-npm-blue/30 rounded-lg hover:bg-npm-light transition-colors duration-200 flex items-center"
+                  className="p-4 hover:bg-npm-light/50 transition-colors duration-200 flex items-center"
                 >
                   <span className="text-npm-blue mr-2">→</span>
                   <span>{link.title}</span>
