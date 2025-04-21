@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -255,7 +256,7 @@ const ContactForm = ({
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm">Email</FormLabel>
+                <FormLabel className="text-sm">Email (необязательно)</FormLabel>
                 <FormControl>
                   <Input placeholder="your@email.com" {...field} />
                 </FormControl>

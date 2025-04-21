@@ -236,7 +236,7 @@ const DesignerSection = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel>Email (необязательно)</FormLabel>
                           <FormControl>
                             <Input placeholder="Введите ваш email" {...field} />
                           </FormControl>
