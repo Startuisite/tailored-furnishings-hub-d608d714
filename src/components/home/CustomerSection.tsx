@@ -1,3 +1,4 @@
+
 import { CheckCircle2 } from "lucide-react";
 import ContactForm from '@/components/ContactForm';
 
@@ -76,7 +77,7 @@ const CustomerSection = () => {
           <div className="h-auto">
             <div className="w-full h-full max-h-[600px] relative rounded-lg shadow-md">
               <img 
-                src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
+                src="https://i.postimg.cc/BnJCPSHV/Qnez6ad-RP3.avif" 
                 alt="Связаться с нами" 
                 className="w-full h-full object-cover object-top rounded-lg"
               />
