@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight, MessageCircle } from "lucide-react";
 
 const OrderSteps = () => {
-  // Order steps data with updated titles to match step details
   const orderSteps = [
     {
       number: 1,
@@ -39,10 +38,8 @@ const OrderSteps = () => {
     }
   ];
   
-  // State for the active step in the order schema
   const [activeStep, setActiveStep] = useState(1);
 
-  // Detailed information for each step with updated external image links
   const stepDetails = {
     1: {
       title: "Знакомство",
@@ -76,21 +73,18 @@ const OrderSteps = () => {
     },
   };
 
-  // Handle next step
   const handleNextStep = () => {
     if (activeStep < 6) {
       setActiveStep(prev => prev + 1);
     }
   };
 
-  // Handle previous step
   const handlePrevStep = () => {
     if (activeStep > 1) {
       setActiveStep(prev => prev - 1);
     }
   };
 
-  // Handle step selection
   const handleStepSelect = (step: number) => {
     setActiveStep(step);
   };
@@ -179,7 +173,7 @@ const OrderSteps = () => {
                   <img 
                     src={stepDetails[activeStep as keyof typeof stepDetails]?.image} 
                     alt={`Шаг ${activeStep}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 </AspectRatio>
               </div>
@@ -192,4 +186,3 @@ const OrderSteps = () => {
 };
 
 export default OrderSteps;
-

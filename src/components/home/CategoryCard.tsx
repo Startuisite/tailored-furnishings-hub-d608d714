@@ -17,11 +17,11 @@ const CategoryCard = ({ title, image, subtitle }: CategoryProps) => {
       onClick={() => window.scrollTo(0, 0)}
     >
       <Card className="group overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-xl">
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 overflow-hidden rounded-lg">
           <img 
             src={image} 
             alt={title} 
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 rounded-lg"
           />
           <Badge 
             variant="outline" 

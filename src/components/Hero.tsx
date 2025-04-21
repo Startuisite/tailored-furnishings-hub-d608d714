@@ -72,13 +72,13 @@ const Hero = ({ images, showDesignerCheckbox = false }: HeroProps) => {
       />
       
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
       
       {/* Content - Removed the text heading */}
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-32 text-white">
         <ContactFormDialog
           trigger={
-            <Button className="text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 bg-npm-beige text-black hover:bg-npm-beige/90 transform hover:scale-105 transition-all duration-300 shadow-lg">
+            <Button className="text-xl md:text-2xl py-6 md:py-8 px-10 md:px-16 bg-npm-beige text-black hover:bg-npm-beige/90 transform hover:scale-105 transition-all duration-300 shadow-lg rounded-lg">
               Заказать расчёт
             </Button>
           }

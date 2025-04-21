@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -67,7 +68,6 @@ const CatalogSection = () => {
     },
   ]);
 
-  // Update the query to include ordering
   const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
     queryKey: ['catalog'],
     queryFn: async () => {
