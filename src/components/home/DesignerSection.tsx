@@ -145,7 +145,7 @@ const DesignerSection = () => {
           
           {/* Main image above text with updated URL */}
           <div className="mb-8">
-            <img src="https://i.postimg.cc/HLFPRmf1/rw-WKn-NH7q-X.jpg" alt="Качество без компромиссов" className="w-full h-auto object-cover rounded-lg shadow-md" />
+            <img src="https://i.postimg.cc/2yv12WR7/rw-WKn-NH7q-X-1.avif" alt="Качество без компромиссов" className="w-full h-auto object-cover rounded-lg shadow-md" />
           </div>
           
           {/* Updated to remove the left image and make the text container full width with new color */}
