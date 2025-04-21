@@ -46,7 +46,7 @@ const CustomerSection = () => {
       <section className="mb-16 container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
           <div className="h-full">
-            <img src="https://i.postimg.cc/FKFwCjbV/image.png" alt="Комфортный интерьер" className="w-full h-full object-cover rounded-lg" />
+            <img alt="Комфортный интерьер" className="w-full h-full object-cover rounded-lg" src="https://i.postimg.cc/d3nWgR5h/image.avif" />
           </div>
           <div className="p-8 flex flex-col justify-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">
