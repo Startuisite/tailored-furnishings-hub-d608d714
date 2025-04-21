@@ -62,7 +62,7 @@ const OrderSteps = () => {
     4: {
       title: "Дизайн проект",
       description: "Создаем 3D-визуализацию вашей будущей мебели, согласовываем все детали, цвета, материалы и фурнитуру. Вы получаете полное представление о конечном результате.",
-      image: "https://i.postimg.cc/CMNZ80PB/image.png"
+      image: "https://i.postimg.cc/ZqS1rXSF/image.webp"
     },
     5: {
       title: "Изготовление мебели",
@@ -192,3 +192,4 @@ const OrderSteps = () => {
 };
 
 export default OrderSteps;
+
