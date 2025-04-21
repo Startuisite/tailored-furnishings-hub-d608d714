@@ -176,7 +176,7 @@ const DesignerSection = () => {
           <div>
             <h2 className="section-title mb-6">Не нашли ответа? Задайте свой вопрос</h2>
             <Card className="border-0 shadow-md">
-              <CardContent className="p-6">
+              <CardContent className="p-6 bg-neutral-100">
                 <Form {...designerForm}>
                   <form onSubmit={designerForm.handleSubmit(onDesignerSubmit)} className="space-y-4">
                     <FormField control={designerForm.control} name="name" render={({
