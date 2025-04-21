@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { useForm } from "react-hook-form";
@@ -214,7 +213,8 @@ const DesignerSection = () => {
           </div>
           <div>
             <h2 className="section-title mb-6">Не нашли ответа? Задайте свой вопрос</h2>
-            <Card className="border-0 shadow-md">
+            {/* Updated background color here */}
+            <Card className="border-0 shadow-md bg-[#f5f5f5]">
               <CardContent className="p-6">
                 <Form {...designerForm}>
                   <form onSubmit={designerForm.handleSubmit(onDesignerSubmit)} className="space-y-4">
@@ -309,4 +309,3 @@ const DesignerSection = () => {
 };
 
 export default DesignerSection;
-
