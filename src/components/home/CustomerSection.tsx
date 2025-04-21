@@ -1,4 +1,3 @@
-
 import { CheckCircle2 } from "lucide-react";
 import ContactForm from '@/components/ContactForm';
 
@@ -41,7 +40,7 @@ const CustomerSection = () => {
           </div>
           <div className="md:h-[450px]">
             <img 
-              src="https://i.postimg.cc/kXvJrDs0/0-NVcqry-Z2q.png" 
+              src="https://i.postimg.cc/d3nWgR5h/image.avif" 
               alt="О нас" 
               className="w-full h-full object-cover rounded-lg shadow-md"
             />
@@ -90,4 +89,3 @@ const CustomerSection = () => {
 };
 
 export default CustomerSection;
-
