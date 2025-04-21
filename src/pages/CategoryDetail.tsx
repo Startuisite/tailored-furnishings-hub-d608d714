@@ -604,7 +604,7 @@ const CategoryDetail = () => {
                           <span className="flex-grow">{faq.question}</span>
                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="pl-8 bg-[#f5f5f5] rounded-b-md">
+                      <AccordionContent className="pl-8 bg-[#d1d1d1] rounded-b-md">
                         <p className="text-gray-700">{faq.answer}</p>
                       </AccordionContent>
                     </AccordionItem>
