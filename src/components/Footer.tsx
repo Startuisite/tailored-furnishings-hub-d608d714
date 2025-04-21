@@ -129,7 +129,7 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Добавляем подпись о создании сайта */}
+        {/* Removed the Lovable reference in the bottom text */}
         <div className="text-center mt-6 text-gray-600 text-xs">
           <a 
             href="https://startui.site" 
