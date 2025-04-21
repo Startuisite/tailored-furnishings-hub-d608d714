@@ -198,21 +198,23 @@ const Designers = () => {
               <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md p-6">
                 {faqs.map((faq, index) => (
                   <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
-                    <AccordionTrigger className="py-4 hover:no-underline font-medium">
+                    {/* Затемнённый фон для вопроса */}
+                    <AccordionTrigger className="py-4 hover:no-underline font-medium bg-npm-blue px-4 rounded-md text-white">
                       <div className="flex items-center gap-2 text-left w-full">
-                        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[rgb(242,237,231)] flex items-center justify-center text-xs font-bold">
                           {index + 1}
                         </div>
                         <span className="flex-grow">{faq.question}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pl-8">
+                    <AccordionContent className="pl-8 bg-[#f5f5f5] rounded-b-md">
                       <p className="text-gray-700">{faq.answer}</p>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
             </div>
+
             <div>
               <h2 className="section-title mb-6">Не нашли ответа? Задайте свой вопрос</h2>
               <Card className="border-0 shadow-md">
