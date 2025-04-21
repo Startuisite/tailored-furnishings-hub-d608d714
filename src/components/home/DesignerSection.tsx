@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { useForm } from "react-hook-form";
@@ -128,13 +127,13 @@ const DesignerSection = () => {
             </div>
             <div className="mt-8">
               <p className="font-medium mb-2">У вас есть?</p>
-              <div className="flex items-center gap-3 mb-1">
+              <div className="flex items-center gap-3 mb-1 bg-[#f5f5f5] p-2 rounded">
                 <div className="w-5 h-5 rounded bg-[rgb(242,237,243)] flex items-center justify-center">
                   <Check size={16} />
                 </div>
                 <p>Клиенты, которым нужна мебель на заказ</p>
               </div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-4 bg-[#f5f5f5] p-2 rounded">
                 <div className="w-5 h-5 rounded bg-[rgb(242,237,243)] flex items-center justify-center">
                   <Check size={16} />
                 </div>
@@ -182,7 +181,7 @@ const DesignerSection = () => {
           {/* Updated to remove the left image and make the text container full width with new color */}
           <div className="bg-[#b3c9dd] p-8 rounded-lg shadow-md flex flex-col justify-center space-y-6">
             {benefits.map((benefit, index) => (
-              <div key={index} className="space-y-2">
+              <div key={index} className="space-y-2 bg-[#f5f5f5] p-4 rounded">
                 <h3 className="text-xl font-medium">{benefit.title}</h3>
                 <p className="text-gray-700">{benefit.description}</p>
               </div>
@@ -196,8 +195,8 @@ const DesignerSection = () => {
             <h2 className="section-title mb-6">Ответы на частые вопросы</h2>
             <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md p-6">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
-                  <AccordionTrigger className="py-4 hover:no-underline font-medium bg-[#ffffff]">
+                <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0 bg-[#f5f5f5] rounded-md mb-4 p-4">
+                  <AccordionTrigger className="py-4 hover:no-underline font-medium bg-[#ffffff] rounded-md">
                     <div className="flex items-center gap-2 text-left w-full">
                       <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold">
                         {index + 1}
@@ -309,4 +308,3 @@ const DesignerSection = () => {
 };
 
 export default DesignerSection;
-
