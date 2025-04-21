@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
@@ -48,32 +47,32 @@ const OrderSteps = () => {
     1: {
       title: "Знакомство",
       description: "На этом шаге мы изучаем ваши задачи и пожелания, понимаем параметры помещения, количество и возраст детей. Продумываем зонирование, расположение мебели в комнате и предлагаем концепт решения.",
-      image: "https://i.postimg.cc/PxXf4pJg/image.png"
+      image: "https://i.postimg.cc/hPCNfgcH/image.avif"
     },
     2: {
       title: "Предварительный расчет",
       description: "Делаем предварительную оценку стоимости проекта, учитывая выбранные материалы, фурнитуру и особенности конструкции. Обсуждаем возможные варианты оптимизации бюджета.",
-      image: "https://i.postimg.cc/7LxMg91w/image.png"
+      image: "https://i.postimg.cc/7ZdcnVC9/image.avif"
     },
     3: {
       title: "Обмерный план",
       description: "Специалист выезжает к вам для проведения точных замеров помещения. Учитываются все нюансы: розетки, вентиляция, радиаторы и другие особенности, которые могут влиять на проект.",
-      image: "https://i.postimg.cc/cLdXmdZp/image.png"
+      image: "https://i.postimg.cc/fLhr6Rf0/image.avif"
     },
     4: {
       title: "Дизайн проект",
       description: "Создаем 3D-визуализацию вашей будущей мебели, согласовываем все детали, цвета, материалы и фурнитуру. Вы получаете полное представление о конечном результате.",
-      image: "https://i.postimg.cc/ZqS1rXSF/image.webp"
+      image: "https://i.postimg.cc/zfLNJvht/image.avif"
     },
     5: {
       title: "Изготовление мебели",
       description: "Производим мебель на собственном производстве, используя современное оборудование и качественные материалы. Контролируем каждый этап производства для гарантии качества.",
-      image: "https://i.postimg.cc/CMNZ80PB/image.png"
+      image: "https://i.postimg.cc/52YKyCPC/image.avif"
     },
     6: {
       title: "Монтаж под ключ",
       description: "Осуществляем доставку и профессиональная сборка мебели. Проводим финальную проверку качества и убираем за собой мусор. Вы получаете полностью готовый к использованию результат.",
-      image: "https://i.postimg.cc/4d4GkDzq/image.png"
+      image: "https://i.postimg.cc/pTZq4Ydg/image.avif"
     },
   };
 
@@ -210,4 +209,3 @@ const OrderSteps = () => {
 };
 
 export default OrderSteps;
-
