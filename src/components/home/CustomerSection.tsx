@@ -56,7 +56,7 @@ const CustomerSection = () => {
             <img 
               src="https://i.postimg.cc/FKFwCjbV/image.png" 
               alt="Комфортный интерьер" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
           <div className="p-8 flex flex-col justify-center">
@@ -79,7 +79,7 @@ const CustomerSection = () => {
               <img 
                 src="https://i.postimg.cc/6320TYhF/Qnez6ad-RP3.png" 
                 alt="Связаться с нами" 
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top rounded-lg"
               />
             </div>
           </div>
