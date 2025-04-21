@@ -13,7 +13,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import ContactFormDialog from '@/components/ContactFormDialog';
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 const formSchema = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
   email: z.string().email("Введите корректный email").optional(),
@@ -23,7 +22,6 @@ const formSchema = z.object({
     message: "Вы должны согласиться с политикой конфиденциальности"
   })
 });
-
 const DesignerSection = () => {
   // Designer form state and handler
   const designerForm = useForm({
@@ -33,34 +31,32 @@ const DesignerSection = () => {
       email: "",
       phone: "",
       message: "",
-      agreement: false,
-    },
+      agreement: false
+    }
   });
-
   const onDesignerSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       console.log(data);
-      
+
       // Prepare data for Supabase
       const formData = {
         "Имя": data.name,
         "Телефон": data.phone,
         "Email": data.email,
         "Сообщение": data.message,
-        "Тип клиента": "Дизайнер", // Fixed value since this is the Designers page
+        "Тип клиента": "Дизайнер",
+        // Fixed value since this is the Designers page
         "Статус": "Новая"
       };
-      
+
       // Insert data into Supabase
-      const { error } = await supabase
-        .from("client_requests")
-        .insert(formData);
-      
+      const {
+        error
+      } = await supabase.from("client_requests").insert(formData);
       if (error) {
         console.error("Supabase error:", error);
         throw error;
       }
-      
       toast.success("Ваша заявка успешно отправлена!");
       designerForm.reset();
     } catch (error) {
@@ -70,50 +66,38 @@ const DesignerSection = () => {
   };
 
   // Designer benefits state
-  const [benefits] = useState([
-    {
-      title: "Качественные материалы",
-      description: "Мы используем только высококачественные материалы от проверенных поставщиков, что гарантирует долговечность и надежность нашей мебели.",
-      icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
-    },
-    {
-      title: "Доставка и сборка",
-      description: "Мы обеспечиваем доставку и профессиональную сборку мебели, чтобы гарантировать правильную установку и удовлетворение клиента.",
-      icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
-    },
-    {
-      title: "Гарантия",
-      description: "На всю нашу мебель предоставляется гарантия, подтверждающая уверенность в ее качестве и долговечности.",
-      icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
-    }
-  ]);
+  const [benefits] = useState([{
+    title: "Качественные материалы",
+    description: "Мы используем только высококачественные материалы от проверенных поставщиков, что гарантирует долговечность и надежность нашей мебели.",
+    icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
+  }, {
+    title: "Доставка и сборка",
+    description: "Мы обеспечиваем доставку и профессиональную сборку мебели, чтобы гарантировать правильную установку и удовлетворение клиента.",
+    icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
+  }, {
+    title: "Гарантия",
+    description: "На всю нашу мебель предоставляется гарантия, подтверждающая уверенность в ее качестве и долговечности.",
+    icon: "/pictures/79705624-800c-45dd-aa32-96cd9357b606.png"
+  }]);
 
   // Designer FAQs state
-  const [faqs] = useState([
-    {
-      question: "Какие размеры мебели мы делаем?",
-      answer: "Каждая комната индивидуальна, поэтому мы не ограничиваемся стандартными размерами мебели. Мы делаем любые размеры кроватей и матрасов к ним. Адаптируем мебель под ваш размер комнаты и высоту потолка. Учитываем высоту плинтуса, расположение батарей, розеток и выключателей."
-    },
-    {
-      question: "Какие сроки изготовления?",
-      answer: "Срок изготовления зависит от количества и стоимости мебели. В среднем изготовление занимает от 30 до 60 рабочих дней. Точные сроки на данный момент можно уточнить у наших менеджеров. Предварительный этап от проектирования занимает от 7 дней, до согласования проекта. Сложные проекты с нестандартными решениями, подсветкой, подбором цвета всегда требуют больше времени на согласование. Мы рекомендуем закладывать несколько месяцев на все циклы: от дизайн проекта до монтажа мебели."
-    },
-    {
-      question: "Какие материалы и фурнитура используются?",
-      answer: "Мы используем эколологические чистые материалы. Это массив дерева, фанера, мдф. В редких случаях мы используем ЛДСП Еггер, но следим за тем что бы все кромки включая задние были заклеены и толщина плит была не менее 18 мм. Устанавливаем качественную фурнитуру мировых производителей. Так же вы можете сделать заказ с фурнитурой премиум класса, BLUM и Hettich. Мы разработали собственную коллекцию зацепок для скаладромов, адаптированную под детские руки."
-    },
-    {
-      question: "Чем покрывается мебель?",
-      answer: "Мы используем многослойные профессиональные системы покрытия мебели на полиуретановой основе из итальянских составляющих, и натуральные масла OSMO. В нашей стандартной палитре более 30 цветов и оттенков, которые хорошо сочетаются друг с другом. Так же мы колеруем эмаль в любой цвет по палитре RAL, WCP и NCSS."
-    },
-    {
-      question: "Есть ли у вас доставка в другие города?",
-      answer: "ОТПРАВЛЯЕМ МЕБЕЛЬ ПО ВСЕЙ РОССИИ. Мы отправляем мебель в другие города через транспортные компании. Всю мебель мы предварительно собираем, делаем фото отчет, пакуем в дополнительную упаковку и отвозим в транспортную компанию. Стоимость услуги 5% от стоимости мебели. Минимальная стоимость услуги 5000 руб."
-    }
-  ]);
-
-  return (
-    <div id="designers" className="designers-section bg-[rgb(252,247,241)]/30 py-16">
+  const [faqs] = useState([{
+    question: "Какие размеры мебели мы делаем?",
+    answer: "Каждая комната индивидуальна, поэтому мы не ограничиваемся стандартными размерами мебели. Мы делаем любые размеры кроватей и матрасов к ним. Адаптируем мебель под ваш размер комнаты и высоту потолка. Учитываем высоту плинтуса, расположение батарей, розеток и выключателей."
+  }, {
+    question: "Какие сроки изготовления?",
+    answer: "Срок изготовления зависит от количества и стоимости мебели. В среднем изготовление занимает от 30 до 60 рабочих дней. Точные сроки на данный момент можно уточнить у наших менеджеров. Предварительный этап от проектирования занимает от 7 дней, до согласования проекта. Сложные проекты с нестандартными решениями, подсветкой, подбором цвета всегда требуют больше времени на согласование. Мы рекомендуем закладывать несколько месяцев на все циклы: от дизайн проекта до монтажа мебели."
+  }, {
+    question: "Какие материалы и фурнитура используются?",
+    answer: "Мы используем эколологические чистые материалы. Это массив дерева, фанера, мдф. В редких случаях мы используем ЛДСП Еггер, но следим за тем что бы все кромки включая задние были заклеены и толщина плит была не менее 18 мм. Устанавливаем качественную фурнитуру мировых производителей. Так же вы можете сделать заказ с фурнитурой премиум класса, BLUM и Hettich. Мы разработали собственную коллекцию зацепок для скаладромов, адаптированную под детские руки."
+  }, {
+    question: "Чем покрывается мебель?",
+    answer: "Мы используем многослойные профессиональные системы покрытия мебели на полиуретановой основе из итальянских составляющих, и натуральные масла OSMO. В нашей стандартной палитре более 30 цветов и оттенков, которые хорошо сочетаются друг с другом. Так же мы колеруем эмаль в любой цвет по палитре RAL, WCP и NCSS."
+  }, {
+    question: "Есть ли у вас доставка в другие города?",
+    answer: "ОТПРАВЛЯЕМ МЕБЕЛЬ ПО ВСЕЙ РОССИИ. Мы отправляем мебель в другие города через транспортные компании. Всю мебель мы предварительно собираем, делаем фото отчет, пакуем в дополнительную упаковку и отвозим в транспортную компанию. Стоимость услуги 5% от стоимости мебели. Минимальная стоимость услуги 5000 руб."
+  }]);
+  return <div id="designers" className="designers-section bg-[rgb(252,247,241)]/30 py-16">
       <div className="container-custom">
         {/* Hero Section for Designers */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
@@ -141,27 +125,13 @@ const DesignerSection = () => {
               </div>
               
               {/* Add "Да" button with popup form */}
-              <ContactFormDialog
-                trigger={
-                  <Button
-                    className="bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80 font-medium"
-                  >
+              <ContactFormDialog trigger={<Button className="bg-[#e5dbb7] text-black hover:bg-[#e5dbb7]/80 font-medium">
                     Да
-                  </Button>
-                }
-                title="Заявка дизайнера"
-                description="Оставьте свои контактные данные, и мы свяжемся с вами для обсуждения сотрудничества"
-                showDesignerCheckbox={false}
-                sourcePageType="designers"
-              />
+                  </Button>} title="Заявка дизайнера" description="Оставьте свои контактные данные, и мы свяжемся с вами для обсуждения сотрудничества" showDesignerCheckbox={false} sourcePageType="designers" />
             </div>
           </div>
           <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">
-            <img 
-              src="https://i.postimg.cc/DZMXMJ0M/image.png" 
-              alt="Дизайнер за работой" 
-              className="w-full h-full object-cover"
-            />
+            <img src="https://i.postimg.cc/DZMXMJ0M/image.png" alt="Дизайнер за работой" className="w-full h-full object-cover" />
           </div>
         </section>
 
@@ -171,21 +141,15 @@ const DesignerSection = () => {
           
           {/* Main image above text with updated URL */}
           <div className="mb-8">
-            <img 
-              src="https://i.postimg.cc/HLFPRmf1/rw-WKn-NH7q-X.jpg"
-              alt="Качество без компромиссов"
-              className="w-full h-auto object-cover rounded-lg shadow-md"
-            />
+            <img src="https://i.postimg.cc/HLFPRmf1/rw-WKn-NH7q-X.jpg" alt="Качество без компромиссов" className="w-full h-auto object-cover rounded-lg shadow-md" />
           </div>
           
           {/* Updated to remove the left image and make the text container full width with new color */}
           <div className="bg-[#b3c9dd] p-8 rounded-lg shadow-md flex flex-col justify-center space-y-6">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="space-y-2">
+            {benefits.map((benefit, index) => <div key={index} className="space-y-2">
                 <h3 className="text-xl font-medium">{benefit.title}</h3>
                 <p className="text-gray-700">{benefit.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </section>
 
@@ -194,9 +158,8 @@ const DesignerSection = () => {
           <div>
             <h2 className="section-title mb-6">Ответы на частые вопросы</h2>
             <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md p-6">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
-                  <AccordionTrigger className="py-4 hover:no-underline font-medium">
+              {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
+                  <AccordionTrigger className="py-4 hover:no-underline font-medium bg-neutral-100">
                     <div className="flex items-center gap-2 text-left w-full">
                       <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold">
                         {index + 1}
@@ -207,8 +170,7 @@ const DesignerSection = () => {
                   <AccordionContent className="pl-8">
                     <p className="text-gray-700">{faq.answer}</p>
                   </AccordionContent>
-                </AccordionItem>
-              ))}
+                </AccordionItem>)}
             </Accordion>
           </div>
           <div>
@@ -217,81 +179,58 @@ const DesignerSection = () => {
               <CardContent className="p-6">
                 <Form {...designerForm}>
                   <form onSubmit={designerForm.handleSubmit(onDesignerSubmit)} className="space-y-4">
-                    <FormField
-                      control={designerForm.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
+                    <FormField control={designerForm.control} name="name" render={({
+                    field
+                  }) => <FormItem>
                           <FormLabel>Имя</FormLabel>
                           <FormControl>
                             <Input placeholder="Введите ваше имя" {...field} />
                           </FormControl>
                           <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
                     
-                    <FormField
-                      control={designerForm.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
+                    <FormField control={designerForm.control} name="email" render={({
+                    field
+                  }) => <FormItem>
                           <FormLabel>Email (необязательно)</FormLabel>
                           <FormControl>
                             <Input placeholder="Введите ваш email" {...field} />
                           </FormControl>
                           <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
                     
-                    <FormField
-                      control={designerForm.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
+                    <FormField control={designerForm.control} name="phone" render={({
+                    field
+                  }) => <FormItem>
                           <FormLabel>Телефон</FormLabel>
                           <FormControl>
                             <Input placeholder="Введите ваш телефон" {...field} />
                           </FormControl>
                           <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
                     
-                    <FormField
-                      control={designerForm.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
+                    <FormField control={designerForm.control} name="message" render={({
+                    field
+                  }) => <FormItem>
                           <FormLabel>Сообщение</FormLabel>
                           <FormControl>
                             <Textarea placeholder="Ваше сообщение" {...field} />
                           </FormControl>
                           <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
                     
-                    <FormField
-                      control={designerForm.control}
-                      name="agreement"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormField control={designerForm.control} name="agreement" render={({
+                    field
+                  }) => <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                           <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
+                            <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                           </FormControl>
                           <div className="space-y-1 leading-none">
                             <FormLabel>
                               Я согласен с политикой конфиденциальности
                             </FormLabel>
                           </div>
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
                     
                     <Button type="submit" className="w-full bg-[#b3c9dd] text-black hover:bg-[#b3c9dd]/80">
                       Отправить
@@ -303,8 +242,6 @@ const DesignerSection = () => {
           </div>
         </section>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default DesignerSection;
