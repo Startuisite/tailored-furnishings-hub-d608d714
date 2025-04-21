@@ -1,10 +1,7 @@
-
 import { CheckCircle2 } from "lucide-react";
 import ContactForm from '@/components/ContactForm';
-
 const CustomerSection = () => {
-  return (
-    <div id="customers" className="customers-section">
+  return <div id="customers" className="customers-section">
       {/* About Us Section - теперь всегда первая */}
       <section className="mb-16 container-custom about-us-section">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -40,11 +37,7 @@ const CustomerSection = () => {
             </div>
           </div>
           <div className="md:h-[450px]">
-            <img 
-              src="https://i.postimg.cc/d3nWgR5h/image.avif" 
-              alt="О нас" 
-              className="w-full h-full object-cover rounded-lg shadow-md"
-            />
+            <img alt="О нас" className="w-full h-full object-cover rounded-lg shadow-md" src="https://i.postimg.cc/02ZqwNh6/0-NVcqry-Z2q.avif" />
           </div>
         </div>
       </section>
@@ -53,11 +46,7 @@ const CustomerSection = () => {
       <section className="mb-16 container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
           <div className="h-full">
-            <img 
-              src="https://i.postimg.cc/FKFwCjbV/image.png" 
-              alt="Комфортный интерьер" 
-              className="w-full h-full object-cover rounded-lg"
-            />
+            <img src="https://i.postimg.cc/FKFwCjbV/image.png" alt="Комфортный интерьер" className="w-full h-full object-cover rounded-lg" />
           </div>
           <div className="p-8 flex flex-col justify-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">
@@ -76,17 +65,11 @@ const CustomerSection = () => {
           </div>
           <div className="h-auto">
             <div className="w-full h-full max-h-[600px] relative rounded-lg shadow-md">
-              <img 
-                src="https://i.postimg.cc/BnJCPSHV/Qnez6ad-RP3.avif" 
-                alt="Связаться с нами" 
-                className="w-full h-full object-cover object-top rounded-lg"
-              />
+              <img src="https://i.postimg.cc/BnJCPSHV/Qnez6ad-RP3.avif" alt="Связаться с нами" className="w-full h-full object-cover object-top rounded-lg" />
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default CustomerSection;
