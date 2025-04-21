@@ -5,25 +5,7 @@ import ContactForm from '@/components/ContactForm';
 const CustomerSection = () => {
   return (
     <div id="customers" className="customers-section">
-      {/* Hero Section with Image and CTA - Updated with external image link */}
-      <section className="mb-16 container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
-          <div className="h-full">
-            <img 
-              src="https://i.postimg.cc/FKFwCjbV/image.png" 
-              alt="Комфортный интерьер" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="p-8 flex flex-col justify-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">
-              ПОЛНОСТЬЮ берем весь процесс разработки и реализации проекта на себя
-            </h2>
-          </div>
-        </div>
-      </section>
-
-      {/* About Us Section - Updated to fix equal heights between text and image */}
+      {/* About Us Section - теперь всегда первая */}
       <section className="mb-16 container-custom about-us-section">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col md:h-[450px]">
@@ -67,6 +49,24 @@ const CustomerSection = () => {
         </div>
       </section>
 
+      {/* Hero Section with Image and CTA - Updated with external image link */}
+      <section className="mb-16 container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-xl overflow-hidden shadow-md">
+          <div className="h-full">
+            <img 
+              src="https://i.postimg.cc/FKFwCjbV/image.png" 
+              alt="Комфортный интерьер" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-8 flex flex-col justify-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              ПОЛНОСТЬЮ берем весь процесс разработки и реализации проекта на себя
+            </h2>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form for Customers - Updated to show the top of the image */}
       <section className="mb-16 container-custom">
         <h2 className="section-title text-center mb-8">Свяжитесь с нами</h2>
@@ -90,3 +90,4 @@ const CustomerSection = () => {
 };
 
 export default CustomerSection;
+
