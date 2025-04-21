@@ -196,7 +196,7 @@ const DesignerSection = () => {
             <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md p-6">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
-                  <AccordionTrigger className="py-4 hover:no-underline font-medium">
+                  <AccordionTrigger className="py-4 hover:no-underline font-medium bg-[#ffffff]">
                     <div className="flex items-center gap-2 text-left w-full">
                       <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold">
                         {index + 1}
