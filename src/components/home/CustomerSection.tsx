@@ -24,7 +24,7 @@ const CustomerSection = () => {
       </section>
 
       {/* About Us Section - Updated to fix equal heights between text and image */}
-      <section className="mb-16 container-custom">
+      <section className="mb-16 container-custom about-us-section">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col md:h-[450px]">
             <h2 className="section-title mb-6">О нас</h2>
