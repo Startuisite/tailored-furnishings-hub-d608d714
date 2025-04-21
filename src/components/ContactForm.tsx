@@ -29,7 +29,7 @@ const formSchema = z.object({
   }),
   email: z.string().email({
     message: "Введите корректный email",
-  }).optional(),
+  }).optional().or(z.literal('')), // Разрешаем пустую строку как допустимое значение
   message: z.string().optional(),
   isDesigner: z.boolean().optional(),
   consent: z.literal(true, {

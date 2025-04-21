@@ -10,9 +10,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod"; // Добавляем импорт zodResolver
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import ContactFormDialog from "@/components/ContactFormDialog";
+import { z } from "zod"; // Добавим импорт zod для схемы валидации
 
 const Designers = () => {
   const [benefits] = useState([
@@ -56,7 +58,28 @@ const Designers = () => {
     }
   ]);
 
-  const form = useForm({
+  // Добавляем схему валидации формы
+  const formSchema = z.object({
+    name: z.string().min(2, {
+      message: "Имя должно содержать минимум 2 символа",
+    }),
+    phone: z.string().min(6, {
+      message: "Введите корректный номер телефона",
+    }),
+    email: z.string().email({
+      message: "Введите корректный email",
+    }).optional().or(z.literal('')), // Разрешаем пустую строку
+    message: z.string().optional(),
+    agreement: z.boolean().refine(val => val === true, {
+      message: "Необходимо согласие на обработку персональных данных",
+    }),
+  });
+
+  // Типизация для формы
+  type FormValues = z.infer<typeof formSchema>;
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -66,7 +89,7 @@ const Designers = () => {
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormValues) => {
     try {
       console.log(data);
       
@@ -74,13 +97,13 @@ const Designers = () => {
       const formData = {
         "Имя": data.name,
         "Телефон": data.phone,
-        "Email": data.email,
-        "Сообщение": data.message,
+        "Email": data.email || "", // Обеспечиваем пустую строку, если email не указан
+        "Сообщение": data.message || "",
         "Тип клиента": "Дизайнер", // Fixed value since this is the Designers page
         "Статус": "Новая"
       };
       
-      // Insert data into Supabase - исправляем название таблицы
+      // Insert data into Supabase
       const { error } = await supabase
         .from("client_requests")
         .insert(formData);
@@ -215,7 +238,7 @@ const Designers = () => {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>Email (необязательно)</FormLabel>
                             <FormControl>
                               <Input placeholder="Введите ваш email" {...field} />
                             </FormControl>

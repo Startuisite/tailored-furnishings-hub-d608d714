@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -21,6 +20,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 const CategoryDetail = () => {
@@ -127,7 +128,30 @@ const CategoryDetail = () => {
   ];
 
   // Designer form state and handler
-  const designerForm = useForm({
+
+  // Добавляем схему валидации формы
+  const formSchema = z.object({
+    name: z.string().min(2, {
+      message: "Имя должно содержать минимум 2 символа",
+    }),
+    phone: z.string().min(6, {
+      message: "Введите корректный номер телефона",
+    }),
+    email: z.string().email({
+      message: "Введите корректный email",
+    }).optional().or(z.literal('')), // Разрешаем пустую строку
+    message: z.string().optional(),
+    agreement: z.boolean().refine(val => val === true, {
+      message: "Необходимо согласие на обработку персональных данных",
+    }),
+  });
+
+  // Типизация для формы
+  type FormValues = z.infer<typeof formSchema>;
+
+  // Designer form state and handler
+  const designerForm = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -137,7 +161,7 @@ const CategoryDetail = () => {
     },
   });
 
-  const onDesignerSubmit = async (data: any) => {
+  const onDesignerSubmit = async (data: FormValues) => {
     try {
       console.log(data);
       
@@ -145,8 +169,8 @@ const CategoryDetail = () => {
       const formData = {
         "Имя": data.name,
         "Телефон": data.phone,
-        "Email": data.email,
-        "Сообщение": data.message,
+        "Email": data.email || "", // Обеспечиваем пустую строку, если email не указан
+        "Сообщение": data.message || "", 
         "Тип клиента": "Обычный", 
         "Статус": "Новая"
       };
@@ -613,7 +637,7 @@ const CategoryDetail = () => {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Email</FormLabel>
+                              <FormLabel>Email (необязательно)</FormLabel>
                               <FormControl>
                                 <Input placeholder="Введите ваш email" {...field} />
                               </FormControl>
