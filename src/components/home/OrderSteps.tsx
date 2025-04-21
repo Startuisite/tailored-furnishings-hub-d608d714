@@ -1,8 +1,9 @@
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight, MessageCircle } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const OrderSteps = () => {
   const orderSteps = [
@@ -39,6 +40,9 @@ const OrderSteps = () => {
   ];
   
   const [activeStep, setActiveStep] = useState(1);
+  const isMobile = useIsMobile();
+  // Ссылка на блок с описанием шага
+  const stepDetailRef = useRef<HTMLDivElement>(null);
 
   const stepDetails = {
     1: {
@@ -76,17 +80,34 @@ const OrderSteps = () => {
   const handleNextStep = () => {
     if (activeStep < 6) {
       setActiveStep(prev => prev + 1);
+      // Прокрутка к описанию на мобильных устройствах
+      setTimeout(() => {
+        if (isMobile && stepDetailRef.current) {
+          stepDetailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
     }
   };
 
   const handlePrevStep = () => {
     if (activeStep > 1) {
       setActiveStep(prev => prev - 1);
+      setTimeout(() => {
+        if (isMobile && stepDetailRef.current) {
+          stepDetailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
     }
   };
 
   const handleStepSelect = (step: number) => {
     setActiveStep(step);
+    // На мобиле плавно скроллим к описанию
+    setTimeout(() => {
+      if (isMobile && stepDetailRef.current) {
+        stepDetailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 50);
   };
   
   return (
@@ -123,7 +144,10 @@ const OrderSteps = () => {
         </div>
         
         {/* Right side - Step details */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden">
+        <div
+          className="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden"
+          ref={stepDetailRef}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Step detail information */}
             <div className="p-6 flex flex-col justify-between">
@@ -186,3 +210,4 @@ const OrderSteps = () => {
 };
 
 export default OrderSteps;
+
