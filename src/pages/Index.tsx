@@ -13,11 +13,11 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 const Index = () => {
   const location = useLocation();
   
-  // Массив изображений для слайдера с внешними ссылками для более быстрой загрузки
+  // Updated hero images with new URLs
   const heroImages = [
-    "https://i.postimg.cc/44DsS9HD/0-T2p-Iwn3-Cf.png", // Ванная комната
-    "https://i.postimg.cc/MTZvXjmP/bfl8-HSy-URY.png", // Кухня
-    "https://i.postimg.cc/sfqgCLq0/hbi6-LHogp-Q.png"  // Спальня/кабинет
+    "https://i.postimg.cc/DyqdMPY5/0-T2p-Iwn3-Cf.avif", // Ванная комната
+    "https://i.postimg.cc/qR5CNzDN/bfl8-HSy-URY.avif", // Кухня
+    "https://i.postimg.cc/BbWsX33T/hbi6-LHogp-Q.avif"  // Спальня/кабинет
   ];
 
   // Effect для скролла к нужной секции после навигации с другой страницы
