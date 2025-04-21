@@ -157,7 +157,7 @@ const DesignerSection = () => {
         <section className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
             <h2 className="section-title mb-6">Ответы на частые вопросы</h2>
-            <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md p-6">
+            <Accordion type="single" collapsible className="w-full rounded-xl shadow-md p-6 bg-neutral-100">
               {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="border-b last:border-b-0">
                   <AccordionTrigger className="py-4 hover:no-underline font-medium bg-neutral-100">
                     <div className="flex items-center gap-2 text-left w-full">
