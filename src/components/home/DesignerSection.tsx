@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { useForm } from "react-hook-form";
@@ -131,7 +132,7 @@ const DesignerSection = () => {
             </div>
           </div>
           <div className="bg-white shadow-md overflow-hidden flex items-center justify-center h-full">
-            <img src="https://i.postimg.cc/DZMXMJ0M/image.png" alt="Дизайнер за работой" className="w-full h-full object-cover" />
+            <img src="https://i.postimg.cc/DZMXMJ0M/image.png" alt="Дизайнер за работой" className="w-full h-full object-cover rounded-lg" />
           </div>
         </section>
 
