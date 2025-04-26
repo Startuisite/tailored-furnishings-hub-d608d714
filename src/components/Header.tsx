@@ -81,6 +81,16 @@ const Header = () => {
     { title: "Контакты", action: (e: React.MouseEvent) => navigateToPage('/information', e) },
   ];
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      // If already on homepage, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // If on another page, navigate to homepage
+      navigate('/');
+    }
+  };
+
   return (
     <header 
       className={`navbar ${scrolled ? 'bg-npm-blue/90' : 'bg-transparent'} 
@@ -88,7 +98,11 @@ const Header = () => {
         transform ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
     >
       <div className="container-custom py-4 md:py-6 flex items-center justify-between">
-        <Link to="/" className="z-10 flex items-center gap-2 text-black">
+        <Link 
+          to="/" 
+          onClick={handleLogoClick} 
+          className="z-10 flex items-center gap-2 text-black"
+        >
           <img 
             src="https://i.postimg.cc/vmJS9BL5/1.png" 
             alt="НПМ Логотип" 
