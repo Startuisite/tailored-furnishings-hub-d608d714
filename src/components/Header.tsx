@@ -18,6 +18,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   
@@ -50,28 +51,25 @@ const Header = () => {
     };
   }, [lastScrollY]);
 
-  // Универсальная функция для навигации к разделам
   const scrollToSection = (sectionClass: string, e: React.MouseEvent) => {
     e.preventDefault();
     
-    // Если мы уже на главной странице
     if (location.pathname === '/') {
       const section = document.querySelector(`.${sectionClass}`);
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Если мы не на главной странице, переходим на главную
-      // и задаем функцию для выполнения после загрузки страницы
       navigate('/', { state: { scrollTo: sectionClass } });
     }
+    setIsOpen(false); // Close the menu after clicking
   };
 
-  // Функция для навигации на страницы с прокруткой наверх
   const navigateToPage = (path: string, e: React.MouseEvent) => {
     e.preventDefault();
     navigate(path);
     window.scrollTo(0, 0);
+    setIsOpen(false); // Close the menu after clicking
   };
 
   const mobileMenuItems = [
@@ -156,7 +154,7 @@ const Header = () => {
           </DropdownMenu>
         </nav>
         
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
             <button className="text-black p-2">
               <Menu size={24} />
