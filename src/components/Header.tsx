@@ -87,8 +87,12 @@ const Header = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // If on another page, navigate to homepage
-      navigate('/');
+      navigate('/', { 
+        state: { scrollTo: 'top' }  // Optional: pass state to scroll on homepage mount
+      });
+      window.scrollTo(0, 0);  // Immediately scroll to top
     }
+    setIsOpen(false); // Close mobile menu if open
   };
 
   return (
