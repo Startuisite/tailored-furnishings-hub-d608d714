@@ -1,5 +1,5 @@
 
-project_id = "id_вашего_нового_проекта"
+project_id = "ybuilhatpkadjmivdvvc"
 
 [functions.send-email-notification]
 verify_jwt = true
